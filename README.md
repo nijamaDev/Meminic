@@ -1,1 +1,3 @@
-# Meminic
+# Méminic
+---
+By ***Team Avocado***
