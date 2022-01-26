@@ -3,19 +3,25 @@ import "./Header.css";
 import { MenuItems } from "./MenuItems";
 import { GoThreeBars } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
-
+import logo from "../../assets/logo.svg";
 const Header = () => {
   const [isClicked, setIsClicked] = useState(false);
-
   return (
     <nav className="navbar__container">
-      <h1 className="navbar__container__logo">
-        Méminic
-      </h1>
+      <a href="/">
+        <img src={logo} className="navbar__container__logo" alt="méminic" />
+      </a>
       {/*Manejamos el ícono que se mostrará cuando se haga click en el menú 
       hamburguesa y cuando este esté inactivo*/}
-      <div className="navbar__menu-icon" onClick={() => setIsClicked(true)}>
-        {isClicked ? <AiOutlineClose /> : <GoThreeBars className="navbar__hamburguer"/>}
+      <div
+        className="navbar__menu-icon"
+        onClick={() => setIsClicked(!isClicked)}
+      >
+        {isClicked ? (
+          <AiOutlineClose />
+        ) : (
+          <GoThreeBars className="navbar__hamburguer" />
+        )}
       </div>
       <div className="menu-icon"></div>
       <ul className={isClicked ? "nav-menu active" : "nav-menu"}>
