@@ -2,7 +2,7 @@ import React from "react";
 import check from "../../assets/check_icon.svg";
 import "./ServicesBanner.css";
 import { ServicesItems } from "./ServicesItems";
-
+import RegisterButton from "../RegisterButton/RegisterButton";
 const ServicesBanner = () => {
   return (
     <div className="services__container">
@@ -22,6 +22,13 @@ const ServicesBanner = () => {
           </p>
         );
       })}
+      <h3 className="services__offered_text">
+        ¿Estas interesado en trabajar con nosotros? Regístrate para empezar
+      </h3>
+      <div className="services__buttons">
+        <RegisterButton></RegisterButton>
+        <button className="services__button__contact">contáctanos</button>
+      </div>
     </div>
   );
 };

@@ -13,7 +13,8 @@
   margin-bottom: 30px;
 }
 
-.services__offered {
+.services__offered,
+.services__offered_text {
   padding-top: 10px;
   padding-bottom: 10px;
   font-style: normal;
@@ -21,9 +22,12 @@
   color: white;
 }
 
+.services__offered_text {
+  text-align: center;
+  line-height: 32px;
+}
 .services__container {
   font-family: "Epilogue", sans-serif;
-  background-color: #28293e;
   margin: 0 auto;
   margin-top: -1rem;
   padding-top: 60px;
@@ -38,4 +42,16 @@
   margin-left: 2rem;
   margin-right: 3rem;
   color: rgba(255, 255, 255, 0.64);
+}
+.services__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.services__button__contact {
+  background: none;
+  border: 0;
+  color: #ffffff;
+  font-family: "Epilogue", sans-serif;
+  font-size: 16px;
 }

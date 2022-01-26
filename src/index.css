@@ -1,4 +1,10 @@
-html,
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #28293e;
+  border: 0;
+}
+html {
+  border: 0;
 }
