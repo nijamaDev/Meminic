@@ -1,24 +1,22 @@
-
-import React, {Component} from 'react';
-import shop_img from "./shop_home_image.jpg"
+import React from "react";
+import shop_img from "../../assets/shop_home_image.jpg";
 import "./Banner.css";
 
-const Banner_home = () => {
-
-
+const Banner = () => {
   return (
-    <div className="banner_container">
-          <img  src={shop_img} className="banner-home" alt="Ilustración de tienda colombiana"  className="img_home"/>
-          <div className='over_text1'>   
-            <p className='p_home'> Cada </p>
-            <p className='p_home'> detalle </p>
-            <p className='p_home'> en su sitio </p>
-          </div>
+    <div className="banner__container">
+      <img
+        src={shop_img}
+        alt="Ilustración de tienda colombiana"
+        className="img__home"
+      />
+      <div className="over__text">
+        <p className="p__home"> Cada </p>
+        <p className="p__home"> detalle </p>
+        <p className="p__home"> en su sitio </p>
+      </div>
     </div>
   );
 };
 
-export default Banner_home;
-
-
-
+export default Banner;

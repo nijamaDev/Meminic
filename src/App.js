@@ -1,17 +1,15 @@
 import React from "react";
-import Banner_home from "./components/Banner/banner";
 import Header from "./components/Header/Header";
-import Services_Div from "./components/Services_section/Services";
+import Banner from "./components/Banner/Banner";
+import ServicesBanner from "./components/ServicesBanner/ServicesBanner";
 import "./index.css";
 function App() {
-
   return (
     <div>
-      <Header/>
-      <Banner_home/>
-      <Services_Div/>
+      <Header />
+      <Banner />
+      <ServicesBanner />
     </div>
-    
   );
 }
 

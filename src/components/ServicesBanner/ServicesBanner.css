@@ -1,0 +1,41 @@
+.services__icon {
+  vertical-align: middle;
+  margin-right: 1rem;
+  width: 2rem;
+}
+
+.services__title {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 1.2rem;
+  font-style: normal;
+  margin-left: 2rem;
+  color: #ef6d58;
+  margin-bottom: 30px;
+}
+
+.services__offered {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-style: normal;
+  margin-left: 2rem;
+  color: white;
+}
+
+.services__container {
+  font-family: "Epilogue", sans-serif;
+  background-color: #28293e;
+  margin: 0 auto;
+  margin-top: -1rem;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  text-align: left;
+  color: white;
+}
+
+.services__text {
+  line-height: 30px;
+  font-style: normal;
+  margin-left: 2rem;
+  margin-right: 3rem;
+  color: rgba(255, 255, 255, 0.64);
+}
