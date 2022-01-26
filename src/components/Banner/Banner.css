@@ -1,0 +1,25 @@
+.banner__container {
+  background-color: #28293e;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.over__text {
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  top: 15vw;
+  left: 5vw;
+  margin-top: 35px;
+  text-align: left;
+}
+
+.p__home {
+  font-size: 10vw;
+  color: white;
+  margin: 0 auto;
+}
+
+.img__home {
+  width: 100%;
+  opacity: 0.35;
+}
