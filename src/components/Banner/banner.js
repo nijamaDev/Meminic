@@ -4,7 +4,7 @@ import "./Banner.css";
 
 const Banner = () => {
   return (
-    <div className="banner__container">
+    <div id="about" className="banner__container">
       <img
         src={shop_img}
         alt="Ilustración de tienda colombiana"

@@ -4,6 +4,7 @@ import { GoThreeBars } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
 import Menu from "../Menu/Menu";
 import logo from "../../assets/logo.svg";
+import { MenuItems } from "../Header/MenuItems";
 const Header = () => {
   const [isClicked, setIsClicked] = useState(false);
   return (
@@ -23,7 +24,10 @@ const Header = () => {
             <GoThreeBars className="navbar__hamburguer" />
           )}
         </div>
-        <Menu NameClass={isClicked ? "nav-menu active" : "nav-menu"} />
+        <Menu
+          NameClass={isClicked ? "nav-menu active" : "nav-menu"}
+          Items={MenuItems}
+        />
       </div>
     </nav>
   );

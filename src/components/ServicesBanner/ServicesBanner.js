@@ -12,7 +12,10 @@ const ServicesBanner = () => {
         Te ayudamos a gestionar el inventario y la contabilidad de tu tienda de
         una forma eficiente y segura.{" "}
       </p>
-      <h3 className="services__offered"> ¿Qué ofrecemos? </h3>
+      <h3 id="offer" className="services__offered">
+        {" "}
+        ¿Qué ofrecemos?{" "}
+      </h3>
       {ServicesItems.map((item, index) => {
         return (
           <p className={item.servicesClass} key={index}>
@@ -25,7 +28,7 @@ const ServicesBanner = () => {
       <h3 className="services__offered_text">
         ¿Estas interesado en trabajar con nosotros? Regístrate para empezar
       </h3>
-      <div className="services__buttons">
+      <div id="register" className="services__buttons">
         <RegisterButton></RegisterButton>
         <button className="services__button__contact">contáctanos</button>
       </div>

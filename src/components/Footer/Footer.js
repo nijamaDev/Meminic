@@ -4,11 +4,12 @@ import "./Footer.css";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { CgFacebook } from "react-icons/cg";
+import { MenuItems } from "../Header/MenuItems";
 const Footer = () => {
   return (
     <div>
       <h1 className="menu__title"> Menú </h1>
-      <Menu NameClass="menu__footer" />
+      <Menu NameClass="menu__footer" Items={MenuItems} />
       <div className="menu__container__social">
         <a href="/">
           <CgFacebook />

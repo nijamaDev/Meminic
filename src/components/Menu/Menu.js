@@ -1,11 +1,10 @@
 import React from "react";
-import { MenuItems } from "../Header/MenuItems";
 
-const Menu = ({ NameClass }) => {
+const Menu = ({ NameClass, Items }) => {
   return (
     <div>
       <ul className={NameClass}>
-        {MenuItems.map((item, index) => {
+        {Items.map((item, index) => {
           return (
             <li key={index}>
               <a className={item.cName} href={item.url}>
