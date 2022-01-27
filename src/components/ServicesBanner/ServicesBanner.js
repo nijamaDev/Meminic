@@ -3,7 +3,9 @@ import check from "../../assets/check_icon.svg";
 import "./ServicesBanner.css";
 import { ServicesItems } from "./ServicesItems";
 import RegisterButton from "../RegisterButton/RegisterButton";
+import { useAuth0 } from "@auth0/auth0-react";
 const ServicesBanner = () => {
+  const { loginWithRedirect } = useAuth0();
   return (
     <div className="services__container">
       <h1 className="services__title"> MÉMINIC </h1>
@@ -29,7 +31,7 @@ const ServicesBanner = () => {
         ¿Estas interesado en trabajar con nosotros? Regístrate para empezar
       </h3>
       <div id="register" className="services__buttons">
-        <RegisterButton></RegisterButton>
+        <RegisterButton onClick={() => loginWithRedirect()} />
         <button className="services__button__contact">contáctanos</button>
       </div>
     </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import "./RegisterButton.css";
-const RegisterButton = ({ event }) => {
+const RegisterButton = ({ onClick }) => {
   return (
-    <button className="register__button" onClick={event}>
+    <button className="register__button" onClick={onClick}>
       Registrarse
     </button>
   );
