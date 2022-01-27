@@ -5,9 +5,10 @@
 }
 
 .services__title {
-  font-family: "Noto Sans Mono", monospace;
+  font-family: "Epilogue", sans-serif;
   font-size: 1.2rem;
-  font-style: normal;
+  font-weight: normal;
+  line-height: 32px;
   margin-left: 2rem;
   color: #ef6d58;
   margin-bottom: 30px;
