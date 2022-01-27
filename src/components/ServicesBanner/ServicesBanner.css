@@ -57,3 +57,7 @@
   font-family: "Epilogue", sans-serif;
   font-size: 16px;
 }
+
+.services__button__contact:hover {
+  text-decoration: underline;
+}
