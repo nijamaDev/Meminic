@@ -3,7 +3,6 @@
   height: 80px;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   align-items: center;
   font-size: 1.2rem;
   color: #ffffff;
@@ -25,6 +24,7 @@
 }
 
 .navbar__hamburguer {
+  display: flex;
   justify-self: end;
 }
 
@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 300px;
+  height: 250px;
   position: absolute;
   top: 80px;
   left: -100%;
@@ -78,6 +78,10 @@
   transform: translate(-60%, 60%);
   font-size: 1.8rem;
   cursor: pointer;
+}
+
+.navbar__close {
+  display: flex;
 }
 
 @media screen and(min-width:768px) {

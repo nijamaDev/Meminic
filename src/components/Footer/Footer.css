@@ -1,0 +1,63 @@
+.menu__title {
+  font-family: "Epilogue", sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 32px;
+  letter-spacing: 3px;
+  text-align: center;
+  color: #ef6d58;
+  margin-top: 110px;
+  text-transform: uppercase;
+}
+.menu__footer {
+  padding: 0;
+}
+
+.menu__footer li {
+  list-style: none;
+  font-family: "Epilogue", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 2rem;
+}
+
+.menu__footer a {
+  padding: 0;
+}
+
+.menu__container__social {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.menu__container__social a:nth-last-child(1) {
+  margin-right: 0;
+}
+
+.menu__container__social a {
+  margin-right: 0.5rem;
+  color: #ffffffa3;
+  background-color: #ef6d58;
+  border-radius: 50%;
+  padding: 0.6rem;
+  display: flex;
+}
+
+.menu__divider {
+  border: 1px solid #f3d1bf;
+  width: 20rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.7rem;
+}
+
+.menu__copyright {
+  font-family: "Epilogue", sans-serif;
+  color: #ffffffa3;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 2rem;
+  text-align: center;
+}
