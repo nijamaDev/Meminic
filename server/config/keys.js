@@ -1,5 +1,8 @@
-if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./prod');
-} else {
-  module.exports = require('./dev');
-}
+const keys = {
+  PORT: process.env.PORT,
+  HOST: process.env.HOST,
+  DATABASE: process.env.DATABASE,
+  USERDB: process.env.USERDB,
+  PASSWORD: process.env.PASSWORD,
+};
+module.exports = { keys };
