@@ -1,3 +1,0 @@
-# Méminic
----
-By ***Team Avocado***

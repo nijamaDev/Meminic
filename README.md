@@ -1,3 +1,7 @@
 # Méminic
+
 ---
-By ***Team Avocado***
+
+### Avocado Team
+
+Building an application to small stores from Cali, Valle del Cauca, Colombia.
