@@ -4,4 +4,4 @@
 
 ### Avocado Team
 
-Building an application to small stores from Cali, Valle del Cauca, Colombia.
+We're building an application to small stores from Cali, Valle del Cauca, Colombia.
