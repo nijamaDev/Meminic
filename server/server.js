@@ -4,31 +4,22 @@ const sequelize = require("./database/database.js");
 const app = express();
 const cors = require("cors");
 const User = require("./database/models/User.js");
-const { setEnvironmentData } = require("worker_threads");
 app.use(express.json());
 app.use(cors());
 
 //Running server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.DEVPORT || 5000;
 
-// app.get("/test", (req, res) => {
-//   User.build({
-//     email: "melimusic@gmail.com",
-//     role: "gay",
-//     state: true,
-//   }).then(async (user) => {
-//     res.json(user);
-//     await user.save();
-//     console.log(user);
-//   });
-// });
-
-app.get("/test", (req, res) => {
-  res.json({
-    name: "popo",
-    age: 12,
+app.post("/user", async (req, res) => {
+  const user = await User.create({
+    email: req.body.email,
+    role: "admin",
+    state: true,
   });
-  console.log(res);
+  res.status(201).send({
+    message: "User created",
+    data: user,
+  });
 });
 
 //Routes
