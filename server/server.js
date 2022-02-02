@@ -23,12 +23,16 @@ const PORT = process.env.PORT || 5000;
 //   });
 // });
 
-app.get("/test", (req, res) => {
-  res.json({
-    name: "popo",
-    age: 12,
-  });
-  console.log(res);
+app.get("/test", async (req, res) => {
+  const user = await User.create({
+    email: "melimusic@gmail.com",
+    role: "gay",
+    state: true,
+  })
+  res.status(201).send({
+    message: "User created",
+    data: user
+  })
 });
 
 //Routes
