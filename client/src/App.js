@@ -12,85 +12,54 @@ import { useState } from "react";
 
 function App() {
   const { user, isAuthenticated } = useAuth0();
-  const [ newUser, setnewUser] = useState(0);
-  const [ run, setRun] = useState(0);
-  var userdb = "";
-  console.log(user);
+  //console.log(user);
 
 
   const verifyUser = async () => {
-    console.log("Setted");
-    try {
-        userdb = await axios.post("http://localhost:5000/searchUser", {
-        email: user.email,
-      }).data;
-      setnewUser(1);
-    } catch (error) {
-      console.log("error");
-    }  
-  };
-  
-  const saveDataUser = async () => {
-    try {
-      await axios.post("http://localhost:5000/createUser", {
-        email: user.email,
-      });
-      setnewUser(2);
-    } catch (error) {
-      console.log("error");
-    }
-  };
-
-  const initSesion = async () => {
-    if(typeof newUser == "undefined"){
-      console.log("Undefined if");
-      try{
-        verifyUser();
-      }
-      catch (error) {
-        console.log("Couldn't verify user?");
-      }
-    }
-    if(newUser===1){
-        console.log("newUser if");
-        if(userdb=== ""){
-          try{
+      await axios.post("http://localhost:5000/searchUser" , {
+        email: user.email })
+      .then( function (response) {
+        if(typeof response !== 'undefined'){
+          if(response.data==""){
+            console.log("Vacio", response.data);
             saveDataUser();
           }
-          catch (error) {
-            console.log("Couldn't create user?");
+          else{
+            console.log("No vacio" , response.data);
           }
-        } 
-    } 
-    if(newUser===0){
-      console.log("Undefined else");
-      try{
-        verifyUser();
+        }
+        //console.log(response);
+      } )
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  };
+
+  
+  const saveDataUser = async () => {
+    
+      try {
+        await axios.post("http://localhost:5000/createUser", {
+          email: user.email,
+        });
+      } catch (error) {
+        console.log("error");
       }
-      catch (error) {
-        console.log("Couldn't verify user?");
-      }
-      /*if (typeof userdb !== "undefined"){
-        verifyUser();
-      }
-      else{
-        this.setState =({ newUser: userdb });
-      }*/
-      
-    }
+    
   };
 
   return (
     <div>
       {isAuthenticated ? (
-        initSesion() && (
+        verifyUser() &&  (
           <>
             <Header />
             <UserProfile
               profileImg={user.picture}
               name={user.name}
               role={"Administrador"}
-            />
+             />
             <ModulesSection />
           </>
         )
