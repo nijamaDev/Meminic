@@ -3,23 +3,44 @@ const express = require("express");
 const sequelize = require("./database/database.js");
 const app = express();
 const cors = require("cors");
-const User = require("./database/models/User.js");
+const User = require("./database/models/user.js");
+const Store = require("./database/models/store.js");
 app.use(express.json());
 app.use(cors());
 
 //Running server
 const PORT = process.env.DEVPORT || 5000;
 
-app.post("/user", async (req, res) => {
+
+//Configuring models 
+//Store.hasMany(User, { as: 'Employees' });
+
+
+/*
+app.post("/createStore", async (req, res) => {
+  const store = await Store.create();
+  console.log("Store: ",store);
+  res.status(201).send(store);
+});*/
+
+
+app.post("/createUser", async (req, res) => {
+  
   const user = await User.create({
     email: req.body.email,
-    role: "admin",
+    role: "Administrador",
     state: true,
   });
+  console.log("User created")
   res.status(201).send({
     message: "User created",
     data: user,
   });
+});
+
+app.post("/searchUser", async (req, res) => {
+  const user = await User.findByPk(req.body.email);
+  res.status(201).send(user);
 });
 
 //Routes
@@ -31,10 +52,11 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+
 app.listen(PORT, function () {
   console.log(`Server running on port ${PORT}`);
   sequelize
-    .authenticate()
+    .sync()
     .then(() => {
       console.log("Database connected");
     })
@@ -42,3 +64,5 @@ app.listen(PORT, function () {
       console.log("Unable to connect to database: ", error);
     });
 });
+
+

@@ -7,6 +7,7 @@ User.init(
   {
     email: {
       type: DataTypes.STRING,
+      primaryKey: true,
       allowNull: false,
     },
     role: DataTypes.STRING,
