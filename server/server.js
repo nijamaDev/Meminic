@@ -11,19 +11,17 @@ app.use(cors());
 //Running server
 const PORT = process.env.DEVPORT || 5000;
 
+//Configuring models
+Store.hasMany(User, { as: "Employee" });
 
-//Configuring models 
-Store.hasMany(User, { as: 'Employee' });
-
-
-//Creates a new store in the db
+//Creates a new store in the database
 app.post("/createStore", async (req, res) => {
   const store = await Store.create();
   console.log("Store created");
   res.status(201).send(store);
 });
 
-//Creates a new user as the admin of a store created before in the db
+//Creates a new user as the admin of a store created before in the database
 app.post("/createUser", async (req, res) => {
   const store = await Store.findByPk(req.body.store);
   const user = await User.create({
@@ -31,15 +29,16 @@ app.post("/createUser", async (req, res) => {
     role: "Administrador",
     state: true,
   });
-  //Links the user with their store, setting the store_id in User table 
+  //Links the user with their store, setting the store_id in User table
   store.addEmployee(user);
-  console.log("User created")
+  console.log("User created");
   res.status(201).send({
     message: "User created",
     data: user,
   });
 });
 
+//Search user in database
 app.post("/searchUser", async (req, res) => {
   const user = await User.findByPk(req.body.email);
   res.status(201).send(user);
@@ -54,7 +53,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-
 app.listen(PORT, function () {
   console.log(`Server running on port ${PORT}`);
   sequelize
@@ -66,5 +64,3 @@ app.listen(PORT, function () {
       console.log("Unable to connect to database: ", error);
     });
 });
-
-
