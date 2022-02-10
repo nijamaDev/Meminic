@@ -11,7 +11,6 @@ Store.init(
       primaryKey: true,
       allowNull: false,
     },
-    //store_name: DataTypes.STRING,
   },
   {
     sequelize,
