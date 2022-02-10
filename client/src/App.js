@@ -8,45 +8,54 @@ import ModulesSection from "./components/ModulesSection/ModulesSection";
 import UserProfile from "./components/UserProfile/UserProfile";
 import "./index.css";
 import axios from "axios";
-import { useState } from "react";
+
 
 function App() {
   const { user, isAuthenticated } = useAuth0();
-  //console.log(user);
 
 
   const verifyUser = async () => {
+      //Verifies if the user is already in the db
       await axios.post("http://localhost:5000/searchUser" , {
         email: user.email })
       .then( function (response) {
-        if(typeof response !== 'undefined'){
+          //If the user is not found, this creates a new store the user will be linked to
           if(response.data==""){
-            console.log("Vacio", response.data);
-            saveDataUser();
-          }
-          else{
-            console.log("No vacio" , response.data);
+            return saveDataStore();
           }
         }
-        //console.log(response);
+      )
+      .then( function (response) {
+        //If a new store was created, this creates a new user in the db, as the store's admin.  
+        if(typeof response !== 'undefined'){
+            saveDataUser( response.data.store_id );
+        }
       } )
       .catch(function (error) {
-        // handle error
         console.log(error);
       });
   };
 
+ //Creates a new store in the db
+  const saveDataStore = async () => {
+    try {
+      const store = await axios.post("http://localhost:5000/createStore", {});
+      return store;
+    } catch (error) {
+      console.log("error");
+    }
+};
   
-  const saveDataUser = async () => {
-    
+  // Creates a new user as an admin of a store created before 
+  const saveDataUser = async (id) => { 
       try {
         await axios.post("http://localhost:5000/createUser", {
           email: user.email,
+          store: id
         });
       } catch (error) {
         console.log("error");
       }
-    
   };
 
   return (

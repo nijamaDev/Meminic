@@ -13,24 +13,26 @@ const PORT = process.env.DEVPORT || 5000;
 
 
 //Configuring models 
-//Store.hasMany(User, { as: 'Employees' });
+Store.hasMany(User, { as: 'Employee' });
 
 
-/*
+//Creates a new store in the db
 app.post("/createStore", async (req, res) => {
   const store = await Store.create();
-  console.log("Store: ",store);
+  console.log("Store created");
   res.status(201).send(store);
-});*/
+});
 
-
+//Creates a new user as the admin of a store created before in the db
 app.post("/createUser", async (req, res) => {
-  
+  const store = await Store.findByPk(req.body.store);
   const user = await User.create({
     email: req.body.email,
     role: "Administrador",
     state: true,
   });
+  //Links the user with their store, setting the store_id in User table 
+  store.addEmployee(user);
   console.log("User created")
   res.status(201).send({
     message: "User created",
