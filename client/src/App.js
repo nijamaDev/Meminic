@@ -3,12 +3,13 @@ import Header from "./components/Header/Header";
 import Banner from "./components/Banner/Banner";
 import ServicesBanner from "./components/ServicesBanner/ServicesBanner";
 import Footer from "./components/Footer/Footer";
-// import { useAuth0 } from "@auth0/auth0-react";
 import ModulesSection from "./components/ModulesSection/ModulesSection";
 import UserProfile from "./components/UserProfile/UserProfile";
 import "./index.css";
 import UserContext from "./context/UserContext";
 import Auth0Hook from "./hooks/Auth0Hook";
+import { MenuItemsLogin } from "./components/Menu/MenuItemsLogin";
+import { MenuItemsSystem } from "./components/Menu/MenuItemsSystem";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
@@ -18,22 +19,23 @@ function App() {
       {isAuthenticated ? (
         verifyUser() && (
           <>
-            <Header />
+            <Header menuItems={MenuItemsSystem} />
             <UserProfile
               profileImg={user.picture}
               name={user.name}
               role={"Administrador"}
             />
             <ModulesSection />
+            <Footer menuItems={MenuItemsSystem} />
           </>
         )
       ) : (
         <>
           {" "}
-          <Header />
+          <Header menuItems={MenuItemsLogin} />
           <Banner />
           <ServicesBanner />
-          <Footer />
+          <Footer menuItems={MenuItemsLogin} />
         </>
       )}
     </div>

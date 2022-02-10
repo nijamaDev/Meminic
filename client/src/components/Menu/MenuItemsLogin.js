@@ -1,4 +1,4 @@
-export const MenuItems = [
+export const MenuItemsLogin = [
   {
     title: "Sobre nosotros",
     url: "#about",

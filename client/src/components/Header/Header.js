@@ -4,8 +4,8 @@ import { GoThreeBars } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
 import Menu from "../Menu/Menu";
 import logo from "../../assets/logo.svg";
-import { MenuItems } from "../Header/MenuItems";
-const Header = () => {
+
+const Header = ({ menuItems }) => {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <nav className="navbar__container">
@@ -26,7 +26,7 @@ const Header = () => {
         </div>
         <Menu
           NameClass={isClicked ? "nav-menu active" : "nav-menu"}
-          Items={MenuItems}
+          Items={menuItems}
         />
       </div>
     </nav>
