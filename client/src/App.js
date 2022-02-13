@@ -10,35 +10,52 @@ import UserContext from "./context/UserContext";
 import Auth0Hook from "./hooks/Auth0Hook";
 import { MenuItemsLogin } from "./components/Menu/MenuItemsLogin";
 import { MenuItemsSystem } from "./components/Menu/MenuItemsSystem";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
   const { verifyUser } = UserContext();
   return (
-    <div>
-      {isAuthenticated ? (
-        verifyUser() && (
-          <>
-            <Header menuItems={MenuItemsSystem} />
-            <UserProfile
-              profileImg={user.picture}
-              name={user.name}
-              role={"Administrador"}
-            />
-            <ModulesSection />
-            <Footer menuItems={MenuItemsSystem} />
-          </>
-        )
-      ) : (
-        <>
-          {" "}
-          <Header menuItems={MenuItemsLogin} />
-          <Banner />
-          <ServicesBanner />
-          <Footer menuItems={MenuItemsLogin} />
-        </>
-      )}
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                {" "}
+                {isAuthenticated ? (
+                  verifyUser() && (
+                    <>
+                      <Header menuItems={MenuItemsSystem} />
+                      <UserProfile
+                        profileImg={user.picture}
+                        name={user.name}
+                        role={"Administrador"}
+                      />
+                      <ModulesSection />
+                      <Footer menuItems={MenuItemsSystem} />
+                    </>
+                  )
+                ) : (
+                  <>
+                    {" "}
+                    <Header menuItems={MenuItemsLogin} />
+                    <Banner />
+                    <ServicesBanner />
+                    <Footer menuItems={MenuItemsLogin} />
+                  </>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/users"
+            element={<Footer menuItems={MenuItemsSystem} />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
