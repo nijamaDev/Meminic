@@ -1,6 +1,6 @@
 .module__box,
 .module__box__clicked {
-  border: 1px solid #2f3048;
+  border: 2px solid #f3d1bf;
   width: 20rem;
   display: flex;
   justify-content: space-between;
@@ -12,12 +12,16 @@
 .module__box {
   height: 6rem;
   padding: 1rem;
+  border-radius: 0.6rem;
 }
 
 .module__box__clicked {
   height: 4rem;
   padding-left: 1rem;
   padding-right: 1rem;
+
+  border-top-right-radius: 0.6rem;
+  border-top-left-radius: 0.6rem;
 }
 
 .module__box__clicked:nth-child(1) {
@@ -25,19 +29,27 @@
 }
 
 .module__box__clicked:nth-child(2) {
-  margin-bottom: 10rem;
+  margin-bottom: 14rem;
 }
 
 .module__box__clicked:nth-child(3) {
-  margin-bottom: 8rem;
+  margin-bottom: 12rem;
+}
+
+.module__box__clicked:nth-child(4) {
+  margin-bottom: 4rem;
 }
 
 .module__box__clicked:nth-child(1) .module__box__list,
-.module__box__clicked:nth-child(2) .module__box__list,
+.module__box__clicked:nth-child(2) .module__box__list {
+  transform: translate(-141px, 3px);
+  width: 22.23rem;
+}
+
 .module__box__clicked:nth-child(3) .module__box__list,
 .module__box__clicked:nth-child(4) .module__box__list {
-  transform: translate(-140px, 3px);
-  width: 22.12rem;
+  transform: translate(-141px, 3px);
+  width: 22.25rem;
 }
 
 .module__box__clicked:nth-child(1) button {
@@ -76,15 +88,17 @@
 
 .module__box__list ul li {
   padding-left: 1rem;
-  padding-bottom: 0.4rem;
-  padding-top: 0.5rem;
-  border-bottom: 1px solid #2f3048;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  /* border-bottom: 2px solid #f3d1bf; */
 }
 
 .module__box__list ul {
   list-style: none;
   padding: 0;
-  border: 1px solid #2f3048;
+  border: 2px solid #f3d1bf;
+  border-bottom-left-radius: 0.6rem;
+  border-bottom-right-radius: 0.6rem;
 }
 
 .module__box__list ul a {
