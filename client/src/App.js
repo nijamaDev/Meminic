@@ -4,6 +4,7 @@ import Banner from "./components/Banner/Banner";
 import ServicesBanner from "./components/ServicesBanner/ServicesBanner";
 import Footer from "./components/Footer/Footer";
 import ModulesSection from "./components/ModulesSection/ModulesSection";
+import UsersManagementSection from "./components/UsersManagementSection/UsersManagementSection";
 import UserProfile from "./components/UserProfile/UserProfile";
 import "./index.css";
 import UserContext from "./context/UserContext";
@@ -14,7 +15,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
-  const { verifyUser } = UserContext();
+  const { verifyUser} = UserContext();
+
   return (
     <Router>
       <div>
@@ -25,7 +27,7 @@ function App() {
               <>
                 {" "}
                 {isAuthenticated ? (
-                  verifyUser() && (
+                  verifyUser()  && (
                     <>
                       <Header menuItems={MenuItemsSystem} />
                       <UserProfile
@@ -51,7 +53,21 @@ function App() {
           />
           <Route
             path="/users"
-            element={<Footer menuItems={MenuItemsSystem} />}
+            element={ 
+             <>
+                <Header menuItems={MenuItemsSystem} />
+                {isAuthenticated ? (
+                    <>  
+                    <UsersManagementSection user= {user} />
+                    <Footer menuItems={MenuItemsSystem} />   
+                    </>
+                ) : (
+                  <>
+                  </>
+                )}
+                
+            </> 
+            }
           />
         </Routes>
       </div>

@@ -38,6 +38,25 @@ app.post("/createUser", async (req, res) => {
   });
 });
 
+
+//Creates a new user as the admin of a store created before in the database
+app.post("/addUser", async (req, res) => {
+  const store = await Store.findByPk(req.body.store);
+  const user = await User.create({
+    email: req.body.email,
+    role: req.body.role,
+    state: true,
+  });
+  //Links the user with their store, setting the store_id in User table
+  store.addEmployee(user);
+  console.log("User created");
+  res.status(201).send({
+    message: "User created",
+    data: user,
+  });
+});
+
+
 //Search user in database
 app.post("/searchUser", async (req, res) => {
   const user = await User.findByPk(req.body.email);

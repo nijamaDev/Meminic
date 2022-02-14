@@ -30,6 +30,35 @@ const UserContext = () => {
       console.log("error");
     }
   };
+
+  /**
+   * This function add a new user to an already existent store
+   * 
+   */
+   const addUser = async (newUser, id) => {
+    try {
+      await axios.post("http://localhost:5000/addUser", {
+        email: newUser.Email,
+        role: newUser.Rol,
+        store: id,
+      });
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+
+  const searchUser = async (email) => {
+    try {
+      const userFound = await axios
+      .post("http://localhost:5000/searchUser", {
+        email: email,
+      });
+      return userFound;
+    } catch (error) {
+      console.log("error");
+    }
+  };
   /**
    * This function verifies if a user is already in the database
    * If the user is not in database, it creates a new store the user will be linked to.
@@ -55,7 +84,8 @@ const UserContext = () => {
         console.log(error);
       });
   };
-  return { saveDataStore, saveDataUser, verifyUser };
+
+  return { saveDataStore, saveDataUser, verifyUser ,searchUser, addUser};
 };
 
 export default UserContext;
