@@ -2,32 +2,18 @@ import React from "react";
 import Options from "../SelectOptions/SelectOptions";
 import "./UsersManagementBox.css";
 import { useForm } from "react-hook-form";
-import UserContext from "../../context/UserContext";
 
 
-//Cambiar para recibir la funcion del onsubmit. En vez de definirla aqui, definir en usersManagementSection
-const UsersManagementBox = ({ url , user,formId, name, buttonName ,items }) => {
+const UsersManagementBox = ({  img ,user,formId, onSubmitFunct,   name, buttonName ,items }) => {
+
   const { register, handleSubmit } = useForm();
-  const { searchUser , addUser } = UserContext();
-  //const currentUser = getUser(user);
-  const onSubmit = (data, e) =>
-    searchUser(data.Email).then(function (response) {
-      if(response.data === ""){
-        console.log("no esta en la bd?");
-        searchUser(user.email).then(function (response) {
-            addUser(data, response.data.storeStoreId);
-        }); 
-      }
-      else{
-        console.log("else: ", response);
-      } 
-    });
-        
+  const onSubmit = onSubmitFunct;
+
   //const onError = (errors, e) => console.log(errors, e);
 
   return (
-    
     <div className="userManagement__box">
+      <img src={img} alt=">"></img> 
       <h2 className="box__name">{name}</h2>
       <>
         <form id={formId}  

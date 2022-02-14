@@ -27,7 +27,7 @@ function App() {
               <>
                 {" "}
                 {isAuthenticated ? (
-                  verifyUser()  && (
+                  verifyUser() &&  (
                     <>
                       <Header menuItems={MenuItemsSystem} />
                       <UserProfile
@@ -56,15 +56,9 @@ function App() {
             element={ 
              <>
                 <Header menuItems={MenuItemsSystem} />
-                {isAuthenticated ? (
-                    <>  
-                    <UsersManagementSection user= {user} />
-                    <Footer menuItems={MenuItemsSystem} />   
-                    </>
-                ) : (
-                  <>
-                  </>
-                )}
+                
+                <UsersManagementSection user= {user} />
+                <Footer menuItems={MenuItemsSystem} />
                 
             </> 
             }

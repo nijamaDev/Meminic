@@ -48,6 +48,23 @@ const UserContext = () => {
   };
 
 
+  /**
+   * This function updates the given user 
+   * 
+   */
+   const updateUser = async (data) => {
+    try {
+      await axios.post("http://localhost:5000/updateUser", {
+        email: data.Email,
+        role: data.Rol,
+        state:  data.Estado,
+      });
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+
   const searchUser = async (email) => {
     try {
       const userFound = await axios
@@ -85,7 +102,7 @@ const UserContext = () => {
       });
   };
 
-  return { saveDataStore, saveDataUser, verifyUser ,searchUser, addUser};
+  return { saveDataStore, saveDataUser, verifyUser ,searchUser, addUser, updateUser};
 };
 
 export default UserContext;

@@ -57,6 +57,24 @@ app.post("/addUser", async (req, res) => {
 });
 
 
+//Updates user fields in the database
+app.post("/updateUser", async (req, res) => {
+  var state = true;
+  const user = await User.findByPk(req.body.email);
+  if(req.body.state === "Inactivo"){
+      state = false;
+  }
+  user.role = req.body.role ;
+  user.state = state;
+  await user.save();
+  console.log("User updated");
+  res.status(201).send({
+    message: "User updated",
+    data: user,
+  });
+});
+
+
 //Search user in database
 app.post("/searchUser", async (req, res) => {
   const user = await User.findByPk(req.body.email);
