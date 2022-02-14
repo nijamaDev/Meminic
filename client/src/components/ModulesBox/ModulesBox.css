@@ -40,12 +40,11 @@
   margin-bottom: 4rem;
 }
 
-.module__box__clicked:nth-child(1) .module__box__list,
 .module__box__clicked:nth-child(2) .module__box__list {
-  transform: translate(-141px, 3px);
-  width: 22.23rem;
+  transform: translate(-142px, 3px);
+  width: 22.25rem;
 }
-
+.module__box__clicked:nth-child(1) .module__box__list,
 .module__box__clicked:nth-child(3) .module__box__list,
 .module__box__clicked:nth-child(4) .module__box__list {
   transform: translate(-141px, 3px);
@@ -90,7 +89,6 @@
   padding-left: 1rem;
   padding-bottom: 1rem;
   padding-top: 1rem;
-  /* border-bottom: 2px solid #f3d1bf; */
 }
 
 .module__box__list ul {
@@ -108,4 +106,26 @@
   font-style: normal;
   font-weight: normal;
   font-size: 1rem;
+}
+
+/*This is for the seller modules */
+.modules__section__seller .module__box__clicked:nth-child(1) {
+  margin-bottom: 14rem;
+}
+.modules__section__seller .module__box__clicked:nth-child(2) {
+  margin-bottom: 10rem;
+}
+
+.modules__section__seller .module__box__clicked:nth-child(1) button {
+  transform: translate(-41px, 0px);
+}
+
+.modules__section__seller .module__box__clicked:nth-child(2) button {
+  transform: translate(-12px, 0px);
+}
+.modules__section__seller .module__box__clicked:nth-child(2) .module__box__list,
+.modules__section__seller
+  .module__box__clicked:nth-child(1)
+  .module__box__list {
+  transform: translate(-138px, 3px);
 }
