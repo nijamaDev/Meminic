@@ -5,6 +5,8 @@ const app = express();
 const cors = require("cors");
 const User = require("./database/models/user.js");
 const Store = require("./database/models/store.js");
+const KardexProduct = require("./database/models/kardexProduct.js");
+const KardexProduct = require("./database/models/kardexProduct.js");
 app.use(express.json());
 app.use(cors());
 
@@ -15,6 +17,11 @@ const PORT = process.env.DEVPORT || 5000;
 Store.hasMany(User, { as: "Employee" });
 //It creates a 1 to 1 relationship between User and Store
 User.belongsTo(Store, { as: "Store" });
+
+Store.hasMany(KardexProduct, { as: "Product" });
+KardexProduct.belongsTo(Store, {as: "Store"});
+
+
 
 //Creates a new store in the database
 app.post("/createStore", async (req, res) => {
@@ -39,6 +46,46 @@ app.post("/createUser", async (req, res) => {
     data: user,
   });
 });
+
+//Creates a new product in the database
+app.post("/createProduct", async (req, res) => {
+  const store = await Store.findByPk(req.body.store);
+  const product = await KardexProduct.create({
+    reference: req.body.reference,
+    productName: req.body.productName,
+    location: req.body.location,
+    supplier : req.body.supplier,
+    minimumAmount: req.body.minimumAmount,
+    maximumAmount : req.body.maximumAmount
+  }
+  );
+  store.addProduct(product);
+  console.log("Product created");
+  res.status(201).send(product);
+});
+
+
+//Updates the fields of a product in the database
+app.post("/updateProduct", async (req, res) => {
+  const product = await KardexProduct.findByPk(req.body.idKardex);
+  /*
+  const product = await KardexProduct.create({
+
+    reference: req.body.reference,
+    productName: req.body.productName,
+    location: req.body.location,
+    supplier : req.body.supplier,
+    minimumAmount: req.body.minimumAmount,
+    maximumAmount : req.body.maximumAmount
+  }
+  );*/
+  //verifyng before
+  //It's needed to verify which fields have to be updated
+  await product.save();
+  console.log("Product updated");
+  res.status(201).send(product);
+});
+
 
 //Adds a user to and already existent store
 app.post("/addUser", async (req, res) => {
