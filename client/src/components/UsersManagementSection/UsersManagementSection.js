@@ -1,8 +1,9 @@
 import React from "react";
-import UserManagementBox from "../UsersManagementBox/UsersManagementBox";
+import ManagementBox from "../ManagementBox/ManagementBox";
 import "./UsersManagementSection.css";
 import {CreateUserItems } from "./CreateUserItems";
 import {UpdateUserItems } from "./UpdateUserItems";
+import {InputUserItems } from "./InputUserItems";
 import UserContext from "../../context/UserContext";
 import registerUser from "../../assets/register_user.svg";
 import visualizeUser from "../../assets/visualize_user.svg";
@@ -38,8 +39,8 @@ const UsersManagementSection = ({user}) => {
   return (
     <div className="usersManagement__section">
       <div className="users__section_boxes">
-        <UserManagementBox  img={registerUser} onSubmitFunct = {onSubmitRegister} user={user} formId= "CreateUser"  name="Registro de usuarios" buttonName = "Añadir usuario" items={CreateUserItems} />
-        <UserManagementBox img={visualizeUser}  onSubmitFunct = {onSubmitUpdate}   user={user}  formId= "UpdateUser"    name="Modificar información" buttonName = "Modificar" items={UpdateUserItems}  />
+        <ManagementBox  img={registerUser} onSubmitFunct = {onSubmitRegister} obj={user} formId= "CreateUser"  name="Registro de usuarios" buttonName = "Añadir usuario"   itemsInput={InputUserItems} itemsSelect={CreateUserItems} />
+        <ManagementBox img={visualizeUser}  onSubmitFunct = {onSubmitUpdate}   obj={user}  formId= "UpdateUser"    name="Modificar información" buttonName = "Modificar"  itemsInput={InputUserItems}   itemsSelect={UpdateUserItems}  />
       </div>
     </div>
   );
