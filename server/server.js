@@ -13,6 +13,7 @@ const PORT = process.env.DEVPORT || 5000;
 
 //Configuring models
 Store.hasMany(User, { as: "Employee" });
+User.belongsTo(Store, {as: "Store"});
 
 //Creates a new store in the database
 app.post("/createStore", async (req, res) => {
@@ -85,7 +86,8 @@ app.post("/searchUser", async (req, res) => {
 //Return the workers of a store 
 app.post("/getWorkers", async (req, res) => {
   const store = await Store.findByPk(req.body.storeId);
-  const workers = store.getEmployees();
+  console.log("Store found:" ,store);
+  const workers = await store.getEmployee( );
   res.status(201).send(workers);
 });
 
