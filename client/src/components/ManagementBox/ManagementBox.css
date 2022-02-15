@@ -54,18 +54,21 @@
 }
 
 .bar{
-        margin-top:1.5rem;
-        margin-bottom: 0.3rem;
-        margin-left:1.5rem;
-        width: 19rem; 
-        height: 0.1rem; 
-        background:rgba(239, 108, 87, 0.5);
-        display:block;
+    margin:auto;
+    margin-top: 2.3rem;
+    width: 80%; 
+    height: 0.12rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    
+    background:rgba(239, 108, 87, 0.5);
+
 }
 
 .div__item{
     width: 5rem;
     padding-top:0.4rem; 
+    
 }
 
 .select__form{
@@ -78,19 +81,14 @@
 }
 
 .userManagement__box{
-  background-color: #FDF0E9;
-  align-content: center;
   margin: auto;
+  background-color: #FDF0E9;
+  display:list-item; 
+  align-content:center;
   padding: 1.5rem;
 }
 
-.item__form{
-    display:flex;
-    text-align: left;
-    margin-top: 0.8rem;
-    margin-bottom: 0.8rem;
-    padding-left: 2.5rem;
-}
+
 
 
 .userToolBox{
