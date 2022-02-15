@@ -51,7 +51,7 @@ const UsersManagementSection = ({user}) => {
       <div className="users__section_boxes">
         <ManagementBox  img={registerUser} onSubmitFunct = {onSubmitRegister} obj={user} formId= "CreateUser"  name="Registro de usuarios" buttonName = "Añadir usuario"   itemsInput={InputUserItems} itemsSelect={CreateUserItems} />
         <ManagementBox img={visualizeUser}  onSubmitFunct = {onSubmitUpdate}   obj={user}  formId= "UpdateUser"    name="Modificar información" buttonName = "Modificar"  itemsInput={InputUserItems}   itemsSelect={UpdateUserItems}  />
-        <ManagementBox img={visualizeUser}  onSubmitFunct = {onSubmitVisualize}   obj={user}  formId= "VisualizeUser"    name="Usuarios registrados" buttonName = "Consultar"  itemsInput={InputUserItems}   itemsSelect={UpdateUserItems}  />
+        <ManagementBox img={visualizeUser}  onSubmitFunct = {onSubmitVisualize}   obj={user}  formId= "VisualizeUser"    name="Usuarios registrados" buttonName = "Consultar"   />
       </div>
     </div>
   );

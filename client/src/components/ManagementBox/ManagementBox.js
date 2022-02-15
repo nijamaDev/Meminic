@@ -4,7 +4,6 @@ import FormBase from "../FormBase/FormBase";
 
 const ManagementBox = ({  img ,obj,formId, onSubmitFunct,   name, buttonName , itemsInput,itemsSelect }) => {
   
-
   return (
     <div className="userManagement__box">
       <img src={img} alt=">" className="img__box"></img> 
