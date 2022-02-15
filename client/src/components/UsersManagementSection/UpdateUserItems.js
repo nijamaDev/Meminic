@@ -1,10 +1,10 @@
 export const UpdateUserItems = [
     {
-      title: "Rol",
+      title: "Rol:",
       options: [  "Administrador" ,   "Empleado"]
     },
     {
-        title: "Estado",
+        title: "Estado:",
         options: [  "Activo" ,   "Inactivo" ]
       },
   ];

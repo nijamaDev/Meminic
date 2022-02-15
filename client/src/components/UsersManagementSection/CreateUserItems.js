@@ -1,6 +1,6 @@
 export const CreateUserItems = [
     {
-      title: "Rol",
+      title: "Rol:",
       options: [  "Administrador" ,   "Empleado"]
     },
   ];

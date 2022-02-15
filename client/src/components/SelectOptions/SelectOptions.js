@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const Options = ({values }) => {
+const Options = ({ values }) => {
 
   return (
     < >
