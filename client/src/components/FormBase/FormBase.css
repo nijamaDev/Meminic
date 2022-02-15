@@ -1,0 +1,102 @@
+.box__name {
+    color: #391400;
+    font-family: "Epilogue", sans-serif , bold;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+.img__box{
+    display:block;
+    margin:auto;
+}
+
+.form__user{
+    margin-top: 2rem;
+}
+
+.label__item{
+  color: rgba(2, 2, 2, 0.64);
+  font-family: "Epilogue", sans-serif;
+  font-size: 1rem; 
+
+}
+
+.input__form{
+    height:1.5rem;
+    color: rgba(57, 20, 0, 0.64);
+    border:solid;
+    border-radius: 0.1rem;
+    border-width: 0.1rem;
+    border-color:#F3D1BF ;
+    
+    
+}
+
+.button__form{
+    display: flex;
+    margin: auto;
+    background-color: #28293E;
+    color: #ffffff;
+    font-family: "Epilogue", sans-serif;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    padding: 18px 29px;
+    height: 47px;
+    border-radius: 0.4rem;
+    border: 0;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: 1px solid transparent;
+    margin-top: 3rem;
+
+}
+
+.bar{
+        margin-top:1.5rem;
+        margin-bottom: 0.3rem;
+        margin-left:1.5rem;
+        width: 19rem; 
+        height: 0.1rem; 
+        background:rgba(239, 108, 87, 0.5);
+        display:block;
+}
+
+.div__item{
+    width: 5rem;
+    padding-top:0.4rem; 
+}
+
+.select__form{
+    height:1.5rem;
+    color: rgba(57, 20, 0, 0.64);
+    border:solid;
+    border-radius: 0.1rem;
+    border-width: 0.1rem;
+    border-color:#F3D1BF ;
+}
+
+.userManagement__box{
+  background-color: #FDF0E9;
+  align-content: center;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+.item__form{
+    display:flex;
+    text-align: left;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+    padding-left: 2.5rem;
+}
+
+
+.userToolBox{
+    background-color: #FDF0E9;
+    align-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
