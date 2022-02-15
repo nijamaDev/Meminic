@@ -64,7 +64,10 @@ const UserContext = () => {
     }
   };
 
-
+  /**
+   * This function searchs an user
+   * @param {*} email
+   */
   const searchUser = async (email) => {
     try {
       const userFound = await axios
@@ -76,6 +79,24 @@ const UserContext = () => {
       console.log("error");
     }
   };
+
+
+  /**
+   * This function gets the workers of a store
+   * @param {*} id
+   */
+   const getWorkers = async (id) => {
+    try {
+      const workers = await axios
+      .post("http://localhost:5000/getWorkers", {
+        storeId: id,
+      });
+      return workers;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   /**
    * This function verifies if a user is already in the database
    * If the user is not in database, it creates a new store the user will be linked to.
@@ -102,7 +123,7 @@ const UserContext = () => {
       });
   };
 
-  return { saveDataStore, saveDataUser, verifyUser ,searchUser, addUser, updateUser};
+  return { saveDataStore, saveDataUser, verifyUser ,searchUser, addUser, updateUser, getWorkers};
 };
 
 export default UserContext;

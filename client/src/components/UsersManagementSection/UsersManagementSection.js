@@ -11,7 +11,7 @@ import visualizeUser from "../../assets/visualize_user.svg";
 
 
 const UsersManagementSection = ({user}) => {
-  const { searchUser , addUser, updateUser } = UserContext();
+  const { searchUser , addUser, updateUser, getWorkers } = UserContext();
   const onSubmitRegister = (data, e) =>
     searchUser(data.Email).then(function (response) {
       if(response.data === ""){
@@ -35,12 +35,22 @@ const UsersManagementSection = ({user}) => {
         console.log("Actualizado ");
       } 
   });
+
+  const onSubmitVisualize = (data, e) =>
+    searchUser(user.email).then(function (response) {
+      getWorkers(response.data.storeStoreId)
+      .then(function(response
+        ){ console.log(response);
+        });
+    }); 
+
  
   return (
     <div className="usersManagement__section">
       <div className="users__section_boxes">
         <ManagementBox  img={registerUser} onSubmitFunct = {onSubmitRegister} obj={user} formId= "CreateUser"  name="Registro de usuarios" buttonName = "Añadir usuario"   itemsInput={InputUserItems} itemsSelect={CreateUserItems} />
         <ManagementBox img={visualizeUser}  onSubmitFunct = {onSubmitUpdate}   obj={user}  formId= "UpdateUser"    name="Modificar información" buttonName = "Modificar"  itemsInput={InputUserItems}   itemsSelect={UpdateUserItems}  />
+
       </div>
     </div>
   );

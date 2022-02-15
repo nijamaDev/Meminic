@@ -39,7 +39,7 @@ app.post("/createUser", async (req, res) => {
 });
 
 
-//Creates a new user as the admin of a store created before in the database
+//Adds a user to and already existent store
 app.post("/addUser", async (req, res) => {
   const store = await Store.findByPk(req.body.store);
   const user = await User.create({
@@ -79,6 +79,14 @@ app.post("/updateUser", async (req, res) => {
 app.post("/searchUser", async (req, res) => {
   const user = await User.findByPk(req.body.email);
   res.status(201).send(user);
+});
+
+
+//Return the workers of a store 
+app.post("/getWorkers", async (req, res) => {
+  const store = await Store.findByPk(req.body.storeId);
+  const workers = store.getEmployees();
+  res.status(201).send(workers);
 });
 
 //Routes
