@@ -6,7 +6,7 @@ import Footer from "./components/Footer/Footer";
 import ModulesSectionAdmin from "./components/ModulesSection/ModulesSectionAdmin";
 import ModulesSectionSeller from "./components/ModulesSection/ModuleSectionSeller";
 import UsersManagementSection from "./components/UsersManagementSection/UsersManagementSection";
-import ProductsAddSection from "./components/ProductsSection/ProductsAddSection";
+import ProductsAddSection from "./components/ProductAddSection/ProductsAddSection";
 import ProductsUpdateSection from "./components/ProductsSection/ProductsUpdateSection";
 import UserProfile from "./components/UserProfile/UserProfile";
 import "./index.css";
@@ -74,38 +74,32 @@ function App() {
           />
           <Route
             path="/users"
-            element={ 
-             <>
+            element={
+              <>
                 <Header menuItems={MenuItemsSystem} />
-                
-                <UsersManagementSection user= {user} />
+                <UsersManagementSection user={user} />
                 <Footer menuItems={MenuItemsSystem} />
-                
-            </> 
+              </>
             }
           />
           <Route
-            path="/productsAdd"
-            element={ 
-             <>
+            path="/products/create"
+            element={
+              <>
                 <Header menuItems={MenuItemsSystem} />
-                
-                <ProductsAddSection user= {user}/>
+                <ProductsAddSection user={user} />
                 <Footer menuItems={MenuItemsSystem} />
-                
-            </> 
+              </>
             }
           />
           <Route
-            path="/productsModify"
-            element={ 
-             <>
+            path="/products/update"
+            element={
+              <>
                 <Header menuItems={MenuItemsSystem} />
-                
-                <ProductsUpdateSection user= {user}/>
+                <ProductsUpdateSection user={user} />
                 <Footer menuItems={MenuItemsSystem} />
-                
-            </> 
+              </>
             }
           />
         </Routes>
