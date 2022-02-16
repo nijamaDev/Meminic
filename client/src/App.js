@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import Banner from "./components/Banner/Banner";
 import ServicesBanner from "./components/ServicesBanner/ServicesBanner";
 import Footer from "./components/Footer/Footer";
+
 import UsersManagementSection from "./components/UsersManagementSection/UsersManagementSection";
 import ModulesSectionAdmin from "./components/ModulesSection/ModulesSectionAdmin";
 import ModulesSectionSeller from "./components/ModulesSection/ModuleSectionSeller";
@@ -19,6 +20,7 @@ import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
   const { verifyUser, readResult, isAdmin } = UserContext();
+
   return (
     <Router>
       <div>

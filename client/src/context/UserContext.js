@@ -147,7 +147,6 @@ const UserContext = () => {
     const booleanAdmin = await verifyUserForUI();
     console.log(booleanAdmin);
   };
-
   return {
     saveDataStore,
     saveDataUser,
@@ -155,10 +154,10 @@ const UserContext = () => {
     searchUser,
     addUser,
     updateUser,
-    getWorkers,
+    getWorkers,    
+    verifyUserForUI,
     readResult,
     isAdmin,
-
   };
 };
 
