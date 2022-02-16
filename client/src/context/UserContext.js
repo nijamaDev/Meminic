@@ -143,6 +143,7 @@ const UserContext = () => {
       });
     return isAdmin;
   };
+  console.log(isAdmin);
   const readResult = async () => {
     const booleanAdmin = await verifyUserForUI();
     console.log(booleanAdmin);
@@ -154,7 +155,7 @@ const UserContext = () => {
     searchUser,
     addUser,
     updateUser,
-    getWorkers,    
+    getWorkers,
     verifyUserForUI,
     readResult,
     isAdmin,
