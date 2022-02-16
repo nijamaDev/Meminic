@@ -219,10 +219,9 @@ const UserContext = () => {
       });
     return isAdmin;
   };
-  console.log(isAdmin);
   const readResult = async () => {
     const booleanAdmin = await verifyUserForUI();
-    console.log(booleanAdmin);
+    return booleanAdmin;
   };
   return {
     saveDataStore,

@@ -7,12 +7,13 @@ import UserContext from "../../context/UserContext";
 import registerUser from "../../assets/register_user.svg";
 import visualizeUser from "../../assets/visualize_user.svg";
 import Auth0Hook from "../../hooks/Auth0Hook";
-import UserManagementTable from "../UserManagementTable/UserManagementTable";
+import UserReadTable from "../UserReadTable/UserReadTable";
+import UserReadTableEvents from "../UserReadTable/UserReadTableEvents";
 
 const UsersManagementSection = () => {
   const { searchUser, addUser, updateUser } = UserContext();
   const { user } = Auth0Hook();
-
+  const { employeesList, onClickTable, isClicked } = UserReadTableEvents();
   const onSubmitRegister = (data, e) =>
     searchUser(data.Email).then(function (response) {
       if (response.data === "") {
@@ -57,7 +58,11 @@ const UsersManagementSection = () => {
           itemsInput={InputUserItems}
           itemsSelect={UpdateUserItems}
         />
-        <UserManagementTable></UserManagementTable>
+        <UserReadTable
+          onClickTable={onClickTable}
+          isClicked={isClicked}
+          Items={employeesList}
+        />
       </div>
     </div>
   );

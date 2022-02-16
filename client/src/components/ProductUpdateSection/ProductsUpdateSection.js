@@ -3,11 +3,9 @@ import ManagementBox from "../ManagementBox/ManagementBox";
 import { UpdateProductItems } from "./UpdateProductItems";
 import UserContext from "../../context/UserContext";
 import updateProductIcon from "../../assets/update_user.svg";
-import visualizeProductIcon from "../../assets/visualize_user.svg";
 
 const ProductsUpdateSection = ({ user }) => {
-  const { searchUser, searchProduct, updateProduct, getProducts } =
-    UserContext();
+  const { searchProduct, updateProduct } = UserContext();
 
   const onSubmitUpdate = (data, e) => {
     searchProduct(data.Identificador).then(function (response) {
@@ -20,13 +18,7 @@ const ProductsUpdateSection = ({ user }) => {
     });
   };
 
-  // const onSubmitVisualize = (data, e) => {
-  //   searchUser(user.email).then(function (response) {
-  //     getProducts(response.data.storeStoreId).then(function (response) {
-  //       console.log("Productos: ", response);
-  //     });
-  //   });
-  // };
+
 
   return (
     <div>

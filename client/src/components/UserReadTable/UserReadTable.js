@@ -1,26 +1,9 @@
-import UserContext from "../../context/UserContext";
-import Auth0Hook from "../../hooks/Auth0Hook";
 import users_registered from "../../assets/users_registered.svg";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import "../FormBase/FormBase.css";
-import "./UserManagementTable.css";
-import { useState } from "react";
-const UserManagementTable = () => {
-  const { user } = Auth0Hook();
-  const { searchUser, getWorkers } = UserContext();
-  const [isClicked, setIsClicked] = useState(false);
-  const [employeesList, setEmployeesList] = useState([]);
+import "./ReadTable.css";
 
-  const onClickTable = () =>
-    searchUser(user.email).then(function (response) {
-      getWorkers(response.data.storeStoreId).then(function (response) {
-        setEmployeesList(response.data);
-        return response;
-      });
-
-      setIsClicked(!isClicked);
-    });
-
+const UserReadTable = ({ onClickTable, isClicked, Items }) => {
   return (
     <div className="user__management__box">
       <SectionTitle
@@ -44,7 +27,7 @@ const UserManagementTable = () => {
             </tr>
           </thead>
           <tbody className="user__table__body">
-            {employeesList.map((item, key) => {
+            {Items.map((item, key) => {
               return (
                 <tr key={key}>
                   <td>{item.email}</td>
@@ -62,4 +45,4 @@ const UserManagementTable = () => {
   );
 };
 
-export default UserManagementTable;
+export default UserReadTable;

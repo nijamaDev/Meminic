@@ -1,7 +1,7 @@
 import React from "react";
 import ManagementBox from "../ManagementBox/ManagementBox";
 
-import { CreateProductItems } from "../ProductsSection/CreateProductItems";
+import { CreateProductItems } from "./CreateProductItems";
 
 import UserContext from "../../context/UserContext";
 import registerProductIcon from "../../assets/register_user.svg";

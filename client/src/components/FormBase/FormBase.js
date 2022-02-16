@@ -16,7 +16,6 @@ const FormBase = ({
     if (typeof itemsInput !== "undefined") {
       add = true;
     }
-    console.log("add: ", add);
     return add;
   };
 
