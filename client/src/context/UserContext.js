@@ -32,6 +32,73 @@ const UserContext = () => {
       console.log("error");
     }
   };
+
+  /**
+   * This function add a new user to an already existent store
+   * 
+   */
+   const addUser = async (newUser, id) => {
+    try {
+      await axios.post("http://localhost:5000/addUser", {
+        email: newUser.Email,
+        role: newUser.Rol,
+        store: id,
+      });
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+
+  /**
+   * This function updates the given user 
+   * 
+   */
+   const updateUser = async (data) => {
+    try {
+      await axios.post("http://localhost:5000/updateUser", {
+        email: data.Email,
+        role: data.Rol,
+        state:  data.Estado,
+      });
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+  /**
+   * This function searchs an user
+   * @param {*} email
+   */
+  const searchUser = async (email) => {
+    try {
+      const userFound = await axios
+      .post("http://localhost:5000/searchUser", {
+        email: email,
+      });
+      return userFound;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+
+  /**
+   * This function gets the workers of a store
+   * @param {*} id
+   */
+   const getWorkers = async (id) => {
+    try {
+      const workers = await axios
+      .post("http://localhost:5000/getWorkers", {
+        storeId: id,
+      });
+      return workers;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   /**
    * This function verifies if a user is already in the database
    * If the user is not in database, it creates a new store the user will be linked to.
@@ -92,6 +159,7 @@ const UserContext = () => {
     readResult,
     isAdmin,
   };
+  return { saveDataStore, saveDataUser, verifyUser ,searchUser, addUser, updateUser, getWorkers};
 };
 
 export default UserContext;

@@ -5,6 +5,7 @@ import ServicesBanner from "./components/ServicesBanner/ServicesBanner";
 import Footer from "./components/Footer/Footer";
 import ModulesSectionAdmin from "./components/ModulesSection/ModulesSectionAdmin";
 import ModulesSectionSeller from "./components/ModulesSection/ModuleSectionSeller";
+import UsersManagementSection from "./components/UsersManagementSection/UsersManagementSection";
 import UserProfile from "./components/UserProfile/UserProfile";
 import "./index.css";
 import "./components/ModulesBox/ModulesBox.css";
@@ -18,7 +19,6 @@ import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
   const { verifyUser, readResult, isAdmin } = UserContext();
-
   return (
     <Router>
       <div>
@@ -72,7 +72,15 @@ function App() {
           />
           <Route
             path="/users"
-            element={<Footer menuItems={MenuItemsSystem} />}
+            element={ 
+             <>
+                <Header menuItems={MenuItemsSystem} />
+                
+                <UsersManagementSection user= {user} />
+                <Footer menuItems={MenuItemsSystem} />
+                
+            </> 
+            }
           />
         </Routes>
       </div>
