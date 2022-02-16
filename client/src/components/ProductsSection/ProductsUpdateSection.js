@@ -33,8 +33,8 @@ const ProductsUpdateSection = ({user}) => {
   return (
     <div >
       <div >
-        <ManagementBox  img={updateProductIcon} onSubmitFunct = {onSubmitUpdate} obj={user} formId= "UpdateProduct"  name="Modificar información" buttonName = "Actualizar"   itemsInput={UpdateProductItems} />
-        <ManagementBox  img={visualizeProductIcon} onSubmitFunct = {onSubmitVisualize} obj={user} formId= "VisualizeProduct"  name="Productos registrados" buttonName = "Consultar"   />
+        <ManagementBox  img={updateProductIcon} onSubmitFunct = {onSubmitUpdate} obj={user} formId= "UpdateProduct"  title="Modificar información" buttonName = "Actualizar"   itemsInput={UpdateProductItems} />
+        <ManagementBox  img={visualizeProductIcon} onSubmitFunct = {onSubmitVisualize} obj={user} formId= "VisualizeProduct"  title="Productos registrados" buttonName = "Consultar"   />
       </div>
     </div>
   );

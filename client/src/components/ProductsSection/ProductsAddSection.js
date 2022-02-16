@@ -28,7 +28,7 @@ const ProductsAddSection = ({user}) => {
   return (
     <div >
       <div >
-        <ManagementBox  img={registerProductIcon} onSubmitFunct = {onSubmitRegister} obj={user} formId= "CreateProduct"  name="Registro de productos" buttonName = "Añadir producto"   itemsInput={CreateProductItems} />
+        <ManagementBox  img={registerProductIcon} onSubmitFunct = {onSubmitRegister} obj={user} formId= "CreateProduct"  title="Registro de productos" buttonName = "Añadir producto"   itemsInput={CreateProductItems} />
       </div>
     </div>
   );
