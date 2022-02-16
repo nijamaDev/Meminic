@@ -1,7 +1,9 @@
 import axios from "axios";
+import { useState } from "react";
 import Auth0Hook from "../hooks/Auth0Hook";
 
 const UserContext = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
   const { user } = Auth0Hook();
   /**
    * This function creates a new store in the database
@@ -118,6 +120,33 @@ const UserContext = () => {
         console.log(error);
       });
   };
+  /**
+   * Función que se encarga de verificar que el rol, si este retorna true, es porque
+   * es un administrador, de lo contrario es un vendedor
+   * @param {}
+   */
+
+  const verifyUserForUI = async () => {
+    await axios
+      .post("http://localhost:5000/searchUser", {
+        email: user.email,
+      })
+      .then(function (response) {
+        if (response.data.role === "Administrador") {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    return isAdmin;
+  };
+  const readResult = async () => {
+    const booleanAdmin = await verifyUserForUI();
+    console.log(booleanAdmin);
+  };
 
   return {
     saveDataStore,
@@ -127,6 +156,9 @@ const UserContext = () => {
     addUser,
     updateUser,
     getWorkers,
+    readResult,
+    isAdmin,
+
   };
 };
 
