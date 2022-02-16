@@ -33,9 +33,9 @@ const UserContext = () => {
 
   /**
    * This function add a new user to an already existent store
-   * 
+   *
    */
-   const addUser = async (newUser, id) => {
+  const addUser = async (newUser, id) => {
     try {
       await axios.post("http://localhost:5000/addUser", {
         email: newUser.Email,
@@ -47,17 +47,16 @@ const UserContext = () => {
     }
   };
 
-
   /**
-   * This function updates the given user 
-   * 
+   * This function updates the given user
+   *
    */
-   const updateUser = async (data) => {
+  const updateUser = async (data) => {
     try {
       await axios.post("http://localhost:5000/updateUser", {
         email: data.Email,
         role: data.Rol,
-        state:  data.Estado,
+        state: data.Estado,
       });
     } catch (error) {
       console.log("error");
@@ -70,8 +69,7 @@ const UserContext = () => {
    */
   const searchUser = async (email) => {
     try {
-      const userFound = await axios
-      .post("http://localhost:5000/searchUser", {
+      const userFound = await axios.post("http://localhost:5000/searchUser", {
         email: email,
       });
       return userFound;
@@ -80,15 +78,13 @@ const UserContext = () => {
     }
   };
 
-
   /**
    * This function gets the workers of a store
    * @param {*} id
    */
-   const getWorkers = async (id) => {
+  const getWorkers = async (id) => {
     try {
-      const workers = await axios
-      .post("http://localhost:5000/getWorkers", {
+      const workers = await axios.post("http://localhost:5000/getWorkers", {
         storeId: id,
       });
       return workers;
@@ -123,7 +119,15 @@ const UserContext = () => {
       });
   };
 
-  return { saveDataStore, saveDataUser, verifyUser ,searchUser, addUser, updateUser, getWorkers};
+  return {
+    saveDataStore,
+    saveDataUser,
+    verifyUser,
+    searchUser,
+    addUser,
+    updateUser,
+    getWorkers,
+  };
 };
 
 export default UserContext;

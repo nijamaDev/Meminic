@@ -1,0 +1,37 @@
+.user__management_options {
+  display: flex;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.user__management_options button {
+  margin: 0;
+}
+.user__management_options p {
+  color: #391400;
+  font-family: "Epilogue", sans-serif;
+  font-size: 16px;
+}
+
+.user__table {
+  color: #391400;
+  table-layout: fixed;
+  font-family: "Epilogue", sans-serif;
+}
+.user__table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+.user__table__head tr th {
+  border-bottom: 1px solid #c4c4c4;
+}
+.user__table__head tr th:nth-child(1),
+.user__table__head tr th:nth-child(2) {
+  border-right: 1px solid #c4c4c4;
+}
+
+.user__table__body tr td:nth-child(1),
+.user__table__body tr td:nth-child(2) {
+  border-right: 1px solid #c4c4c4;
+}

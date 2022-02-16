@@ -15,7 +15,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
-  const { verifyUser} = UserContext();
+  const { verifyUser } = UserContext();
 
   return (
     <Router>
@@ -27,7 +27,7 @@ function App() {
               <>
                 {" "}
                 {isAuthenticated ? (
-                  verifyUser() &&  (
+                  verifyUser() && (
                     <>
                       <Header menuItems={MenuItemsSystem} />
                       <UserProfile
@@ -53,14 +53,12 @@ function App() {
           />
           <Route
             path="/users"
-            element={ 
-             <>
+            element={
+              <>
                 <Header menuItems={MenuItemsSystem} />
-                
-                <UsersManagementSection user= {user} />
+                <UsersManagementSection />
                 <Footer menuItems={MenuItemsSystem} />
-                
-            </> 
+              </>
             }
           />
         </Routes>
