@@ -6,7 +6,8 @@ import Footer from "./components/Footer/Footer";
 import ModulesSectionAdmin from "./components/ModulesSection/ModulesSectionAdmin";
 import ModulesSectionSeller from "./components/ModulesSection/ModuleSectionSeller";
 import UsersManagementSection from "./components/UsersManagementSection/UsersManagementSection";
-import ProductsAddSection from "./components/ProductsAddSection/ProductsAddSection";
+import ProductsAddSection from "./components/ProductsSection/ProductsAddSection";
+import ProductsUpdateSection from "./components/ProductsSection/ProductsUpdateSection";
 import UserProfile from "./components/UserProfile/UserProfile";
 import "./index.css";
 import "./components/ModulesBox/ModulesBox.css";
@@ -84,12 +85,24 @@ function App() {
             }
           />
           <Route
-            path="/products"
+            path="/productsAdd"
             element={ 
              <>
                 <Header menuItems={MenuItemsSystem} />
                 
                 <ProductsAddSection user= {user}/>
+                <Footer menuItems={MenuItemsSystem} />
+                
+            </> 
+            }
+          />
+          <Route
+            path="/productsModify"
+            element={ 
+             <>
+                <Header menuItems={MenuItemsSystem} />
+                
+                <ProductsUpdateSection user= {user}/>
                 <Footer menuItems={MenuItemsSystem} />
                 
             </> 

@@ -5,8 +5,9 @@ import {CreateUserItems } from "./CreateUserItems";
 import {UpdateUserItems } from "./UpdateUserItems";
 import {InputUserItems } from "./InputUserItems";
 import UserContext from "../../context/UserContext";
-import registerUser from "../../assets/register_user.svg";
-import visualizeUser from "../../assets/visualize_user.svg";
+import registerUserIcon from "../../assets/register_user.svg";
+import visualizeUserIcon from "../../assets/visualize_user.svg";
+import updateUserIcon from "../../assets/update_user.svg";
 // Para importar los iconos
 
 
@@ -49,9 +50,9 @@ const UsersManagementSection = ({user}) => {
   return (
     <div className="usersManagement__section">
       <div className="users__section_boxes">
-        <ManagementBox  img={registerUser} onSubmitFunct = {onSubmitRegister} obj={user} formId= "CreateUser"  name="Registro de usuarios" buttonName = "Añadir usuario"   itemsInput={InputUserItems} itemsSelect={CreateUserItems} />
-        <ManagementBox img={visualizeUser}  onSubmitFunct = {onSubmitUpdate}   obj={user}  formId= "UpdateUser"    name="Modificar información" buttonName = "Modificar"  itemsInput={InputUserItems}   itemsSelect={UpdateUserItems}  />
-        <ManagementBox img={visualizeUser}  onSubmitFunct = {onSubmitVisualize}   obj={user}  formId= "VisualizeUser"    name="Usuarios registrados" buttonName = "Consultar"   />
+        <ManagementBox  img={registerUserIcon} onSubmitFunct = {onSubmitRegister} obj={user} formId= "CreateUser"  name="Registro de usuarios" buttonName = "Añadir usuario"   itemsInput={InputUserItems} itemsSelect={CreateUserItems} />
+        <ManagementBox img={updateUserIcon}  onSubmitFunct = {onSubmitUpdate}   obj={user}  formId= "UpdateUser"    name="Modificar información" buttonName = "Modificar"  itemsInput={InputUserItems}   itemsSelect={UpdateUserItems}  />
+        <ManagementBox img={ visualizeUserIcon}  onSubmitFunct = {onSubmitVisualize}   obj={user}  formId= "VisualizeUser"    name="Usuarios registrados" buttonName = "Consultar"   />
       </div>
     </div>
   );
