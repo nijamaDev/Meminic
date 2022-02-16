@@ -138,6 +138,7 @@ app.post("/updateUser", async (req, res) => {
 
 
 //Searches an user in database
+//Search user in database
 app.post("/searchUser", async (req, res) => {
   const user = await User.findByPk(req.body.email);
   res.status(201).send(user);

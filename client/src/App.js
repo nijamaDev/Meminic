@@ -3,12 +3,11 @@ import Header from "./components/Header/Header";
 import Banner from "./components/Banner/Banner";
 import ServicesBanner from "./components/ServicesBanner/ServicesBanner";
 import Footer from "./components/Footer/Footer";
-
-import UsersManagementSection from "./components/UsersManagementSection/UsersManagementSection";
 import ModulesSectionAdmin from "./components/ModulesSection/ModulesSectionAdmin";
 import ModulesSectionSeller from "./components/ModulesSection/ModuleSectionSeller";
-import ProductsAddSection from "./components/ProductsSection/ProductsAddSection";
-import ProductsUpdateSection from "./components/ProductsSection/ProductsUpdateSection";
+import UsersManagementSection from "./components/UsersManagementSection/UsersManagementSection";
+import ProductsAddSection from "./components/ProductCreateSection/ProductsCreateSection";
+import ProductsUpdateSection from "./components/ProductUpdateSection/ProductsUpdateSection";
 import UserProfile from "./components/UserProfile/UserProfile";
 import "./index.css";
 import "./components/ModulesBox/ModulesBox.css";
@@ -19,10 +18,13 @@ import { MenuItemsSystem } from "./components/Menu/MenuItemsSystem";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
+import ProductReadTableEvents from "./components/ProductReadTable/ProductReadTableEvents";
+import ProductReadTable from "./components/ProductReadTable/ProductReadTable";
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
   const { verifyUser, readResult, isAdmin } = UserContext();
-
+  const { onClickProductsTable, productsList, isClicked } =
+    ProductReadTableEvents();
   return (
     <Router>
       <div>
@@ -79,7 +81,41 @@ function App() {
             element={
               <>
                 <Header menuItems={MenuItemsSystem} />
-                <UsersManagementSection />
+                <UsersManagementSection user={user} />
+                <Footer menuItems={MenuItemsSystem} />
+              </>
+            }
+          />
+          <Route
+            path="/products/create"
+            element={
+              <>
+                <Header menuItems={MenuItemsSystem} />
+                <ProductsAddSection user={user} />
+                <Footer menuItems={MenuItemsSystem} />
+              </>
+            }
+          />
+          <Route
+            path="/products/update"
+            element={
+              <>
+                <Header menuItems={MenuItemsSystem} />
+                <ProductsUpdateSection user={user} />
+                <Footer menuItems={MenuItemsSystem} />
+              </>
+            }
+          />
+          <Route
+            path="/products/read"
+            element={
+              <>
+                <Header menuItems={MenuItemsSystem} />
+                <ProductReadTable
+                  onClickTable={onClickProductsTable}
+                  isClicked={isClicked}
+                  Items={productsList}
+                />
                 <Footer menuItems={MenuItemsSystem} />
               </>
             }

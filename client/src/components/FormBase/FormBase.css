@@ -1,3 +1,7 @@
+.form__user {
+  align-content: center;
+  margin-top: 2rem;
+}
 .box__name {
   color: #391400;
   font-family: "Epilogue", sans-serif, bold;
@@ -51,6 +55,12 @@
   margin-top: 3rem;
 }
 
+.div__item {
+  width: 7rem;
+  padding-top: 0.2rem;
+  display: flex;
+  align-content: center;
+}
 .bar {
   margin-top: 1.5rem;
   margin-bottom: 0.3rem;
@@ -61,11 +71,6 @@
   background: #ef6c57;
   opacity: 50%;
   display: block;
-}
-
-.div__item {
-  width: 7rem;
-  padding-top: 0.4rem;
 }
 
 .select__form {
@@ -95,7 +100,10 @@
 }
 
 .item__form {
+  width: 25rem;
+  margin: auto;
   display: flex;
+  padding-left: 2rem;
   text-align: left;
   margin-top: 0.8rem;
   margin-bottom: 0.8rem;

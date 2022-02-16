@@ -11,7 +11,7 @@ export const MenuItemsSystem = [
   },
   {
     title: "Productos",
-    url: "/products",
+    url: "/",
     cName: "nav-links",
   },
   {
