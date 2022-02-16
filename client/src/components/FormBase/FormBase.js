@@ -41,7 +41,7 @@ const FormBase = ({  obj,formId, onSubmitFunct,   buttonName , itemsInput,itemsS
                     className="input__form"
                     type={item.type}
                     id={item.title}
-                    {...register(item.title.slice(0, -1), { required: true })}
+                    {...register(item.title.slice(0, -1), { required: item.required })}
                     placeholder={item.placeholder}
                   />
                 </div>
