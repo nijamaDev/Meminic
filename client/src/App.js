@@ -5,6 +5,7 @@ import ServicesBanner from "./components/ServicesBanner/ServicesBanner";
 import Footer from "./components/Footer/Footer";
 import ModulesSectionAdmin from "./components/ModulesSection/ModulesSectionAdmin";
 import ModulesSectionSeller from "./components/ModulesSection/ModuleSectionSeller";
+import UsersManagementSection from "./components/UsersManagementSection/UsersManagementSection";
 import UserProfile from "./components/UserProfile/UserProfile";
 import "./index.css";
 import "./components/ModulesBox/ModulesBox.css";
@@ -72,7 +73,13 @@ function App() {
           />
           <Route
             path="/users"
-            element={<Footer menuItems={MenuItemsSystem} />}
+            element={
+              <>
+                <Header menuItems={MenuItemsSystem} />
+                <UsersManagementSection />
+                <Footer menuItems={MenuItemsSystem} />
+              </>
+            }
           />
         </Routes>
       </div>

@@ -13,6 +13,8 @@ const PORT = process.env.DEVPORT || 5000;
 
 //Configuring models
 Store.hasMany(User, { as: "Employee" });
+//It creates a 1 to 1 relationship between User and Store
+User.belongsTo(Store, { as: "Store" });
 
 //Creates a new store in the database
 app.post("/createStore", async (req, res) => {
@@ -38,10 +40,52 @@ app.post("/createUser", async (req, res) => {
   });
 });
 
+//Adds a user to and already existent store
+app.post("/addUser", async (req, res) => {
+  const store = await Store.findByPk(req.body.store);
+  const user = await User.create({
+    email: req.body.email,
+    role: req.body.role,
+    state: true,
+  });
+  //Links the user with their store, setting the store_id in User table
+  store.addEmployee(user);
+  console.log("User created");
+  res.status(201).send({
+    message: "User created",
+    data: user,
+  });
+});
+
+//Updates user fields in the database
+app.post("/updateUser", async (req, res) => {
+  var state = true;
+  const user = await User.findByPk(req.body.email);
+  if (req.body.state === "Inactivo") {
+    state = false;
+  }
+  user.role = req.body.role;
+  user.state = state;
+  await user.save();
+  console.log("User updated");
+  res.status(201).send({
+    message: "User updated",
+    data: user,
+  });
+});
+
 //Search user in database
 app.post("/searchUser", async (req, res) => {
   const user = await User.findByPk(req.body.email);
   res.status(201).send(user);
+});
+
+//Return the workers of a the current store where user belongs 
+app.post("/getWorkers", async (req, res) => {
+  const store = await Store.findByPk(req.body.storeId);
+  console.log("Store found:", store);
+  const workers = await store.getEmployee();
+  res.status(201).send(workers);
 });
 
 //Routes
