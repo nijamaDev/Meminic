@@ -3,30 +3,36 @@ import "./FormBase.css";
 import { useForm } from "react-hook-form";
 import Options from "../SelectOptions/SelectOptions";
 
-
-const FormBase = ({  obj,formId, onSubmitFunct,   buttonName , itemsInput,itemsSelect }) => {
+const FormBase = ({
+  obj,
+  formId,
+  onSubmitFunct,
+  buttonName,
+  itemsInput,
+  itemsSelect,
+}) => {
   const addInputs = () => {
     var add = false;
-    if(typeof itemsInput !== "undefined"){
-        add = true;
+    if (typeof itemsInput !== "undefined") {
+      add = true;
     }
     console.log("add: ", add);
     return add;
-  }
+  };
 
   const addSelects = () => {
     var add = false;
-    if(typeof itemsSelect !== "undefined"){
-        add = true;
+    if (typeof itemsSelect !== "undefined") {
+      add = true;
     }
     return add;
-  }
+  };
   const { register, handleSubmit } = useForm();
   const onSubmit = onSubmitFunct;
   return (
     <form id={formId} onSubmit={handleSubmit(onSubmit)} className="form__user">
       <div className="userToolBox">
-        {addInputs() ? ( 
+        {addInputs() ? (
           <>
             {itemsInput.map((item, index) => {
               return (
@@ -41,7 +47,9 @@ const FormBase = ({  obj,formId, onSubmitFunct,   buttonName , itemsInput,itemsS
                     className="input__form"
                     type={item.type}
                     id={item.title}
-                    {...register(item.title.slice(0, -1), { required: item.required })}
+                    {...register(item.title.slice(0, -1), {
+                      required: item.required,
+                    })}
                     placeholder={item.placeholder}
                   />
                 </div>
@@ -85,4 +93,4 @@ const FormBase = ({  obj,formId, onSubmitFunct,   buttonName , itemsInput,itemsS
   );
 };
 
-export default  FormBase;
+export default FormBase;

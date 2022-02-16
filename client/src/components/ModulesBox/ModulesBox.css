@@ -123,9 +123,13 @@
 .modules__section__seller .module__box__clicked:nth-child(2) button {
   transform: translate(-12px, 0px);
 }
-.modules__section__seller .module__box__clicked:nth-child(2) .module__box__list,
+.modules__section__seller
+  .module__box__clicked:nth-child(2)
+  .module__box__list {
+  transform: translate(-138px, 3px);
+}
 .modules__section__seller
   .module__box__clicked:nth-child(1)
   .module__box__list {
-  transform: translate(-138px, 3px);
+  transform: translate(-137px, 3px);
 }

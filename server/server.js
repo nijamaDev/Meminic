@@ -15,7 +15,8 @@ const PORT = process.env.DEVPORT || 5000;
 
 //Configuring models
 Store.hasMany(User, { as: "Employee" });
-User.belongsTo(Store, {as: "Store"});
+//It creates a 1 to 1 relationship between User and Store
+User.belongsTo(Store, { as: "Store" });
 
 Store.hasMany(KardexProduct, { as: "Product" });
 KardexProduct.belongsTo(Store, {as: "Store"});
@@ -118,15 +119,14 @@ app.post("/addUser", async (req, res) => {
   });
 });
 
-
 //Updates user fields in the database
 app.post("/updateUser", async (req, res) => {
   var state = true;
   const user = await User.findByPk(req.body.email);
-  if(req.body.state === "Inactivo"){
-      state = false;
+  if (req.body.state === "Inactivo") {
+    state = false;
   }
-  user.role = req.body.role ;
+  user.role = req.body.role;
   user.state = state;
   await user.save();
   console.log("User updated");
@@ -138,17 +138,17 @@ app.post("/updateUser", async (req, res) => {
 
 
 //Searches an user in database
+//Search user in database
 app.post("/searchUser", async (req, res) => {
   const user = await User.findByPk(req.body.email);
   res.status(201).send(user);
 });
 
-
-//Returns the workers of a store 
+//Return the workers of a the current store where user belongs 
 app.post("/getWorkers", async (req, res) => {
   const store = await Store.findByPk(req.body.storeId);
-  console.log("Store found:" ,store);
-  const workers = await store.getEmployee( );
+  console.log("Store found:", store);
+  const workers = await store.getEmployee();
   res.status(201).send(workers);
 });
 

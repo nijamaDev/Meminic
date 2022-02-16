@@ -1,0 +1,11 @@
+.title__img {
+  display: block;
+  margin: auto;
+}
+
+.title__name {
+  color: #391400;
+  font-family: "Epilogue", sans-serif, bold;
+  font-size: 1.5rem;
+  text-align: center;
+}

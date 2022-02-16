@@ -35,9 +35,9 @@ const UserContext = () => {
 
   /**
    * This function add a new user to an already existent store
-   * 
+   *
    */
-   const addUser = async (newUser, id) => {
+  const addUser = async (newUser, id) => {
     try {
       await axios.post("http://localhost:5000/addUser", {
         email: newUser.Email,
@@ -49,17 +49,16 @@ const UserContext = () => {
     }
   };
 
-
   /**
-   * This function updates the given user 
-   * 
+   * This function updates the given user
+   *
    */
-   const updateUser = async (data) => {
+  const updateUser = async (data) => {
     try {
       await axios.post("http://localhost:5000/updateUser", {
         email: data.Email,
         role: data.Rol,
-        state:  data.Estado,
+        state: data.Estado,
       });
     } catch (error) {
       console.log("error");
@@ -72,8 +71,7 @@ const UserContext = () => {
    */
   const searchUser = async (email) => {
     try {
-      const userFound = await axios
-      .post("http://localhost:5000/searchUser", {
+      const userFound = await axios.post("http://localhost:5000/searchUser", {
         email: email,
       });
       return userFound;
@@ -82,15 +80,13 @@ const UserContext = () => {
     }
   };
 
-
   /**
    * This function gets the workers of a store
    * @param {*} id
    */
-   const getWorkers = async (id) => {
+  const getWorkers = async (id) => {
     try {
-      const workers = await axios
-      .post("http://localhost:5000/getWorkers", {
+      const workers = await axios.post("http://localhost:5000/getWorkers", {
         storeId: id,
       });
       return workers;
@@ -103,10 +99,9 @@ const UserContext = () => {
    * This function gets the workers of a store
    * @param {*} id
    */
-   const getProducts = async (id) => {
+  const getProducts = async (id) => {
     try {
-      const products = await axios
-      .post("http://localhost:5000/getProducts", {
+      const products = await axios.post("http://localhost:5000/getProducts", {
         storeId: id,
       });
       return products;
@@ -115,13 +110,12 @@ const UserContext = () => {
     }
   };
 
-
   /**
    * This function adds a new product in the db associated with its store
    * @param {*} data
    *@param {*} store
    */
-   const addProduct = async (data, store) => {
+  const addProduct = async (data, store) => {
     try {
       const product = await axios.post("http://localhost:5000/addProduct", {
         store: store,
@@ -133,19 +127,18 @@ const UserContext = () => {
         minimumAmount: data["Cantidad minima"],
         maximumAmount: data["Cantidad maxima"],
       });
-      console.log("Product added")
+      console.log("Product added");
       return product;
     } catch (error) {
       console.log("error");
     }
   };
 
-
   /**
    * This function updates the information of a product
    * @param {*} data
    */
-   const updateProduct = async (data) => {
+  const updateProduct = async (data) => {
     try {
       const product = await axios.post("http://localhost:5000/updateProduct", {
         idKardex: data.Identificador,
@@ -156,7 +149,7 @@ const UserContext = () => {
         minimumAmount: data["Cantidad minima"],
         maximumAmount: data["Cantidad maxima"],
       });
-      console.log("Product updated")
+      console.log("Product updated");
       return product;
     } catch (error) {
       console.log("error");
@@ -167,7 +160,7 @@ const UserContext = () => {
    * This function searches a product in the db
    * @param {*} id
    */
-   const searchProduct = async (id) => {
+  const searchProduct = async (id) => {
     try {
       const product = await axios.post("http://localhost:5000/searchProduct", {
         idKardex: id,
@@ -226,6 +219,7 @@ const UserContext = () => {
       });
     return isAdmin;
   };
+  console.log(isAdmin);
   const readResult = async () => {
     const booleanAdmin = await verifyUserForUI();
     console.log(booleanAdmin);
@@ -234,19 +228,18 @@ const UserContext = () => {
     saveDataStore,
     saveDataUser,
     verifyUser,
+    searchUser,
+    addUser,
+    updateUser,
+    getWorkers,
     verifyUserForUI,
     readResult,
     isAdmin,
-    searchUser, 
-    addUser, 
-    updateUser, 
-    getWorkers,
     addProduct,
     updateProduct,
     searchProduct,
-    getProducts
+    getProducts,
   };
-
 };
 
 export default UserContext;

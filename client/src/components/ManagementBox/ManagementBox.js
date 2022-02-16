@@ -1,22 +1,34 @@
 import React from "react";
-import "./ManagementBox.css";
+import "../FormBase/FormBase.css";
 import FormBase from "../FormBase/FormBase";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
-const ManagementBox = ({  img ,obj,formId, onSubmitFunct,   name, buttonName , itemsInput,itemsSelect }) => {
-  
+const ManagementBox = ({
+  img,
+  title,
+  obj,
+  formId,
+  onSubmitFunct,
+  buttonName,
+  itemsInput,
+  itemsSelect,
+}) => {
   return (
-    <div className="userManagement__box">
-      <img src={img} alt=">" className="img__box"></img> 
-      <h2 className="box__name">{name}</h2>
+    <div className="user__management__box">
+      <SectionTitle imgUrl={img} imgAlt="image_icon" title={title} />
       <>
-      <FormBase obj = {obj} formId={formId} onSubmitFunct={onSubmitFunct}   
-          buttonName ={buttonName} itemsInput = {itemsInput} itemsSelect = {itemsSelect}/>
-      <div className="bar"> </div>
+        <FormBase
+          obj={obj}
+          formId={formId}
+          onSubmitFunct={onSubmitFunct}
+          buttonName={buttonName}
+          itemsInput={itemsInput}
+          itemsSelect={itemsSelect}
+        />
+        <div className="bar"> </div>
       </>
-      
     </div>
   );
 };
-
 
 export default ManagementBox;
