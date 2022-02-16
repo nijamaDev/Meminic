@@ -1,4 +1,4 @@
-export const CreateProductItems = [
+export const UpdateProductItems = [
     {
         title: "Identificador:",
         type: "text",
@@ -10,41 +10,41 @@ export const CreateProductItems = [
         title: "Referencia:",
         type: "text",
         placeholder: " ",
-        required: true
+        required: false
       },
       {
         title: "Nombre:",
         type: "text",
         placeholder: " ",
-        required: true
+        required: false
       },
 
       {
         title: "Localización:",
         type: "text",
         placeholder: " ",
-        required: true
+        required: false
       },
 
       {
         title: "Proveedor:",
         type: "text",
         placeholder: " ",
-        required: true
+        required: false
       },
 
       {
         title: "Cantidad minima:",
         type: "number",
         placeholder: " ",
-        required: true
+        required: false
       },
 
       {
         title: "Cantidad maxima:",
         type: "number",
         placeholder: " ",
-        required: true
+        required: false
       },
 
   ];
