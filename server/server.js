@@ -5,6 +5,8 @@ const app = express();
 const cors = require("cors");
 const User = require("./database/models/user.js");
 const Store = require("./database/models/store.js");
+const KardexProduct = require("./database/models/kardexProduct.js");
+
 app.use(express.json());
 app.use(cors());
 
@@ -15,6 +17,11 @@ const PORT = process.env.DEVPORT || 5000;
 Store.hasMany(User, { as: "Employee" });
 //It creates a 1 to 1 relationship between User and Store
 User.belongsTo(Store, { as: "Store" });
+
+Store.hasMany(KardexProduct, { as: "Product" });
+KardexProduct.belongsTo(Store, {as: "Store"});
+
+
 
 //Creates a new store in the database
 app.post("/createStore", async (req, res) => {
@@ -39,6 +46,61 @@ app.post("/createUser", async (req, res) => {
     data: user,
   });
 });
+
+//Creates a new product in the database
+app.post("/addProduct", async (req, res) => {
+  const store = await Store.findByPk(req.body.store);
+  const product = await KardexProduct.create({
+    idKardex: req.body.idKardex,
+    reference: req.body.reference,
+    productName: req.body.productName,
+    location: req.body.location,
+    supplier : req.body.supplier,
+    minimumAmount: req.body.minimumAmount,
+    maximumAmount : req.body.maximumAmount
+  }
+  );
+  store.addProduct(product);
+  console.log("Product created");
+  res.status(201).send(product);
+});
+
+
+//Updates the fields of a product in the database
+app.post("/updateProduct", async (req, res) => {
+  const product = await KardexProduct.findByPk(req.body.idKardex);
+  //Some verifications are done to update only the fields the user intended to
+  if (req.body.reference !== "") {
+    product.reference = req.body.reference;
+  }
+  if (req.body.productName !== "") {
+    product.productName = req.body.productName;
+  }
+  if (req.body.location !== "") {
+    product.location = req.body.location;
+  }
+  if (req.body.supplier !== "") {
+    product.supplier = req.body.supplier;
+  }
+  if (req.body.minimumAmount !== "") {
+    product.minimumAmount = req.body.minimumAmount;
+  }
+  if (req.body.maximumAmount !== "") {
+    product.maximumAmount = req.body.maximumAmount;
+  }
+  await product.save();
+  console.log("Product updated");
+  res.status(201).send(product);
+});
+
+
+//Searches for a product in the db 
+app.post("/searchProduct", async (req, res) => {
+  const product = await KardexProduct.findByPk(req.body.idKardex);
+  res.status(201).send(product);
+});
+
+
 
 //Adds a user to and already existent store
 app.post("/addUser", async (req, res) => {
@@ -74,7 +136,8 @@ app.post("/updateUser", async (req, res) => {
   });
 });
 
-//Search user in database
+
+//Searches an user in database
 app.post("/searchUser", async (req, res) => {
   const user = await User.findByPk(req.body.email);
   res.status(201).send(user);
@@ -86,6 +149,14 @@ app.post("/getWorkers", async (req, res) => {
   console.log("Store found:", store);
   const workers = await store.getEmployee();
   res.status(201).send(workers);
+});
+
+//Returns the products of a store 
+app.post("/getProducts", async (req, res) => {
+  const store = await Store.findByPk(req.body.storeId);
+  console.log("Store found:" ,store);
+  const products = await store.getProduct( );
+  res.status(201).send(products);
 });
 
 //Routes

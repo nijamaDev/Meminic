@@ -34,15 +34,15 @@ export const ModulesInfoAdmin = [
     modulesItems: [
       {
         title: "Adicionar",
-        url: "/products",
+        url: "/productsAdd",
       },
       {
         title: "Modificar",
-        url: "/products",
+        url: "/productsModify",
       },
       {
         title: "Consultar",
-        url: "/products",
+        url: "/productsModify",
       },
     ],
   },
