@@ -48,8 +48,8 @@
 
 
 .div__item{
-    width: 5rem;
-    padding-top:0.4rem; 
+    width: 7rem;
+    padding-top:0.2rem; 
     display: flex;
     align-content: center;
     
@@ -70,7 +70,7 @@
     width: 25rem;
     margin:auto;
     display:flex;
-    padding-left: 5rem;
+    padding-left: 2rem;
     text-align: left;
     margin-top: 0.8rem;
     margin-bottom: 0.8rem;

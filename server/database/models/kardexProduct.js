@@ -7,8 +7,7 @@ class KardexProduct extends Model {}
 KardexProduct.init(
   {
     idKardex: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
     }, //Tampoco recuerdo bien 
@@ -21,7 +20,7 @@ KardexProduct.init(
   },
   {
     sequelize,
-    modelName: "kardexProduct",
+    modelName: "product",
   }
 );
 

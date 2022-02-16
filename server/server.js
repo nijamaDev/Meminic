@@ -6,7 +6,7 @@ const cors = require("cors");
 const User = require("./database/models/user.js");
 const Store = require("./database/models/store.js");
 const KardexProduct = require("./database/models/kardexProduct.js");
-const KardexProduct = require("./database/models/kardexProduct.js");
+
 app.use(express.json());
 app.use(cors());
 
@@ -47,9 +47,10 @@ app.post("/createUser", async (req, res) => {
 });
 
 //Creates a new product in the database
-app.post("/createProduct", async (req, res) => {
+app.post("/addProduct", async (req, res) => {
   const store = await Store.findByPk(req.body.store);
   const product = await KardexProduct.create({
+    idKardex: req.body.idKardex,
     reference: req.body.reference,
     productName: req.body.productName,
     location: req.body.location,
