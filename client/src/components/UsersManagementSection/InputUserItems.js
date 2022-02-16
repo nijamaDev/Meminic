@@ -1,7 +1,7 @@
 export const InputUserItems = [
     {
       title: "Email:",
-      type: "text",
+      type: "email",
       placeholder: "correo@example.com"
     },
   ];

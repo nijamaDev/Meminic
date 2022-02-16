@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import UsersManagementSection from "./components/UsersManagementSection/UsersManagementSection";
 import ModulesSectionAdmin from "./components/ModulesSection/ModulesSectionAdmin";
 import ModulesSectionSeller from "./components/ModulesSection/ModuleSectionSeller";
+import ProductsAddSection from "./components/ProductsAddSection/ProductsAddSection";
 import UserProfile from "./components/UserProfile/UserProfile";
 import "./index.css";
 import "./components/ModulesBox/ModulesBox.css";
@@ -80,6 +81,18 @@ function App() {
                 <UsersManagementSection />
                 <Footer menuItems={MenuItemsSystem} />
               </>
+            }
+          />
+          <Route
+            path="/products"
+            element={ 
+             <>
+                <Header menuItems={MenuItemsSystem} />
+                
+                <ProductsAddSection user= {user}/>
+                <Footer menuItems={MenuItemsSystem} />
+                
+            </> 
             }
           />
         </Routes>

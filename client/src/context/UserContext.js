@@ -95,6 +95,30 @@ const UserContext = () => {
     }
   };
 
+
+  /**
+   * This function adds a new product in the db associated with its store
+   * @param {*} id
+   */
+   const addProduct = async (data, store) => {
+    try {
+      const product = await axios.post("http://localhost:5000/addProduct", {
+        store: store,
+        idKardex: data.Identificador,
+        reference: data.Referencia,
+        productName: data.Nombre,
+        location: data.Localización,
+        supplier: data.Proveedor,
+        minimumAmount: data["Cantidad minima"],
+        maximumAmount: data["Cantidad maxima"],
+      });
+      console.log("Product added")
+      return product;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   /**
    * This function verifies if a user is already in the database
    * If the user is not in database, it creates a new store the user will be linked to.
@@ -158,6 +182,11 @@ const UserContext = () => {
     verifyUserForUI,
     readResult,
     isAdmin,
+    searchUser, 
+    addUser, 
+    updateUser, 
+    getWorkers,
+    addProduct
   };
 };
 
