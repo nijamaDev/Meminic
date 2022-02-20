@@ -17,14 +17,13 @@ ReactDOM.render(
     </Auth0Provider>
   </React.StrictMode>,*/
   //Stricmode removed
-  
-    <Auth0Provider
-      domain={domain}
-      clientId={clientId}
-      redirectUri={window.location.origin}
-    >
-      <App />
-    </Auth0Provider>
-     ,
+
+  <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    redirectUri={window.location.origin}
+  >
+    <App />
+  </Auth0Provider>,
   document.getElementById("root")
 );
