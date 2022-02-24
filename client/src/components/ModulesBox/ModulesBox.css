@@ -41,7 +41,7 @@
 }
 
 .module__box__clicked:nth-child(2) .module__box__list {
-  transform: translate(-142px, 3px);
+  transform: translate(-141px, 3px);
   width: 22.25rem;
 }
 .module__box__clicked:nth-child(1) .module__box__list,
