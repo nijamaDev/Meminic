@@ -4,6 +4,7 @@ import Auth0Hook from "../hooks/Auth0Hook";
 
 const UserContext = () => {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { user } = Auth0Hook();
   /**
    * This function creates a new store in the database
@@ -208,7 +209,7 @@ const UserContext = () => {
         email: user.email,
       })
       .then(function (response) {
-        if (response.data.role === "Administrador") {
+        if (response.data.role === "Administrador" || response.data === "") {
           setIsAdmin(true);
         } else {
           setIsAdmin(false);
@@ -220,7 +221,7 @@ const UserContext = () => {
     return isAdmin;
   };
   const readResult = async () => {
-    const booleanAdmin = await verifyUserForUI();
+    const booleanAdmin = await verifyUserForUI().then(setIsLoading(false));
     return booleanAdmin;
   };
   return {
@@ -234,6 +235,7 @@ const UserContext = () => {
     verifyUserForUI,
     readResult,
     isAdmin,
+    isLoading,
     addProduct,
     updateProduct,
     searchProduct,

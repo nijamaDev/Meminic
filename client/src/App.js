@@ -21,7 +21,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
 import { useState } from "react";
-
+import Delay from "react-delay";
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
   const { verifyUser, readResult, isAdmin } = UserContext();
@@ -53,28 +53,32 @@ function App() {
                           <>
                             <Header menuItems={MenuItemsSystem} />
                             {isAdmin ? (
-                              <>
-                                <UserProfile
-                                  profileImg={user.picture}
-                                  name={user.name}
-                                  role="Administrador"
-                                />
-                                <ModulesSectionAdmin
-                                  Modules={ModulesInfoAdmin}
-                                />
-                              </>
+                              <Delay wait={250}>
+                                <>
+                                  <UserProfile
+                                    profileImg={user.picture}
+                                    name={user.name}
+                                    role="Administrador"
+                                  />
+                                  <ModulesSectionAdmin
+                                    Modules={ModulesInfoAdmin}
+                                  />
+                                </>
+                              </Delay>
                             ) : (
-                              <>
-                                <UserProfile
-                                  profileImg={user.picture}
-                                  name={user.name}
-                                  role="Vendedor"
-                                />
-                                <ModulesSectionSeller
-                                  Modules={ModulesInfoSeller}
-                                  className="modules__box__seller"
-                                />
-                              </>
+                              <Delay wait={500}>
+                                <>
+                                  <UserProfile
+                                    profileImg={user.picture}
+                                    name={user.name}
+                                    role="Vendedor"
+                                  />
+                                  <ModulesSectionSeller
+                                    Modules={ModulesInfoSeller}
+                                    className="modules__box__seller"
+                                  />
+                                </>
+                              </Delay>
                             )}
 
                             <Footer menuItems={MenuItemsSystem} />
