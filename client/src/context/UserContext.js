@@ -209,7 +209,7 @@ const UserContext = () => {
         email: user.email,
       })
       .then(function (response) {
-        if (response.data.role === "Administrador") {
+        if (response.data.role === "Administrador" || response.data === "") {
           setIsAdmin(true);
         } else {
           setIsAdmin(false);
