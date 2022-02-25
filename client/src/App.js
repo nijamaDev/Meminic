@@ -110,7 +110,6 @@ function App() {
             element={
               <>
                 <Header menuItems={MenuItemsSystem} />
-
                 <ProductsAddSection user={user} />
                 <Footer menuItems={MenuItemsSystem} />
               </>
@@ -121,7 +120,6 @@ function App() {
             element={
               <>
                 <Header menuItems={MenuItemsSystem} />
-
                 <ProductsUpdateSection user={user} />
                 <Footer menuItems={MenuItemsSystem} />
               </>
