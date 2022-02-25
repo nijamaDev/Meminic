@@ -10,13 +10,14 @@ KardexProduct.init(
       type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-    }, //Tampoco recuerdo bien 
+    },  
     reference: DataTypes.STRING,
     productName: DataTypes.STRING,
     location: DataTypes.STRING,
     supplier : DataTypes.STRING,
     minimumAmount: DataTypes.INTEGER,
-    maximumAmount : DataTypes.INTEGER
+    maximumAmount : DataTypes.INTEGER,
+    available: DataTypes.BOOLEAN
   },
   {
     sequelize,

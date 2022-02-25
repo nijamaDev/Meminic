@@ -53,6 +53,7 @@ const ProductContext = () => {
         supplier: data.Proveedor,
         minimumAmount: data["Cantidad minima"],
         maximumAmount: data["Cantidad maxima"],
+        available: data.Estado,
       });
       console.log("Product updated");
       return product;

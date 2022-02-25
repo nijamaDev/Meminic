@@ -19,9 +19,7 @@ Store.hasMany(User, { as: "Employee" });
 User.belongsTo(Store, { as: "Store" });
 
 Store.hasMany(KardexProduct, { as: "Product" });
-KardexProduct.belongsTo(Store, {as: "Store"});
-
-
+KardexProduct.belongsTo(Store, { as: "Store" });
 
 //Creates a new store in the database
 app.post("/createStore", async (req, res) => {
@@ -55,16 +53,15 @@ app.post("/addProduct", async (req, res) => {
     reference: req.body.reference,
     productName: req.body.productName,
     location: req.body.location,
-    supplier : req.body.supplier,
+    supplier: req.body.supplier,
     minimumAmount: req.body.minimumAmount,
-    maximumAmount : req.body.maximumAmount
-  }
-  );
+    maximumAmount: req.body.maximumAmount,
+    available: true,
+  });
   store.addProduct(product);
   console.log("Product created");
   res.status(201).send(product);
 });
-
 
 //Updates the fields of a product in the database
 app.post("/updateProduct", async (req, res) => {
@@ -88,19 +85,22 @@ app.post("/updateProduct", async (req, res) => {
   if (req.body.maximumAmount !== "") {
     product.maximumAmount = req.body.maximumAmount;
   }
+  if (req.body.available === "No disponible") {
+    product.available = false;
+  }
+  if (req.body.available === "Disponible") {
+    product.available = true;
+  }
   await product.save();
   console.log("Product updated");
   res.status(201).send(product);
 });
 
-
-//Searches for a product in the db 
+//Searches for a product in the db
 app.post("/searchProduct", async (req, res) => {
   const product = await KardexProduct.findByPk(req.body.idKardex);
   res.status(201).send(product);
 });
-
-
 
 //Adds a user to and already existent store
 app.post("/addUser", async (req, res) => {
@@ -136,7 +136,6 @@ app.post("/updateUser", async (req, res) => {
   });
 });
 
-
 //Searches an user in database
 //Search user in database
 app.post("/searchUser", async (req, res) => {
@@ -144,7 +143,7 @@ app.post("/searchUser", async (req, res) => {
   res.status(201).send(user);
 });
 
-//Return the workers of a the current store where user belongs 
+//Return the workers of a the current store where user belongs
 app.post("/getWorkers", async (req, res) => {
   const store = await Store.findByPk(req.body.storeId);
   console.log("Store found:", store);
@@ -152,11 +151,11 @@ app.post("/getWorkers", async (req, res) => {
   res.status(201).send(workers);
 });
 
-//Returns the products of a store 
+//Returns the products of a store
 app.post("/getProducts", async (req, res) => {
   const store = await Store.findByPk(req.body.storeId);
-  console.log("Store found:" ,store);
-  const products = await store.getProduct( );
+  console.log("Store found:", store);
+  const products = await store.getProduct();
   res.status(201).send(products);
 });
 

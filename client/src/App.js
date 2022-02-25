@@ -3,11 +3,10 @@ import Header from "./components/Header/Header";
 import Banner from "./components/Banner/Banner";
 import ServicesBanner from "./components/ServicesBanner/ServicesBanner";
 import Footer from "./components/Footer/Footer";
-import UsersManagementSection from "./components/UsersManagementSection/UsersManagementSection";
 import ModulesSectionAdmin from "./components/ModulesSection/ModulesSectionAdmin";
 import ModulesSectionSeller from "./components/ModulesSection/ModuleSectionSeller";
-import ProductsAddSection from "./components/ProductsSection/ProductsAddSection";
-import ProductsUpdateSection from "./components/ProductsSection/ProductsUpdateSection";
+import ProductsAddSection from "./components/ProductAddSection/ProductsAddSection";
+import ProductsUpdateSection from "./components/ProductUpdateSection/ProductsUpdateSection";
 import UserProfile from "./components/UserProfile/UserProfile";
 import ProductReadTableEvents from "./components/ProductReadTable/ProductReadTableEvents";
 import ProductReadTable from "./components/ProductReadTable/ProductReadTable";
@@ -21,6 +20,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
 import { useState } from "react";
+import UserSectionModal from "./components/UserSectionModal/UserSectionModal";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
@@ -100,7 +100,7 @@ function App() {
             element={
               <>
                 <Header menuItems={MenuItemsSystem} />
-                <UsersManagementSection />
+                <UserSectionModal />
                 <Footer menuItems={MenuItemsSystem} />
               </>
             }
