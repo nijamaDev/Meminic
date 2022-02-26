@@ -3,7 +3,7 @@ export const CreateProductItems = [
     title: "Identificador:",
     type: "text",
     placeholder: " ",
-    required: true,
+    required: "Ingrese un identificador",
   },
 
   {

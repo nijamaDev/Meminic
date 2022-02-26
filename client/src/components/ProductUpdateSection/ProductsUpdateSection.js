@@ -1,4 +1,4 @@
-import React  , { useState } from "react";
+import React, { useState } from "react";
 import ManagementBox from "../ManagementBox/ManagementBox";
 import { UpdateProductItems } from "./UpdateProductItems";
 import { UpdateAvailableItem } from "./UpdateAvailableItem";
@@ -16,7 +16,7 @@ const ProductsUpdateSection = ({ user }) => {
   const onSubmitUpdate = (data, e) => {
     searchProduct(data.Identificador).then(function (response) {
       if (response.data !== "") {
-        updateProduct(data).then(function(response){
+        updateProduct(data).then(function (response) {
           if (response.status === 201) {
             setToggleSuccess(true);
             e.target.reset();
@@ -30,76 +30,68 @@ const ProductsUpdateSection = ({ user }) => {
     });
   };
 
-
-
   return (
     <div>
       <div>
-      { !toggleSuccess ? (
+        {!toggleSuccess ? (
           <>
-          <ManagementBox
-          img={updateProductIcon}
-          onSubmitFunct={onSubmitUpdate}
-          obj={user}
-          formId="UpdateProduct"
-          name="Modificar información"
-          buttonName="Actualizar"
-          itemsInput={UpdateProductItems}
-          itemsSelect={UpdateAvailableItem}
-          />
+            <ManagementBox
+              img={updateProductIcon}
+              onSubmitFunct={onSubmitUpdate}
+              obj={user}
+              formId="UpdateProduct"
+              title="Modificar información"
+              buttonName="Actualizar"
+              itemsInput={UpdateProductItems}
+              itemsSelect={UpdateAvailableItem}
+            />
           </>
-
-        ):(
-          <> 
-          <Modal
+        ) : (
+          <>
+            <Modal
               message={"El producto ha sido actualizado con éxito!"}
               textButton={"Aceptar"}
               title={"Producto actualizado"}
               iconURL={check_icon}
               altImg={"check"}
               onClickEvent={() => setToggleSuccess(!toggleSuccess)}
-          ></Modal>
-          <ManagementBox
-          img={updateProductIcon}
-          onSubmitFunct={onSubmitUpdate}
-          obj={user}
-          formId="UpdateProduct"
-          name="Modificar información"
-          buttonName="Actualizar"
-          itemsInput={UpdateProductItems}
-          itemsSelect={UpdateAvailableItem}
-          />
+            ></Modal>
+            <ManagementBox
+              img={updateProductIcon}
+              onSubmitFunct={onSubmitUpdate}
+              obj={user}
+              formId="UpdateProduct"
+              title="Modificar información"
+              buttonName="Actualizar"
+              itemsInput={UpdateProductItems}
+              itemsSelect={UpdateAvailableItem}
+            />
           </>
-        )
-
-        }
-        { !toggleFail ? (
+        )}
+        {!toggleFail ? (
+          <></>
+        ) : (
           <>
-          </>
-        ):(
-          <> 
-          <Modal
+            <Modal
               message={"El producto aún no ha sido creado"}
               textButton={"Aceptar"}
               title={"Producto no registrado"}
               iconURL={error_icon}
               altImg={"check"}
               onClickEvent={() => setToggleFail(!toggleFail)}
-          ></Modal>
-          <ManagementBox
-          img={updateProductIcon}
-          onSubmitFunct={onSubmitUpdate}
-          obj={user}
-          formId="UpdateProduct"
-          name="Modificar información"
-          buttonName="Actualizar"
-          itemsInput={UpdateProductItems}
-          itemsSelect={UpdateAvailableItem}
-          />
+            ></Modal>
+            <ManagementBox
+              img={updateProductIcon}
+              onSubmitFunct={onSubmitUpdate}
+              obj={user}
+              formId="UpdateProduct"
+              name="Modificar información"
+              buttonName="Actualizar"
+              itemsInput={UpdateProductItems}
+              itemsSelect={UpdateAvailableItem}
+            />
           </>
-        )
-
-        }
+        )}
       </div>
     </div>
   );

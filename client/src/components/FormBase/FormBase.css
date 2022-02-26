@@ -95,10 +95,10 @@
   flex-direction: column;
 }
 
+.container__message,
 .item__form {
   margin: auto;
   display: flex;
-  /* padding-left: 2rem; */
   text-align: left;
   margin-top: 0.8rem;
   margin-bottom: 0.8rem;
@@ -112,4 +112,20 @@
   flex-direction: column;
   margin: 0;
   padding: 0;
+}
+
+.input__message__error {
+  margin: 0;
+  font-family: "Epilogue", sans-serif;
+  font-size: 13px;
+  color: #f24024;
+  font-weight: 600;
+}
+
+.container__message {
+  margin: 0;
+}
+
+.container__message .div__item {
+  margin: 0;
 }

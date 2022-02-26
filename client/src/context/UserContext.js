@@ -44,7 +44,6 @@ const UserContext = () => {
         role: newUser.Rol,
         store: id,
       });
-      
     } catch (error) {
       console.log("error");
     }
@@ -133,7 +132,7 @@ const UserContext = () => {
         email: user.email,
       })
       .then(function (response) {
-        if (response.data.role === "Administrador") {
+        if (response.data.role === "Administrador" || response.data === "") {
           setIsAdmin(true);
         } else {
           setIsAdmin(false);

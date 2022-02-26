@@ -11,6 +11,7 @@ const UserSectionModal = () => {
   const [toggleFail, setToggleFail] = useState(false);
   const [toggleSucessUpdate, setToggleSuccessUpdate] = useState(false);
   const [toggleFailUpdate, setToggleFailUpdate] = useState(false);
+  const [toggleDelete, setToggleDelete] = useState(false);
   const { user } = Auth0Hook();
 
   const onSubmitRegister = (data, e) =>
@@ -38,6 +39,11 @@ const UserSectionModal = () => {
         updateUser(data);
         if (data.email !== "") {
           setToggleSuccessUpdate(true);
+          e.target.reset();
+        }
+        if (data.Estado === "Inactivo") {
+          setToggleSuccessUpdate(false);
+          setToggleDelete(true);
           e.target.reset();
         }
       }
@@ -112,6 +118,24 @@ const UserSectionModal = () => {
             iconURL={error_icon}
             altImg={"check"}
             onClickEvent={() => setToggleFailUpdate(!toggleFailUpdate)}
+          ></Modal>
+          <UserManagementSection
+            onSubmitRegister={onSubmitRegister}
+            onSubmitUpdate={onSubmitUpdate}
+          />
+        </>
+      ) : (
+        <></>
+      )}
+      {toggleDelete ? (
+        <>
+          <Modal
+            message={"El usuario ha sido eliminado exitosamente!"}
+            textButton={"Aceptar"}
+            title={"Usuario eliminado"}
+            iconURL={error_icon}
+            altImg={"check"}
+            onClickEvent={() => setToggleDelete(!toggleDelete)}
           ></Modal>
           <UserManagementSection
             onSubmitRegister={onSubmitRegister}
