@@ -18,6 +18,7 @@
   color: #391400;
   table-layout: fixed;
   font-family: "Epilogue", sans-serif;
+  text-align: center;
 }
 .user__table td {
   overflow: hidden;

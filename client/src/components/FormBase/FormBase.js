@@ -39,8 +39,8 @@ const FormBase = ({
           <>
             {itemsInput.map((item, index) => {
               return (
-                <>
-                  <div className="item__form" key={index}>
+                <React.Fragment key={index}>
+                  <div className="item__form">
                     <div className="div__item">
                       <label htmlFor={item.title} className="label__item">
                         {" "}
@@ -67,7 +67,7 @@ const FormBase = ({
                       {errors[item.title.slice(0, -1)]?.message}
                     </p>
                   </div>
-                </>
+                </React.Fragment>
               );
             })}
           </>

@@ -10,40 +10,40 @@ export const CreateProductItems = [
     title: "Referencia:",
     type: "text",
     placeholder: " ",
-    required: true,
+    required: "Ingrese una referencia",
   },
   {
     title: "Nombre:",
     type: "text",
     placeholder: " ",
-    required: true,
+    required: "Ingrese un nombre",
   },
 
   {
     title: "Localización:",
     type: "text",
     placeholder: " ",
-    required: true,
+    required: "Ingrese una localización",
   },
 
   {
     title: "Proveedor:",
     type: "text",
     placeholder: " ",
-    required: true,
+    required: "Ingrese un proveedor",
   },
 
   {
-    title: "Cantidad minima:",
+    title: "Cantidad mínima:",
     type: "number",
     placeholder: " ",
-    required: true,
+    required: "Ingrese la cantidad mínima",
   },
 
   {
-    title: "Cantidad maxima:",
+    title: "Cantidad máxima:",
     type: "number",
     placeholder: " ",
-    required: true,
+    required: "Ingrese la cantidad máxima",
   },
 ];
