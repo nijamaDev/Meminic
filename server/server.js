@@ -5,8 +5,8 @@ const app = express();
 const cors = require("cors");
 const User = require("./database/models/user.js");
 const Store = require("./database/models/store.js");
-const KardexProduct = require("./database/models/kardexProduct.js");
-
+const Product = require("./database/models/product.js");
+const Movement = require("./database/models/movements.js");
 app.use(express.json());
 app.use(cors());
 
@@ -17,16 +17,28 @@ const PORT = process.env.DEVPORT || 5000;
 Store.hasMany(User, { as: "Employee" });
 //It creates a 1 to 1 relationship between User and Store
 User.belongsTo(Store, { as: "Store" });
+Store.hasMany(Product, { as: "Product" });
+Product.belongsTo(Store, { as: "Store" });
+Product.hasMany(Movement, { as: "Movement" });
+Movement.belongsTo(Product, { as: "Product" });
 
-Store.hasMany(KardexProduct, { as: "Product" });
-KardexProduct.belongsTo(Store, { as: "Store" });
-
+// ================================== Store ============================================
 //Creates a new store in the database
 app.post("/createStore", async (req, res) => {
   const store = await Store.create();
   console.log("Store created");
   res.status(201).send(store);
 });
+
+//Return the workers of a the current store where user belongs
+app.post("/getWorkers", async (req, res) => {
+  const store = await Store.findByPk(req.body.storeId);
+  console.log("Store found:", store);
+  const workers = await store.getEmployee();
+  res.status(201).send(workers);
+});
+
+// ===================================== Users ====================================
 
 //Creates a new user as the admin of a store created before in the database
 app.post("/createUser", async (req, res) => {
@@ -43,63 +55,6 @@ app.post("/createUser", async (req, res) => {
     message: "User created",
     data: user,
   });
-});
-
-//Creates a new product in the database
-app.post("/addProduct", async (req, res) => {
-  const store = await Store.findByPk(req.body.store);
-  const product = await KardexProduct.create({
-    idKardex: req.body.idKardex,
-    reference: req.body.reference,
-    productName: req.body.productName,
-    location: req.body.location,
-    supplier: req.body.supplier,
-    minimumAmount: req.body.minimumAmount,
-    maximumAmount: req.body.maximumAmount,
-    available: true,
-  });
-  store.addProduct(product);
-  console.log("Product created");
-  res.status(201).send(product);
-});
-
-//Updates the fields of a product in the database
-app.post("/updateProduct", async (req, res) => {
-  const product = await KardexProduct.findByPk(req.body.idKardex);
-  //Some verifications are done to update only the fields the user intended to
-  if (req.body.reference !== "") {
-    product.reference = req.body.reference;
-  }
-  if (req.body.productName !== "") {
-    product.productName = req.body.productName;
-  }
-  if (req.body.location !== "") {
-    product.location = req.body.location;
-  }
-  if (req.body.supplier !== "") {
-    product.supplier = req.body.supplier;
-  }
-  if (req.body.minimumAmount !== "") {
-    product.minimumAmount = req.body.minimumAmount;
-  }
-  if (req.body.maximumAmount !== "") {
-    product.maximumAmount = req.body.maximumAmount;
-  }
-  if (req.body.available === "No disponible") {
-    product.available = false;
-  }
-  if (req.body.available === "Disponible") {
-    product.available = true;
-  }
-  await product.save();
-  console.log("Product updated");
-  res.status(201).send(product);
-});
-
-//Searches for a product in the db
-app.post("/searchProduct", async (req, res) => {
-  const product = await KardexProduct.findByPk(req.body.idKardex);
-  res.status(201).send(product);
 });
 
 //Adds a user to and already existent store
@@ -143,12 +98,63 @@ app.post("/searchUser", async (req, res) => {
   res.status(201).send(user);
 });
 
-//Return the workers of a the current store where user belongs
-app.post("/getWorkers", async (req, res) => {
-  const store = await Store.findByPk(req.body.storeId);
-  console.log("Store found:", store);
-  const workers = await store.getEmployee();
-  res.status(201).send(workers);
+// ================================== Products ======================================
+
+//Creates a new product in the database
+app.post("/addProduct", async (req, res) => {
+  const store = await Store.findByPk(req.body.store);
+  const product = await Product.create({
+    idKardex: req.body.idKardex,
+    reference: req.body.reference,
+    productName: req.body.productName,
+    location: req.body.location,
+    supplier: req.body.supplier,
+    minimumAmount: req.body.minimumAmount,
+    maximumAmount: req.body.maximumAmount,
+    available: true,
+  });
+  store.addProduct(product);
+  console.log("Product created");
+  res.status(201).send(product);
+});
+
+//Updates the fields of a product in the database
+app.post("/updateProduct", async (req, res) => {
+  const product = await Product.findByPk(req.body.idKardex);
+  //Some verifications are done to update only the fields the user intended to
+  if (req.body.reference !== "") {
+    product.reference = req.body.reference;
+  }
+  if (req.body.productName !== "") {
+    product.productName = req.body.productName;
+  }
+  if (req.body.location !== "") {
+    product.location = req.body.location;
+  }
+  if (req.body.supplier !== "") {
+    product.supplier = req.body.supplier;
+  }
+  if (req.body.minimumAmount !== "") {
+    product.minimumAmount = req.body.minimumAmount;
+  }
+  if (req.body.maximumAmount !== "") {
+    product.maximumAmount = req.body.maximumAmount;
+  }
+  if (req.body.available === "No disponible") {
+    product.available = false;
+  }
+  if (req.body.available === "Disponible") {
+    product.available = true;
+  }
+  await product.save();
+  console.log("Product updated");
+  res.status(201).send(product);
+});
+
+//Searches for a product in the db
+app.post("/searchProduct", async (req, res) => {
+  const product = await Product.findByPk(req.body.idKardex);
+  res.status(201).send(product);
 });
 
 //Returns the products of a store
@@ -157,6 +163,26 @@ app.post("/getProducts", async (req, res) => {
   console.log("Store found:", store);
   const products = await store.getProduct();
   res.status(201).send(products);
+});
+
+// ===================================== Movement ==================================
+
+app.post("/addInitialInventory", async (req, res) => {
+  const product = await Product.findByPk(req.body.idProduct);
+  const movement = await Movement.create({
+    date: new Date(),
+    movementType: "Inventario inicial",
+    accSupport: req.body.accSupport,
+    unitValue: req.body.unitValue,
+    inputAmount: req.body.inputAmount,
+    inputValue: req.body.unitValue * req.body.inputAmount,
+    balanceAmount: req.body.inputAmount,
+    balanceValue: req.body.unitValue * req.body.inputAmount,
+  });
+  //foreign key
+  product.addMovement(movement);
+  console.log("Initial inventory added");
+  res.status(201).send(movement);
 });
 
 //Routes

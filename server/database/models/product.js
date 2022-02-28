@@ -1,23 +1,22 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../database.js");
 
-class KardexProduct extends Model {}
+class Product extends Model {}
 
-
-KardexProduct.init(
+Product.init(
   {
     idKardex: {
       type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
-    },  
+    },
     reference: DataTypes.STRING,
     productName: DataTypes.STRING,
     location: DataTypes.STRING,
-    supplier : DataTypes.STRING,
+    supplier: DataTypes.STRING,
     minimumAmount: DataTypes.INTEGER,
-    maximumAmount : DataTypes.INTEGER,
-    available: DataTypes.BOOLEAN
+    maximumAmount: DataTypes.INTEGER,
+    available: DataTypes.BOOLEAN,
   },
   {
     sequelize,
@@ -25,4 +24,4 @@ KardexProduct.init(
   }
 );
 
-module.exports =  KardexProduct;
+module.exports = Product;
