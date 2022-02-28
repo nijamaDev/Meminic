@@ -1,17 +1,17 @@
-import axios from "axios";
+import axios from 'axios';
 const ProductContext = () => {
   /**
    * This function gets the workers of a store
    * @param {*} id
    */
-   const getProducts = async (id) => {
+  const getProducts = async (id) => {
     try {
-      const products = await axios.post("http://localhost:5000/getProducts", {
+      const products = await axios.post('http://localhost:5000/getProducts', {
         storeId: id,
       });
       return products;
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
 
@@ -22,20 +22,20 @@ const ProductContext = () => {
    */
   const addProduct = async (data, store) => {
     try {
-      const product = await axios.post("http://localhost:5000/addProduct", {
+      const product = await axios.post('http://localhost:5000/addProduct', {
         store: store,
         idKardex: data.Identificador,
         reference: data.Referencia,
         productName: data.Nombre,
         location: data.Localización,
         supplier: data.Proveedor,
-        minimumAmount: data["Cantidad minima"],
-        maximumAmount: data["Cantidad maxima"],
+        minimumAmount: data['Cantidad minima'],
+        maximumAmount: data['Cantidad maxima'],
       });
-      console.log("Product added");
+      console.log('Product added');
       return product;
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
 
@@ -45,20 +45,20 @@ const ProductContext = () => {
    */
   const updateProduct = async (data) => {
     try {
-      const product = await axios.post("http://localhost:5000/updateProduct", {
+      const product = await axios.post('http://localhost:5000/updateProduct', {
         idKardex: data.Identificador,
         reference: data.Referencia,
         productName: data.Nombre,
         location: data.Localización,
         supplier: data.Proveedor,
-        minimumAmount: data["Cantidad minima"],
-        maximumAmount: data["Cantidad maxima"],
+        minimumAmount: data['Cantidad minima'],
+        maximumAmount: data['Cantidad maxima'],
         available: data.Estado,
       });
-      console.log("Product updated");
+      console.log('Product updated');
       return product;
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
 
@@ -68,21 +68,21 @@ const ProductContext = () => {
    */
   const searchProduct = async (id) => {
     try {
-      const product = await axios.post("http://localhost:5000/searchProduct", {
+      const product = await axios.post('http://localhost:5000/searchProduct', {
         idKardex: id,
       });
       return product;
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
 
-return {
+  return {
     getProducts,
     addProduct,
     updateProduct,
-    searchProduct
-}
-}
+    searchProduct,
+  };
+};
 
-export default ProductContext
+export default ProductContext;

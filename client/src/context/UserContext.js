@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useState } from "react";
-import Auth0Hook from "../hooks/Auth0Hook";
+import axios from 'axios';
+import { useState } from 'react';
+import Auth0Hook from '../hooks/Auth0Hook';
 
 const UserContext = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -11,10 +11,10 @@ const UserContext = () => {
    */
   const saveDataStore = async () => {
     try {
-      const store = await axios.post("http://localhost:5000/createStore", {});
+      const store = await axios.post('http://localhost:5000/createStore', {});
       return store;
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
   /**
@@ -24,12 +24,12 @@ const UserContext = () => {
    */
   const saveDataUser = async (id) => {
     try {
-      await axios.post("http://localhost:5000/createUser", {
+      await axios.post('http://localhost:5000/createUser', {
         email: user.email,
         store: id,
       });
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
 
@@ -39,13 +39,13 @@ const UserContext = () => {
    */
   const addUser = async (newUser, id) => {
     try {
-      await axios.post("http://localhost:5000/addUser", {
+      await axios.post('http://localhost:5000/addUser', {
         email: newUser.Email,
         role: newUser.Rol,
         store: id,
       });
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
 
@@ -55,13 +55,13 @@ const UserContext = () => {
    */
   const updateUser = async (data) => {
     try {
-      await axios.post("http://localhost:5000/updateUser", {
+      await axios.post('http://localhost:5000/updateUser', {
         email: data.Email,
         role: data.Rol,
         state: data.Estado,
       });
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
 
@@ -71,12 +71,12 @@ const UserContext = () => {
    */
   const searchUser = async (email) => {
     try {
-      const userFound = await axios.post("http://localhost:5000/searchUser", {
+      const userFound = await axios.post('http://localhost:5000/searchUser', {
         email: email,
       });
       return userFound;
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
 
@@ -86,12 +86,12 @@ const UserContext = () => {
    */
   const getWorkers = async (id) => {
     try {
-      const workers = await axios.post("http://localhost:5000/getWorkers", {
+      const workers = await axios.post('http://localhost:5000/getWorkers', {
         storeId: id,
       });
       return workers;
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
 
@@ -103,16 +103,16 @@ const UserContext = () => {
    */
   const verifyUser = async () => {
     await axios
-      .post("http://localhost:5000/searchUser", {
+      .post('http://localhost:5000/searchUser', {
         email: user.email,
       })
       .then(function (response) {
-        if (response.data === "") {
+        if (response.data === '') {
           return saveDataStore();
         }
       })
       .then(function (response) {
-        if (typeof response !== "undefined") {
+        if (typeof response !== 'undefined') {
           saveDataUser(response.data.store_id);
         }
       })
@@ -128,20 +128,32 @@ const UserContext = () => {
 
   const verifyUserForUI = async () => {
     await axios
-      .post("http://localhost:5000/searchUser", {
+      .post('http://localhost:5000/searchUser', {
         email: user.email,
       })
       .then(function (response) {
-        if (response.data.role === "Administrador" || response.data === "") {
+        if (response.data.role === 'Administrador' || response.data === '') {
           setIsAdmin(true);
         } else {
           setIsAdmin(false);
         }
+
+        console.log(response?.data);
       })
       .catch(function (error) {
         console.log(error);
       });
     return isAdmin;
+    /* const { data } = await axios.post('http://localhost:5000/searchUser', {
+      email: user.email,
+    });
+    if (data.role === 'Administrador' || data === '') {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
+    console.log(isAdmin);
+    return isAdmin; */
   };
   const readResult = async () => {
     const booleanAdmin = await verifyUserForUI();
