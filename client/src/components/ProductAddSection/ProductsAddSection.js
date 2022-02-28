@@ -10,7 +10,7 @@ import error_icon from "../../assets/error_icon.svg";
 
 const ProductsAddSection = ({ user }) => {
   const { searchUser } = UserContext();
-  const { addProduct, searchProduct } = ProductContext();
+  const { addProduct, searchProduct, addInitialInventory } = ProductContext();
   const [toggleSuccess, setToggleSuccess] = useState(false);
   const [toggleFail, setToggleFail] = useState(false);
 
@@ -26,6 +26,7 @@ const ProductsAddSection = ({ user }) => {
               setToggleSuccess(true);
               e.target.reset();
             }
+            addInitialInventory(data, response.data.idKardex);
           });
         });
       } else {

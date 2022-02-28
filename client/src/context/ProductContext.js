@@ -4,7 +4,7 @@ const ProductContext = () => {
    * This function gets the workers of a store
    * @param {*} id
    */
-   const getProducts = async (id) => {
+  const getProducts = async (id) => {
     try {
       const products = await axios.post("http://localhost:5000/getProducts", {
         storeId: id,
@@ -77,12 +77,31 @@ const ProductContext = () => {
     }
   };
 
-return {
+  const addInitialInventory = async (data, idProduct) => {
+    try {
+      const initialInventory = await axios.post(
+        "http://localhost:5000/addInitialInventory",
+        {
+          accSupport: data["Número de factura"],
+          unitValue: data["Valor unitario inicial"],
+          inputAmount: data["Cantidad inicial"],
+          idProduct: idProduct,
+        }
+      );
+      console.log("initial inventory added");
+      return initialInventory;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+  return {
     getProducts,
     addProduct,
     updateProduct,
-    searchProduct
-}
-}
+    searchProduct,
+    addInitialInventory,
+  };
+};
 
-export default ProductContext
+export default ProductContext;
