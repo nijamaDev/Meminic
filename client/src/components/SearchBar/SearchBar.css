@@ -58,14 +58,6 @@ input:focus {
   padding-left: 12px;
 }
 
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  background-color: lightgrey;
-}
-
 #clearBtn {
   cursor: pointer;
 }

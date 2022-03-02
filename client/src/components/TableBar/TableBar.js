@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./TableBar.css";
 
 const TableBar = ({ rowTitles, productsData }) => {
   const [counter, setCounter] = useState(0);
@@ -14,23 +15,33 @@ const TableBar = ({ rowTitles, productsData }) => {
 
   return (
     <table className="products__table">
-      <thead>
-        <tr className="products__table__titles">
+      <thead className="products__table__head">
+        <tr>
           {rowTitles.map((item, key) => {
             return <th key={key}>{item.title}</th>;
           })}
         </tr>
       </thead>
-      <tbody className="">
+      <tbody className="products__table__body">
         {productsData.map((item, key) => {
           return (
             <tr key={key}>
               <td> {item.name} </td>
               <td>
                 <div>
-                  <button onClick={() => substractOnClick(key)}>-</button>
+                  <button
+                    className="products__table__button"
+                    onClick={() => substractOnClick(key)}
+                  >
+                    -
+                  </button>
                   {item.amount}
-                  <button onClick={() => addOnClick(key)}>+</button>
+                  <button
+                    className="products__table__button"
+                    onClick={() => addOnClick(key)}
+                  >
+                    +
+                  </button>
                 </div>
               </td>
             </tr>
