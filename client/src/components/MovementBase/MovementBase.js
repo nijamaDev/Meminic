@@ -4,8 +4,9 @@ import UserContext from "../../context/UserContext";
 import Auth0Hook from "../../hooks/Auth0Hook";
 import { rowTitleSales } from "./rowTitlesSales";
 import { useState } from "react";
+import "./MovementBase.css";
 
-const MovementSales = () => {
+const MovementBase = ({ title }) => {
   const { getProducts } = ProductContext();
   const { searchUser } = UserContext();
   const { user } = Auth0Hook();
@@ -25,14 +26,19 @@ const MovementSales = () => {
   }
 
   return (
-    <div className="movements__sales__container">
+    <div className="movements__container">
+      <h1 className="movements__title">{title}</h1>
       <SearchBar
         placeholder="Ingresa el nombre del producto"
         data={productDataArray}
         rowTitles={rowTitleSales}
       />
+      <div>
+        <button>Cancelar</button>
+        <button>Registrar</button>
+      </div>
     </div>
   );
 };
 
-export default MovementSales;
+export default MovementBase;

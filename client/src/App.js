@@ -11,7 +11,7 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import ProductReadTableEvents from "./components/ProductReadTable/ProductReadTableEvents";
 import ProductReadTable from "./components/ProductReadTable/ProductReadTable";
 import UserSectionModal from "./components/UserSectionModal/UserSectionModal";
-import MovementSales from "./components/MovementSales/MovementSales";
+import MovementBase from "./components/MovementBase/MovementBase";
 import "./index.css";
 import "./components/ModulesBox/ModulesBox.css";
 import UserContext from "./context/UserContext";
@@ -146,7 +146,8 @@ function App() {
               <>
                 {isAuthenticated ? (
                   <>
-                    <Header menuItems={MenuItemsSystem} /> <MovementSales />
+                    <Header menuItems={MenuItemsSystem} />{" "}
+                    <MovementBase title="Venta" />
                     <Footer menuItems={MenuItemsSystem} />{" "}
                   </>
                 ) : (
