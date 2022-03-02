@@ -28,13 +28,13 @@ function SearchBar({ placeholder, data, rowTitles }) {
     }
   };
 
-  // const clearInput = () => {
-  //   setFilteredData([]);
-  //   setWordEntered("");
-  // };
-
   return (
     <div className="search">
+      {addProduct ? (
+        <TableBar rowTitles={rowTitles} productsData={productsList} />
+      ) : (
+        <></>
+      )}
       <div className="searchInputs">
         <input
           type="text"
@@ -45,7 +45,7 @@ function SearchBar({ placeholder, data, rowTitles }) {
       </div>
       {filteredData.length !== 0 && (
         <div className="dataResult">
-          {filteredData.slice(0, 15).map((value, key) => {
+          {filteredData.map((value, key) => {
             return (
               <label
                 key={key}
@@ -57,11 +57,6 @@ function SearchBar({ placeholder, data, rowTitles }) {
             );
           })}
         </div>
-      )}
-      {addProduct ? (
-        <TableBar rowTitles={rowTitles} productsData={productsList} />
-      ) : (
-        <></>
       )}
     </div>
   );

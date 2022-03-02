@@ -3,16 +3,18 @@
   display: flex;
 }
 
+.search {
+  margin: auto;
+  width: 50%;
+}
+
 .search input {
   background-color: white;
   border: 0;
-  border-radius: 2px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  font-size: 18px;
-  padding: 15px;
+  border-radius: 30px;
+  padding: 10px;
   height: 30px;
-  width: 300px;
+  width: 500px;
 }
 
 .searchIcon {
@@ -31,13 +33,14 @@ input:focus {
 }
 
 .dataResult {
-  margin-top: 5px;
   width: 300px;
-  height: 200px;
+  /* height: 200px; */
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  overflow: hidden;
-  overflow-y: auto;
+  /* overflow: hidden;
+  overflow-y: auto; */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .dataResult::-webkit-scrollbar {
@@ -52,7 +55,7 @@ input:focus {
   color: black;
 }
 
-.dataItem p{
+.dataItem p {
   margin-left: 10px;
 }
 a {

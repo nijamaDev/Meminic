@@ -13,15 +13,15 @@ const TableBar = ({ rowTitles, productsData }) => {
   };
 
   return (
-    <table>
+    <table className="products__table">
       <thead>
-        <tr>
+        <tr className="products__table__titles">
           {rowTitles.map((item, key) => {
             return <th key={key}>{item.title}</th>;
           })}
         </tr>
       </thead>
-      <tbody>
+      <tbody className="">
         {productsData.map((item, key) => {
           return (
             <tr key={key}>

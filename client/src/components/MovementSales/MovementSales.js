@@ -25,7 +25,7 @@ const MovementSales = () => {
   }
 
   return (
-    <div>
+    <div className="movements__sales__container">
       <SearchBar
         placeholder="Ingresa el nombre del producto"
         data={productDataArray}
