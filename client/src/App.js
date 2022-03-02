@@ -10,6 +10,8 @@ import ProductsUpdateSection from "./components/ProductUpdateSection/ProductsUpd
 import UserProfile from "./components/UserProfile/UserProfile";
 import ProductReadTableEvents from "./components/ProductReadTable/ProductReadTableEvents";
 import ProductReadTable from "./components/ProductReadTable/ProductReadTable";
+import UserSectionModal from "./components/UserSectionModal/UserSectionModal";
+import MovementSales from "./components/MovementSales/MovementSales";
 import "./index.css";
 import "./components/ModulesBox/ModulesBox.css";
 import UserContext from "./context/UserContext";
@@ -20,7 +22,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
 import { useState } from "react";
-import UserSectionModal from "./components/UserSectionModal/UserSectionModal";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
@@ -138,6 +139,10 @@ function App() {
                 <Footer menuItems={MenuItemsSystem} />
               </>
             }
+          />
+          <Route
+            path="/movements/sales"
+            element={<>{isAuthenticated ? <MovementSales /> : <></>}</>}
           />
         </Routes>
       </div>

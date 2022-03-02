@@ -1,7 +1,7 @@
 import axios from "axios";
 const ProductContext = () => {
   /**
-   * This function gets the workers of a store
+   * This function gets the products of a store
    * @param {*} id
    */
   const getProducts = async (id) => {
@@ -32,7 +32,6 @@ const ProductContext = () => {
         minimumAmount: data["Cantidad minima"],
         maximumAmount: data["Cantidad maxima"],
       });
-      console.log("Product added");
       return product;
     } catch (error) {
       console.log("error");

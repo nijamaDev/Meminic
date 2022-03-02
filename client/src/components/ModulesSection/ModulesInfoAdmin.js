@@ -13,7 +13,7 @@ export const ModulesInfoAdmin = [
     modulesItems: [
       {
         title: "Venta",
-        url: "/movements",
+        url: "/movements/sales",
       },
       {
         title: "Compra",
