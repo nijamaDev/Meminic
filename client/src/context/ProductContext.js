@@ -29,8 +29,8 @@ const ProductContext = () => {
         productName: data.Nombre,
         location: data.Localización,
         supplier: data.Proveedor,
-        minimumAmount: data["Cantidad minima"],
-        maximumAmount: data["Cantidad maxima"],
+        minimumAmount: data["Cantidad mínima"],
+        maximumAmount: data["Cantidad máxima"],
       });
       return product;
     } catch (error) {

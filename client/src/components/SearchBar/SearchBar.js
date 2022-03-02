@@ -1,11 +1,21 @@
 import { useState } from "react";
-
-function SearchBar({ placeholder, data }) {
+import "./SearchBar.css";
+import TableBar from "../TableBar/TableBar";
+var productsList = [];
+function SearchBar({ placeholder, data, rowTitles }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-  //const addToTable = () =>{};
+  const [addProduct, setAddProduct] = useState();
+  const addToTable = (product) => {
+    console.log("este es el valor", product);
+    productsList.push(product);
+    console.log("Product list:", productsList);
+    setAddProduct(true);
+    setWordEntered("");
+    setFilteredData([]);
+  };
+
   const handleFilter = (event) => {
-    console.log("Popover", data);
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = data.filter((value) => {
@@ -19,10 +29,10 @@ function SearchBar({ placeholder, data }) {
     }
   };
 
-  //   const clearInput = () => {
-  //     setFilteredData([]);
-  //     setWordEntered("");
-  //   };
+  // const clearInput = () => {
+  //   setFilteredData([]);
+  //   setWordEntered("");
+  // };
 
   return (
     <div className="search">
@@ -38,11 +48,21 @@ function SearchBar({ placeholder, data }) {
         <div className="dataResult">
           {filteredData.slice(0, 15).map((value, key) => {
             return (
-              // onclick={addToTable}
-              <label className="dataItem">{value.productName}</label>
+              <label
+                key={key}
+                className="dataItem"
+                onClick={() => addToTable(value.productName)}
+              >
+                {value.productName}
+              </label>
             );
           })}
         </div>
+      )}
+      {addProduct ? (
+        <TableBar rowTitles={rowTitles} productsData={productsList} />
+      ) : (
+        <></>
       )}
     </div>
   );
