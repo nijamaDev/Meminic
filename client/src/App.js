@@ -142,7 +142,18 @@ function App() {
           />
           <Route
             path="/movements/sales"
-            element={<>{isAuthenticated ? <MovementSales /> : <></>}</>}
+            element={
+              <>
+                {isAuthenticated ? (
+                  <>
+                    <Header menuItems={MenuItemsSystem} /> <MovementSales />
+                    <Footer menuItems={MenuItemsSystem} />{" "}
+                  </>
+                ) : (
+                  <></>
+                )}
+              </>
+            }
           />
         </Routes>
       </div>

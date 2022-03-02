@@ -2,14 +2,13 @@ import { useState } from "react";
 import "./SearchBar.css";
 import TableBar from "../TableBar/TableBar";
 var productsList = [];
+
 function SearchBar({ placeholder, data, rowTitles }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const [addProduct, setAddProduct] = useState();
   const addToTable = (product) => {
-    console.log("este es el valor", product);
-    productsList.push(product);
-    console.log("Product list:", productsList);
+    productsList.push({ name: product, amount: 0 });
     setAddProduct(true);
     setWordEntered("");
     setFilteredData([]);

@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TableBar = ({ rowTitles, productsData }) => {
+  const [counter, setCounter] = useState(0);
+  const addOnClick = (index) => {
+    console.log("index", index, "add", productsData[index]);
+    productsData[index].amount = productsData[index].amount + 1;
+    setCounter(counter + 1);
+  };
+  const substractOnClick = (index) => {
+    productsData[index].amount = productsData[index].amount - 1;
+    setCounter(counter - 1);
+  };
+
   return (
     <table>
       <thead>
@@ -14,8 +25,14 @@ const TableBar = ({ rowTitles, productsData }) => {
         {productsData.map((item, key) => {
           return (
             <tr key={key}>
-              <td>{item}</td>
-              <td>cantidad:0</td>
+              <td> {item.name} </td>
+              <td>
+                <div>
+                  <button onClick={() => substractOnClick(key)}>-</button>
+                  {item.amount}
+                  <button onClick={() => addOnClick(key)}>+</button>
+                </div>
+              </td>
             </tr>
           );
         })}
