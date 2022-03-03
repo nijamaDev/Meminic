@@ -34,48 +34,39 @@ function App() {
   const { onClickRegisterSale } = MovementAddSaleEvents();
   const [readResultUsed, setReadResultUsed] = useState(false);
   const [auth0Authenticated, setAuth0Authenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { onClickProductsTable, productsList, isClicked } =
     ProductReadTableEvents();
+
   
-  return (
-    <Router>
-      <div>
-        <Routes>
-          <Route
+  useEffect(() => {
+
+    const fetchData = async () => {
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+  
+      // waits for 1000ms
+      await sleep(1000);
+      if(isAuthenticated){
+        setIsLoading(false);
+      }
+      else{
+        setIsLoading(false);
+      } 
+    };
+    fetchData();             
+  }, []) 
+
+    const authedRoutes = () => (
+      <Routes>
+        <Route
             path="/"
-            element = {
-              isAuthenticated?
-                    <Navigate to="/home"  />  :
-                    <Navigate to="/login"  />
-            }
-          />
-          <Route
-            path="/test"
-            element={
-              <> <AuthCall/> </>
-              
-          }
-           
-          />
-          <Route
-            path="/home"
             element={
               <HomeLogin />
             }
           />
-          <Route
-            path="/login"
-            element={
-              <>
-                  {" "}
-                  <Header menuItems={MenuItemsLogin} />
-                  <Banner />
-                  <ServicesBanner />
-                  <Footer menuItems={MenuItemsLogin} />
-                </>
-            }
-          />
-          <Route
+        <Route
             path="/users"
             element={
               <>
@@ -140,8 +131,47 @@ function App() {
               </>
             }
           />
-        </Routes>
-      </div>
+      </Routes>
+    );
+    
+    const notAuthedRoutes = () => (
+      <Routes>
+        <Route
+            path="/"
+            element={
+              <>
+                  {" "}
+                  <Header menuItems={MenuItemsLogin} />
+                  <Banner />
+                  <ServicesBanner/>
+                  <Footer menuItems={MenuItemsLogin} />
+                </>
+            }
+          />
+      </Routes>
+    );
+
+    const  loadingRoute = () => (
+      <Routes>
+        <Route
+            path="/"
+            element={
+              <div>
+                Cargandooooooo
+              </div>
+            }
+          />
+      </Routes>
+    );
+
+    const notLoadingRoutes = () => 
+            <div>   {isAuthenticated? authedRoutes() : notAuthedRoutes()} </div>
+     
+    ;
+    
+  return (
+    <Router>
+      {isLoading? loadingRoute() : notLoadingRoutes()}
     </Router>
   );
 }
