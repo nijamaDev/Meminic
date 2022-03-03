@@ -4,8 +4,15 @@ import "./ServicesBanner.css";
 import { ServicesItems } from "./ServicesItems";
 import RegisterButton from "../RegisterButton/RegisterButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Navigate, Link}from "react-router-dom";
+
+
 const ServicesBanner = () => {
   const { loginWithRedirect } = useAuth0();
+  const redirectToAuth = () => {
+    <Navigate to="/"/>
+    //loginWithRedirect()
+  };
   return (
     <div className="services__container">
       <h1 className="services__title"> MÉMINIC </h1>
@@ -31,7 +38,7 @@ const ServicesBanner = () => {
         ¿Estas interesado en trabajar con nosotros? Regístrate para empezar
       </h3>
       <div id="register" className="services__buttons">
-        <RegisterButton onClick={() => loginWithRedirect()} />
+        <Link to="/test"> <RegisterButton onClick={() =>redirectToAuth() } /> </Link>
         <button className="services__button__contact">contáctanos</button>
       </div>
     </div>

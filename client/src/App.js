@@ -18,84 +18,61 @@ import UserContext from "./context/UserContext";
 import Auth0Hook from "./hooks/Auth0Hook";
 import { MenuItemsLogin } from "./components/Menu/MenuItemsLogin";
 import { MenuItemsSystem } from "./components/Menu/MenuItemsSystem";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route , useNavigate , Navigate,useLocation} from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
 import MovementAddSaleEvents from "./components/MovementBase/MovementAddSaleEvents";
-import { useState } from "react";
+import { useState , useEffect} from "react";
+import HomeLogin from "./components/HomeLogin/HomeLogin";
+import { useAuth0 } from "@auth0/auth0-react";
+import AuthCall from "./components/AuthCall/AuthCall";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
+  const { loginWithRedirect } = useAuth0();
   const { verifyUser, readResult, isAdmin } = UserContext();
   const { onClickRegisterSale } = MovementAddSaleEvents();
   const [readResultUsed, setReadResultUsed] = useState(false);
   const [auth0Authenticated, setAuth0Authenticated] = useState(false);
   const { onClickProductsTable, productsList, isClicked } =
     ProductReadTableEvents();
+  
   return (
     <Router>
       <div>
         <Routes>
           <Route
             path="/"
+            element = {
+              isAuthenticated?
+                    <Navigate to="/home"  />  :
+                    <Navigate to="/login"  />
+            }
+          />
+          <Route
+            path="/test"
+            element={
+              <> <AuthCall/> </>
+              
+          }
+           
+          />
+          <Route
+            path="/home"
+            element={
+              <HomeLogin />
+            }
+          />
+          <Route
+            path="/login"
             element={
               <>
-                {isAuthenticated && !auth0Authenticated ? (
-                  verifyUser() && setAuth0Authenticated(true) && <></>
-                ) : (
-                  <>
-                    {isAuthenticated &&
-                    auth0Authenticated &&
-                    !readResultUsed ? (
-                      readResult() && setReadResultUsed(true) && <></>
-                    ) : (
-                      <>
-                        {isAuthenticated &&
-                        auth0Authenticated &&
-                        readResultUsed ? (
-                          <>
-                            <Header menuItems={MenuItemsSystem} />
-                            {isAdmin ? (
-                              <>
-                                <UserProfile
-                                  profileImg={user.picture}
-                                  name={user.name}
-                                  role="Administrador"
-                                />
-                                <ModulesSectionAdmin
-                                  Modules={ModulesInfoAdmin}
-                                />
-                              </>
-                            ) : (
-                              <>
-                                <UserProfile
-                                  profileImg={user.picture}
-                                  name={user.name}
-                                  role="Vendedor"
-                                />
-                                <ModulesSectionSeller
-                                  Modules={ModulesInfoSeller}
-                                  className="modules__box__seller"
-                                />
-                              </>
-                            )}
-
-                            <Footer menuItems={MenuItemsSystem} />
-                          </>
-                        ) : (
-                          <>
-                            {" "}
-                            <Header menuItems={MenuItemsLogin} />
-                            <Banner />
-                            <ServicesBanner />
-                            <Footer menuItems={MenuItemsLogin} />
-                          </>
-                        )}
-                      </>
-                    )}
-                  </>
-                )}
-              </>
+                  {" "}
+                  <Header menuItems={MenuItemsLogin} />
+                  <Banner />
+                  <ServicesBanner />
+                  <Footer menuItems={MenuItemsLogin} />
+                </>
             }
           />
           <Route
