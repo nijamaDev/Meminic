@@ -11,7 +11,8 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import ProductReadTableEvents from "./components/ProductReadTable/ProductReadTableEvents";
 import ProductReadTable from "./components/ProductReadTable/ProductReadTable";
 import UserSectionModal from "./components/UserSectionModal/UserSectionModal";
-import MovementBase from "./components/MovementBase/MovementBase";
+import MovementBaseSale from "./components/MovementBase/MovementBaseSale/MovementBaseSale";
+import MovementBasePurchase from "./components/MovementBase/MovementBasePurchase/MovementBasePurchase";
 import "./index.css";
 import "./components/ModulesBox/ModulesBox.css";
 import UserContext from "./context/UserContext";
@@ -21,7 +22,7 @@ import { MenuItemsSystem } from "./components/Menu/MenuItemsSystem";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
-import MovementAddSaleEvents from "./components/MovementBase/MovementAddSaleEvents";
+import MovementAddSaleEvents from "./components/MovementBase/MovementBaseSale/MovementAddSaleEvents";
 import { useState } from "react";
 
 function App() {
@@ -149,11 +150,32 @@ function App() {
                 {isAuthenticated ? (
                   <>
                     <Header menuItems={MenuItemsSystem} />{" "}
-                    <MovementBase
+                    <MovementBaseSale
                       title="Venta"
                       onClickEvent={onClickRegisterSale}
                       message="La venta ha sido registrada con éxito!"
                       modalTitle="Venta registrada"
+                    />
+                    <Footer menuItems={MenuItemsSystem} />{" "}
+                  </>
+                ) : (
+                  <></>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/movements/purchases"
+            element={
+              <>
+                {isAuthenticated ? (
+                  <>
+                    <Header menuItems={MenuItemsSystem} />{" "}
+                    <MovementBasePurchase
+                      title="Compra"
+                      onClickEvent={onClickRegisterSale}
+                      message="La compra ha sido registrada con éxito!"
+                      modalTitle="Compra registrada"
                     />
                     <Footer menuItems={MenuItemsSystem} />{" "}
                   </>

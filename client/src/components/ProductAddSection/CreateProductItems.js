@@ -32,6 +32,13 @@ export const CreateProductItems = [
     placeholder: " ",
     required: "Ingrese un proveedor",
   },
+
+  {
+    title: "No de Factura:",
+    type: "text",
+    placeholder: " ",
+    required: "Ingrese el No de factura",
+  },
   {
     title: "Valor unitario inicial:",
     type: "number",

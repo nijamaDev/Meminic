@@ -17,7 +17,7 @@ export const ModulesInfoAdmin = [
       },
       {
         title: "Compra",
-        url: "/movements",
+        url: "/movements/purchases",
       },
       {
         title: "Devolución de compra",

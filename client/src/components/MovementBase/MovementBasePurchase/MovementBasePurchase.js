@@ -1,17 +1,17 @@
-import SearchBar from "../SearchBar/SearchBar";
-import ProductContext from "../../context/ProductContext";
-import UserContext from "../../context/UserContext";
-import Auth0Hook from "../../hooks/Auth0Hook";
-import { rowTitleSales } from "./rowTitlesSales";
+import SearchBarPurchase from "../../SearchBar/SearchBarPurchase/SearchBarPurchase";
+import ProductContext from "../../../context/ProductContext";
+import UserContext from "../../../context/UserContext";
+import Auth0Hook from "../../../hooks/Auth0Hook";
+import { rowTitlePurchase } from "./rowTitlesPurchase";
 import { useState } from "react";
-import "./MovementBase.css";
-import Modal from "../Modal/Modal";
-import check_icon from "../../assets/check_icon.svg";
+import "../MovementBase.css";
+import Modal from "../../Modal/Modal";
+import check_icon from "../../../assets/check_icon.svg";
 import { useNavigate } from "react-router-dom";
-import { initialProducts } from "./initialProducts";
+import { InitialProducts } from "../InitialProducts";
 var productsList = [];
 
-const MovementBase = ({ title, onClickEvent, message, modalTitle }) => {
+const MovementBasePurchase = ({ title, onClickEvent, message, modalTitle }) => {
   const { getProducts } = ProductContext();
   const { searchUser } = UserContext();
   const { user } = Auth0Hook();
@@ -40,12 +40,12 @@ const MovementBase = ({ title, onClickEvent, message, modalTitle }) => {
   return (
     <div className="movements__container">
       <h1 className="movements__title">{title}</h1>
-      <SearchBar
+      <SearchBarPurchase
         placeholder="Ingresa el nombre del producto"
         data={productDataArray}
-        rowTitles={rowTitleSales}
+        rowTitles={rowTitlePurchase}
         resultsArray={productsList}
-        initialProducts={initialProducts}
+        initialProducts={InitialProducts}
       />
       <div className="movements__button_container">
         <button
@@ -77,4 +77,4 @@ const MovementBase = ({ title, onClickEvent, message, modalTitle }) => {
   );
 };
 
-export default MovementBase;
+export default MovementBasePurchase;

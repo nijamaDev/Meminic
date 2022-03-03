@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./TableBar.css";
+import "../TableBar.css";
 
-const TableBar = ({ rowTitles, productsData }) => {
+const TableBarSale = ({ rowTitles, productsData }) => {
   const [counter, setCounter] = useState(0);
   const addOnClick = (index) => {
     productsData[index].amount = productsData[index].amount + 1;
@@ -53,4 +53,4 @@ const TableBar = ({ rowTitles, productsData }) => {
   );
 };
 
-export default TableBar;
+export default TableBarSale;

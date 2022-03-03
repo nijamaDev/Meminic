@@ -32,3 +32,11 @@
 .products__table__body tr td:nth-child(1) {
   border-right: 1px solid #c4c4c4;
 }
+
+.input__unit__value {
+  width: 80%;
+  border: none;
+  border-radius: 50px;
+  font-family: "Epilogue", sans-serif;
+  text-align: center;
+}

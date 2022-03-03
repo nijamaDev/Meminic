@@ -12,7 +12,17 @@ const MovementContext = () => {
       console.log("error");
     }
   };
-
+  // const addPurchase = async (data) => {
+  //   try {
+  //     const sale = await axios.post("http://localhost:5000/addPurchase", {
+  //       productName: data.name,
+  //       outputAmount: data.amount,
+  //     });
+  //     return sale;
+  //   } catch (error) {
+  //     console.log("error");
+  //   }
+  // };
   return {
     addSale,
   };

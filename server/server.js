@@ -171,8 +171,10 @@ app.post("/addInitialInventory", async (req, res) => {
   const product = await Product.findByPk(req.body.idProduct);
   const movement = await Movement.create({
     date: new Date(),
+    accSupport: req.body.accSupport,
     movementType: "Inventario inicial",
     unitValue: req.body.unitValue,
+    weightedValue: req.body.unitValue,
     inputAmount: req.body.inputAmount,
     inputValue: req.body.unitValue * req.body.inputAmount,
     balanceAmount: req.body.inputAmount,
@@ -185,28 +187,27 @@ app.post("/addInitialInventory", async (req, res) => {
 });
 
 app.post("/addSale", async (req, res) => {
-  console.log("req:---------------------" ,req);
   const product = await Product.findOne({
     where: { productName: req.body.productName },
   });
-  console.log("Product: ------------------" , product);
   var lastMovement = await Movement.findAll({
-    where: {productIdKardex : product.idKardex} ,
+    where: { productIdKardex: product.idKardex },
     limit: 1,
     order: [["updatedAt", "DESC"]],
   });
-  lastMovement = lastMovement[0]
-  console.log("Unit value-----------------", lastMovement.unitValue);
+  lastMovement = lastMovement[0];
   const unitValue = lastMovement.unitValue;
-  
+
   const outputAmount = req.body.outputAmount;
   const outputValue = outputAmount * unitValue;
   const balanceAmount = lastMovement.balanceAmount - outputAmount;
   const balanceValue = lastMovement.balanceValue - outputValue;
   const movement = await Movement.create({
     date: new Date(),
+    accSupport : req.body.accSupport,
     movementType: "Venta",
     unitValue: unitValue,
+    weightedValue: unitValue,
     outputAmount: outputAmount,
     outputValue: outputValue,
     balanceAmount: balanceAmount,
@@ -215,6 +216,48 @@ app.post("/addSale", async (req, res) => {
   //foreign key
   product.addMovement(movement);
   console.log("sale added");
+  res.status(201).send(movement);
+});
+
+
+/**
+ * Consulta que se encarga de añadir una compra a la tabla de movimientos
+ */
+
+app.post("/addPurchase", async (req, res) => {
+  const product = await Product.findOne({
+    where: { productName: req.body.productName },
+  });
+  var lastMovement = await Movement.findAll({
+    where: { productIdKardex: product.idKardex },
+    limit: 1,
+    order: [["updatedAt", "DESC"]],
+  });
+  lastMovement = lastMovement[0];
+  //Valor de saldo anterior + cantidad actual * valor unitariofalta la division, y este seria el ponderado no?
+  const weightedValue =
+    (lastMovement.balanceValue + req.body.inputAmount * req.body.unitValue) /
+    (lastMovement.balanceAmount + req.body.inputAmount);
+  const unitValue = req.body.unitValue;
+  const inputAmount = req.body.inputAmount;
+  // valor de entrada = cantidad ingresada * valor unitario ingresado
+  const inputValue = req.body.inputAmount * req.body.unitValue;
+  const balanceAmount = lastMovement.balanceAmount + req.body.inputAmount;
+  const balanceValue = lastMovement.balanceValue + inputValue;
+  const movement = await Movement.create({
+    date: new Date(),
+    movementType: "Compra",
+    unitValue: unitValue,
+    accSupport: req.body.accSupport,
+    weightedValue: weightedValue,
+    inputAmount: inputAmount,
+    inputAmount: inputValue,
+    balanceAmount: balanceAmount,
+    balanceValue: balanceValue,
+  });
+  //foreign key
+  product.addMovement(movement);
+  console.log("purchase added");
   res.status(201).send(movement);
 });
 
