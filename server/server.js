@@ -172,7 +172,6 @@ app.post("/addInitialInventory", async (req, res) => {
   const movement = await Movement.create({
     date: new Date(),
     movementType: "Inventario inicial",
-    accSupport: req.body.accSupport,
     unitValue: req.body.unitValue,
     inputAmount: req.body.inputAmount,
     inputValue: req.body.unitValue * req.body.inputAmount,
@@ -182,6 +181,40 @@ app.post("/addInitialInventory", async (req, res) => {
   //foreign key
   product.addMovement(movement);
   console.log("Initial inventory added");
+  res.status(201).send(movement);
+});
+
+app.post("/addSale", async (req, res) => {
+  console.log("req:---------------------" ,req);
+  const product = await Product.findOne({
+    where: { productName: req.body.productName },
+  });
+  console.log("Product: ------------------" , product);
+  var lastMovement = await Movement.findAll({
+    where: {productIdKardex : product.idKardex} ,
+    limit: 1,
+    order: [["updatedAt", "DESC"]],
+  });
+  lastMovement = lastMovement[0]
+  console.log("Unit value-----------------", lastMovement.unitValue);
+  const unitValue = lastMovement.unitValue;
+  
+  const outputAmount = req.body.outputAmount;
+  const outputValue = outputAmount * unitValue;
+  const balanceAmount = lastMovement.balanceAmount - outputAmount;
+  const balanceValue = lastMovement.balanceValue - outputValue;
+  const movement = await Movement.create({
+    date: new Date(),
+    movementType: "Venta",
+    unitValue: unitValue,
+    outputAmount: outputAmount,
+    outputValue: outputValue,
+    balanceAmount: balanceAmount,
+    balanceValue: balanceValue,
+  });
+  //foreign key
+  product.addMovement(movement);
+  console.log("sale added");
   res.status(201).send(movement);
 });
 

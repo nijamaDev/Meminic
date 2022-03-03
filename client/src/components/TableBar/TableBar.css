@@ -24,3 +24,11 @@
   background-color: #ffffff;
   color: #ef6c57;
 }
+
+.products__table__head tr th :nth-child(1) {
+  border-right: 1px solid #c4c4c4;
+}
+
+.products__table__body tr td:nth-child(1) {
+  border-right: 1px solid #c4c4c4;
+}

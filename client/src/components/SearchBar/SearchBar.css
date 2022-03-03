@@ -3,6 +3,9 @@
   display: flex;
   margin-bottom: 36px;
 }
+.searchInputs input {
+  font-size: 15px;
+}
 
 .search {
   margin: auto;
@@ -54,7 +57,7 @@ input:focus {
   align-items: center;
   color: #391400;
   font-family: "Epilogue", sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   padding-left: 12px;
 }
 

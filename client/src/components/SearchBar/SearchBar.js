@@ -1,14 +1,19 @@
 import { useState } from "react";
 import "./SearchBar.css";
 import TableBar from "../TableBar/TableBar";
-var productsList = [];
 
-function SearchBar({ placeholder, data, rowTitles }) {
+function SearchBar({
+  placeholder,
+  data,
+  rowTitles,
+  resultsArray,
+  initialProducts,
+}) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const [addProduct, setAddProduct] = useState();
   const addToTable = (product) => {
-    productsList.push({ name: product, amount: 0 });
+    resultsArray.push({ name: product, amount: 1 });
     setAddProduct(true);
     setWordEntered("");
     setFilteredData([]);
@@ -31,9 +36,32 @@ function SearchBar({ placeholder, data, rowTitles }) {
   return (
     <div className="search">
       {addProduct ? (
-        <TableBar rowTitles={rowTitles} productsData={productsList} />
+        <TableBar rowTitles={rowTitles} productsData={resultsArray} />
       ) : (
-        <></>
+        <table className="products__table">
+          <thead className="products__table__head">
+            <tr>
+              {rowTitles.map((item, key) => {
+                return <th key={key}>{item.title}</th>;
+              })}
+            </tr>
+          </thead>
+          <tbody className="products__table__body">
+            {initialProducts.map((item, key) => {
+              return (
+                <tr key={key}>
+                  <td> {item.name} </td>
+                  <td>
+                    <div>
+                      <button className="products__table__button">-</button>1
+                      <button className="products__table__button">+</button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       )}
       <div className="searchInputs">
         <input

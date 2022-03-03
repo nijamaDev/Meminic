@@ -45,12 +45,6 @@ export const CreateProductItems = [
     required: "Ingrese una cantidad inicial",
   },
   {
-    title: "Número de factura:",
-    type: "text",
-    placeholder: " ",
-    required: "Ingrese un número de factura",
-  },
-  {
     title: "Cantidad mínima:",
     type: "number",
     placeholder: " ",

@@ -13,7 +13,6 @@ Movements.init(
     },
     date: DataTypes.DATEONLY,
     movementType: DataTypes.STRING,
-    accSupport: DataTypes.STRING,
     unitValue: DataTypes.DOUBLE,
     inputAmount: DataTypes.DOUBLE,
     inputValue: DataTypes.DOUBLE,

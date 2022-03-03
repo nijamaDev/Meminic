@@ -62,7 +62,7 @@ const ProductContext = () => {
   };
 
   /**
-   * This function searches a product in the db
+   * This function searches a product in the database
    * @param {*} id
    */
   const searchProduct = async (id) => {
@@ -81,7 +81,6 @@ const ProductContext = () => {
       const initialInventory = await axios.post(
         "http://localhost:5000/addInitialInventory",
         {
-          accSupport: data["Número de factura"],
           unitValue: data["Valor unitario inicial"],
           inputAmount: data["Cantidad inicial"],
           idProduct: idProduct,

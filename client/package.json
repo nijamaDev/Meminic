@@ -17,6 +17,7 @@
     "react-scripts": "^5.0.0",
     "react-svg-loader": "^3.0.0",
     "sass": "^1.49.0",
+    "use-history": "^1.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

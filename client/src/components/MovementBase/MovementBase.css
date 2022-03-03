@@ -10,3 +10,28 @@
   font-weight: bold;
   font-size: 24px;
 }
+.movements__button__register {
+  background-color: #ef6d58;
+}
+
+.movements__button__cancel {
+  background-color: #28293e;
+}
+
+.movements__button__register,
+.movements__button__cancel {
+  color: #ffffff;
+  border: 0;
+  padding: 15px 37px 15px 37px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-family: "Epilogue", sans-serif;
+  font-weight: 900;
+}
+
+.movements__button_container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 42px;
+}

@@ -21,11 +21,13 @@ import { MenuItemsSystem } from "./components/Menu/MenuItemsSystem";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
+import MovementAddSaleEvents from "./components/MovementBase/MovementAddSaleEvents";
 import { useState } from "react";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
   const { verifyUser, readResult, isAdmin } = UserContext();
+  const { onClickRegisterSale } = MovementAddSaleEvents();
   const [readResultUsed, setReadResultUsed] = useState(false);
   const [auth0Authenticated, setAuth0Authenticated] = useState(false);
   const { onClickProductsTable, productsList, isClicked } =
@@ -147,7 +149,12 @@ function App() {
                 {isAuthenticated ? (
                   <>
                     <Header menuItems={MenuItemsSystem} />{" "}
-                    <MovementBase title="Venta" />
+                    <MovementBase
+                      title="Venta"
+                      onClickEvent={onClickRegisterSale}
+                      message="La venta ha sido registrada con éxito!"
+                      modalTitle="Venta registrada"
+                    />
                     <Footer menuItems={MenuItemsSystem} />{" "}
                   </>
                 ) : (
