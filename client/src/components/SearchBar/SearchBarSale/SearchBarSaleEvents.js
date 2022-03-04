@@ -5,12 +5,7 @@ const SearchBarSaleEvents = (data, resultsArray) => {
   const [wordEntered, setWordEntered] = useState("");
   const [addProduct, setAddProduct] = useState();
   const addToTable = (product) => {
-    if(resultsArray.length === 0){
-      resultsArray.push({ name: product, amount: 1, accSupport: "" });
-    }
-    if(resultsArray.length !== 0){
-      resultsArray.push({ name: product, amount: 1, accSupport: resultsArray[0].accSupport });
-    }
+    resultsArray.push({ name: product, amount: 1, accSupport: "" });
     setAddProduct(true);
     setWordEntered("");
     setFilteredData([]);
