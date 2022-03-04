@@ -8,4 +8,7 @@ export const rowTitlePurchase = [
   {
     title: "Valor unitario",
   },
+  {
+    title: "Factura",
+  },
 ];

@@ -39,6 +39,9 @@ function SearchBarPurchase({
                   <td>
                     <p>4000</p>
                   </td>
+                  <td>
+                    <p>123</p>
+                  </td>
                 </tr>
               );
             })}

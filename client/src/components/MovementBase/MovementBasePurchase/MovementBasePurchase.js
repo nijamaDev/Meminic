@@ -18,11 +18,16 @@ const MovementBasePurchase = ({ title, onClickEvent, message, modalTitle }) => {
   const [productDataArray, setProductDataArray] = useState();
   const [getData, setGetDate] = useState(true);
   const [addMovement, setAddMovement] = useState(false);
+  const [addLabelError, setAddLabelError] = useState(false);
   const navigate = useNavigate();
   const OnClickModalAndEvent = (array) => {
     if (onClickEvent(array) === true) {
       productsList = [];
       setAddMovement(true);
+      setAddLabelError(false);
+    } else {
+      setAddLabelError(true);
+      setAddMovement(false);
     }
   };
   const productsData = async () => {
@@ -47,6 +52,13 @@ const MovementBasePurchase = ({ title, onClickEvent, message, modalTitle }) => {
         resultsArray={productsList}
         initialProducts={InitialProducts}
       />
+      {addLabelError ? (
+        <label className="movements__label">
+          El valor unitario no es válido
+        </label>
+      ) : (
+        <></>
+      )}
       <div className="movements__button_container">
         <button
           onClick={() => navigate("/users")}
@@ -61,6 +73,7 @@ const MovementBasePurchase = ({ title, onClickEvent, message, modalTitle }) => {
           Registrar
         </button>
       </div>
+
       {addMovement ? (
         <Modal
           message={message}

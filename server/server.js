@@ -204,7 +204,7 @@ app.post("/addSale", async (req, res) => {
   const balanceValue = lastMovement.balanceValue - outputValue;
   const movement = await Movement.create({
     date: new Date(),
-    accSupport : req.body.accSupport,
+    accSupport: req.body.accSupport,
     movementType: "Venta",
     unitValue: unitValue,
     weightedValue: unitValue,
@@ -236,7 +236,7 @@ app.post("/addPurchase", async (req, res) => {
   lastMovement = lastMovement[0];
   //Valor de saldo anterior + cantidad actual * valor unitariofalta la division, y este seria el ponderado no?
   const weightedValue =
-    (lastMovement.balanceValue + req.body.inputAmount * req.body.unitValue) /
+    (lastMovement.balanceValue + (req.body.inputAmount * req.body.unitValue)) /
     (lastMovement.balanceAmount + req.body.inputAmount);
   const unitValue = req.body.unitValue;
   const inputAmount = req.body.inputAmount;
@@ -251,7 +251,7 @@ app.post("/addPurchase", async (req, res) => {
     accSupport: req.body.accSupport,
     weightedValue: weightedValue,
     inputAmount: inputAmount,
-    inputAmount: inputValue,
+    inputValue: inputValue,
     balanceAmount: balanceAmount,
     balanceValue: balanceValue,
   });

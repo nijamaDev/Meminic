@@ -14,7 +14,11 @@ function SearchBarSale({
   return (
     <div className="search">
       {addProduct ? (
-        <TableBarSale rowTitles={rowTitles} productsData={resultsArray} />
+        <TableBarSale
+          rowTitles={rowTitles}
+          productsData={resultsArray}
+          
+        />
       ) : (
         <table className="products__table">
           <thead className="products__table__head">
@@ -35,6 +39,9 @@ function SearchBarSale({
                       <button className="products__table__button">+</button>
                     </div>
                   </td>
+                  <td>
+                    <p>4000</p>
+                  </td>
                 </tr>
               );
             })}
@@ -42,7 +49,8 @@ function SearchBarSale({
         </table>
       )}
       <div className="searchInputs">
-        <input className="search__input__bar"
+        <input
+          className="search__input__bar"
           type="text"
           placeholder={placeholder}
           value={wordEntered}

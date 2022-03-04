@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { InitialProducts } from "../InitialProducts";
 var productsList = [];
 
+
 const MovementBaseSale = ({ title, onClickEvent, message, modalTitle }) => {
   const { getProducts } = ProductContext();
   const { searchUser } = UserContext();

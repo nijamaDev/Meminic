@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../TableBar.css";
-
 const TableBarPurchase = ({ rowTitles, productsData }) => {
   const [counter, setCounter] = useState(0);
 
@@ -15,56 +14,70 @@ const TableBarPurchase = ({ rowTitles, productsData }) => {
     }
   };
 
-  const handleInputValue = (event) => {
-    console.log(event.target.value);
-    //const inputValue = event.target.value;
-    //productsData[index].unitValue = inputValue;
+  const handleInputValue = (key, event) => {
+    const inputValue = event.target.value;
+    productsData[key].unitValue = inputValue;
+  };
+
+  const handleAccSupport = (key, event) => {
+    const accSupport = event.target.value;
+    productsData[key].accSupport = accSupport;
   };
 
   return (
-    <table className="products__table">
-      <thead className="products__table__head">
-        <tr>
-          {rowTitles.map((item, key) => {
-            return <th key={key}>{item.title}</th>;
+    <>
+      <table className="products__table">
+        <thead className="products__table__head">
+          <tr>
+            {rowTitles.map((item, key) => {
+              return <th key={key}>{item.title}</th>;
+            })}
+          </tr>
+        </thead>
+        <tbody className="products__table__body">
+          {productsData.map((item, key) => {
+            return (
+              <tr key={key}>
+                <td> {item.name} </td>
+                <td>
+                  <div>
+                    <button
+                      className="products__table__button"
+                      onClick={() => substractOnClick(key)}
+                    >
+                      -
+                    </button>
+                    {item.amount}
+                    <button
+                      className="products__table__button"
+                      onClick={() => addOnClick(key)}
+                    >
+                      +
+                    </button>
+                  </div>
+                </td>
+                <td>
+                  <label>
+                    <input
+                      className="input__unit__value"
+                      onChange={(e) => handleInputValue(key, e)}
+                    ></input>
+                  </label>
+                </td>
+                <td>
+                  <label>
+                    <input
+                      className="input__accsupport"
+                      onChange={(e) => handleAccSupport(key, e)}
+                    ></input>
+                  </label>
+                </td>
+              </tr>
+            );
           })}
-        </tr>
-      </thead>
-      <tbody className="products__table__body">
-        {productsData.map((item, key) => {
-          return (
-            <tr key={key}>
-              <td> {item.name} </td>
-              <td>
-                <div>
-                  <button
-                    className="products__table__button"
-                    onClick={() => substractOnClick(key)}
-                  >
-                    -
-                  </button>
-                  {item.amount}
-                  <button
-                    className="products__table__button"
-                    onClick={() => addOnClick(key)}
-                  >
-                    +
-                  </button>
-                </div>
-              </td>
-              <td>
-                <label>
-                  <input 
-                    className="input__unit__value"
-                    onChange={handleInputValue}
-                  ></input>
-                </label>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </>
   );
 };
 

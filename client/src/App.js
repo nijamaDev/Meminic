@@ -23,12 +23,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
 import MovementAddSaleEvents from "./components/MovementBase/MovementBaseSale/MovementAddSaleEvents";
+import MovementAddPurchaseEvents from "./components/MovementBase/MovementBasePurchase/MovementAddPurchaseEvents";
+
 import { useState } from "react";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
   const { verifyUser, readResult, isAdmin } = UserContext();
   const { onClickRegisterSale } = MovementAddSaleEvents();
+  const { onClickRegisterPurchase } = MovementAddPurchaseEvents();
   const [readResultUsed, setReadResultUsed] = useState(false);
   const [auth0Authenticated, setAuth0Authenticated] = useState(false);
   const { onClickProductsTable, productsList, isClicked } =
@@ -173,7 +176,7 @@ function App() {
                     <Header menuItems={MenuItemsSystem} />{" "}
                     <MovementBasePurchase
                       title="Compra"
-                      onClickEvent={onClickRegisterSale}
+                      onClickEvent={onClickRegisterPurchase}
                       message="La compra ha sido registrada con éxito!"
                       modalTitle="Compra registrada"
                     />

@@ -5,4 +5,7 @@ export const rowTitleSales = [
   {
     title: "Cantidad",
   },
+  {
+    title: "Factura",
+  },
 ];
