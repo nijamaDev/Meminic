@@ -1,12 +1,17 @@
+.footer__div {
+  background-color: #1c1c2d;
+  margin-top: 2.5em;
+  padding-bottom: 1em;
+}
 .menu__title {
-  font-family: "Epilogue", sans-serif;
+  padding-top: 25px;
+  font-family: 'Epilogue', sans-serif;
   font-size: 1rem;
-  font-weight: normal;
+  font-weight: bold;
   line-height: 32px;
   letter-spacing: 3px;
   text-align: center;
   color: #ef6d58;
-  margin-top: 110px;
   text-transform: uppercase;
 }
 .menu__footer {
@@ -15,7 +20,7 @@
 
 .menu__footer li {
   list-style: none;
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 2rem;
@@ -28,11 +33,7 @@
 .menu__container__social {
   display: flex;
   justify-content: center;
-  margin-bottom: 4rem;
-}
-
-.menu__container__social a:nth-last-child(1) {
-  margin-right: 0;
+  margin-bottom: 2rem;
 }
 
 .menu__container__social a {
@@ -44,20 +45,40 @@
   display: flex;
 }
 
+.menu__container__social a:nth-last-child(1) {
+  margin-right: 0;
+}
 .menu__divider {
   border: 1px solid #f3d1bf;
   width: 20rem;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 2.7rem;
+  margin-bottom: 1rem;
 }
 
 .menu__copyright {
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   color: #ffffffa3;
   font-weight: 400;
   font-size: 1rem;
   line-height: 2rem;
   text-align: center;
+  padding-bottom: 1em;
+}
+
+@media screen and (min-width: 1000px) {
+  .menu__title {
+    display: none;
+  }
+  .menu__footer {
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0em;
+  }
+  .menu__footer li {
+    display: inline-block;
+    padding: 1em;
+  }
 }

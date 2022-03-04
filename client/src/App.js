@@ -13,7 +13,6 @@ import ProductReadTable from "./components/ProductReadTable/ProductReadTable";
 import UserSectionModal from "./components/UserSectionModal/UserSectionModal";
 import MovementBase from "./components/MovementBase/MovementBase";
 import "./index.css";
-import "./components/ModulesBox/ModulesBox.css";
 import UserContext from "./context/UserContext";
 import Auth0Hook from "./hooks/Auth0Hook";
 import { MenuItemsLogin } from "./components/Menu/MenuItemsLogin";

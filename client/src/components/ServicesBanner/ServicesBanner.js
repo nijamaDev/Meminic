@@ -18,15 +18,17 @@ const ServicesBanner = () => {
         {" "}
         ¿Qué ofrecemos?{" "}
       </h3>
-      {ServicesItems.map((item, index) => {
-        return (
-          <p className={item.servicesClass} key={index}>
-            {" "}
-            <img src={check} className="services__icon" alt="check icon" />{" "}
-            {item.title}
-          </p>
-        );
-      })}
+      <div className="services__offered__div">
+        {ServicesItems.map((item, index) => {
+          return (
+            <p className={item.servicesClass} key={index}>
+              {" "}
+              <img src={check} className="services__icon" alt="check icon" />{" "}
+              {item.title}
+            </p>
+          );
+        })}
+      </div>
       <h3 className="services__offered_text">
         ¿Estas interesado en trabajar con nosotros? Regístrate para empezar
       </h3>

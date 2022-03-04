@@ -1,6 +1,7 @@
 import React from "react";
 import ModuleBox from "../ModulesBox/ModulesBox";
 import LogOut from "../LogOut/LogOut";
+import "./ModulesSection.css"
 
 const ModulesSectionAdmin = ({ Modules }) => {
   return (

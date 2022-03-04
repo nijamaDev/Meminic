@@ -7,7 +7,7 @@ import { CgFacebook } from "react-icons/cg";
 
 const Footer = ({ menuItems }) => {
   return (
-    <div>
+    <div className="footer__div">
       <h1 className="menu__title"> Menú </h1>
       <Menu NameClass="menu__footer" Items={menuItems} />
       <div className="menu__container__social">
