@@ -4,6 +4,8 @@ import "./ServicesBanner.css";
 import { ServicesItems } from "./ServicesItems";
 import RegisterButton from "../RegisterButton/RegisterButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
+
 const ServicesBanner = () => {
   const { loginWithRedirect } = useAuth0();
   return (
@@ -34,7 +36,8 @@ const ServicesBanner = () => {
       </h3>
       <div id="register" className="services__buttons">
         <RegisterButton onClick={() => loginWithRedirect()} />
-        <button className="services__button__contact">contáctanos</button>
+        <Link className="services__button__contact" to="/contact">contáctanos
+        </Link>
       </div>
     </div>
   );

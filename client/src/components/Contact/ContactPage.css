@@ -1,0 +1,61 @@
+.contact__full {
+  background-color: #fdf0e9;
+}
+.contact__container {
+  background-color: #28293e;
+  color: white;
+  text-align: center;
+  padding: 0 2em;
+  padding-bottom: 3em;
+}
+
+.contact__title {
+  font-weight: 800;
+  font-size: 3em;
+}
+
+.contact__top__text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.3em;
+  margin: 0 auto;
+}
+
+.contact__form__container {
+  background-color: #fdf0e9;
+  padding-bottom: 5em;
+}
+.contact__form__block {
+  background-color: white;
+  border-radius: 30px;
+  margin: 2em;
+  padding: 1em 2em;
+}
+.contact__form__title {
+  margin-bottom: 10px;
+  color: #391400;
+}
+.map__container {
+  background: url('../../assets/map.png');
+  background-size: 200vw;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 70vw;
+  width: 70vw;
+  border-radius: 1000px;
+}
+.map__point__img {
+  width: 3.3em;
+}
+
+.info__container {
+  background-color: #fdf0e9;
+  padding: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .contact__top__text {
+    width: 50%;
+  }
+}

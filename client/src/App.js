@@ -22,6 +22,7 @@ import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
 import MovementAddSaleEvents from "./components/MovementBase/MovementAddSaleEvents";
 import { useState } from "react";
+import ContactPage from "./components/Contact/ContactPage";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
@@ -162,6 +163,14 @@ function App() {
               </>
             }
           />
+          <Route path="/contact"
+          element={
+            <>
+            <Header menuItems={MenuItemsSystem} />
+            <ContactPage/>
+            <Footer menuItems={MenuItemsLogin} />
+            </>
+          } />
         </Routes>
       </div>
     </Router>

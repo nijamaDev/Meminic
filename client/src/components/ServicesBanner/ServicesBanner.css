@@ -51,6 +51,8 @@
   color: #ffffff;
   font-family: 'Epilogue', sans-serif;
   font-size: 16px;
+  align-self: center;
+  text-decoration: none;
 }
 
 .services__button__contact:hover {

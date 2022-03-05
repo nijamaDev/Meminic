@@ -1,0 +1,20 @@
+.card__container {
+  font-family: 'Epilogue';
+  margin: 20px;
+  border: 2px solid #f3d1bf;
+  padding: 1em 2.2em;
+  border-radius: 10px;
+  font-size: 1.2rem;
+}
+.card__header {
+  color: #ef6d58;
+  display: flex;
+  align-items: center;
+}
+.card__img {
+  width: 70px;
+  margin-right: 1.4em;
+}
+.card__content {
+  color: #391400;
+}
