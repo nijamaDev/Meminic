@@ -3,6 +3,7 @@ const express = require("express");
 const sequelize = require("./database/database.js");
 const app = express();
 const cors = require("cors");
+const { Op } = require("@sequelize/core");
 const User = require("./database/models/user.js");
 const Store = require("./database/models/store.js");
 const Product = require("./database/models/product.js");
@@ -227,38 +228,13 @@ app.post("/addSale", async (req, res) => {
 });
 
 /**
- * Consultar que permite verificar si la venta es posible
- * basado en las existencias del producto
+ * Consulta que verifica si las existencias de los productos
+ * son suficientes para realizar la venta
  */
-
-// app.post("/addSaleVerification", async (req, res) => {
-//   const product = await Product.findOne({
-//     where: { productName: req.body.productName },
-//   });
-//   var lastMovement = await Movement.findAll({
-//     where: { productIdKardex: product.idKardex },
-//     limit: 1,
-//     order: [["updatedAt", "DESC"]],
-//   });
-//   lastMovement = lastMovement[0];
-//   const balanceAmount = lastMovement.balanceAmount - req.body.outputAmount;
-//   var isPossible = false;
-//   if (balanceAmount >= 0) {
-//     isPossible = true;
-//   }
-//   res.status(201).send(isPossible);
-// });
-
 app.post("/addSaleVerification", async (req, res) => {
   var isPossible = true;
   var productNotEnough = { index: 0 };
-  // console.log("data", req.body.data);
-
   for (let i = 0; i < req.body.data.length; i++) {
-    console.log(
-      "==============================req data ========================",
-      req.body.data[i]
-    );
     const product = await Product.findOne({
       where: { productName: req.body.data[i].name },
     });
@@ -291,6 +267,48 @@ app.post("/addPurchase", async (req, res) => {
   });
   var lastMovement = await Movement.findAll({
     where: { productIdKardex: product.idKardex },
+    limit: 1,
+    order: [["updatedAt", "DESC"]],
+  });
+  lastMovement = lastMovement[0];
+  //Valor de saldo anterior + cantidad actual * valor unitariofalta la division, y este seria el ponderado no?
+  const weightedValue =
+    (lastMovement.balanceValue + req.body.inputAmount * req.body.unitValue) /
+    (lastMovement.balanceAmount + req.body.inputAmount);
+  const unitValue = req.body.unitValue;
+  const inputAmount = req.body.inputAmount;
+  // valor de entrada = cantidad ingresada * valor unitario ingresado
+  const inputValue = req.body.inputAmount * req.body.unitValue;
+  const balanceAmount = lastMovement.balanceAmount + req.body.inputAmount;
+  const balanceValue = lastMovement.balanceValue + inputValue;
+  const movement = await Movement.create({
+    date: new Date(),
+    movementType: "Compra",
+    unitValue: unitValue,
+    accSupport: req.body.accSupport,
+    weightedValue: weightedValue,
+    inputAmount: inputAmount,
+    inputValue: inputValue,
+    balanceAmount: balanceAmount,
+    balanceValue: balanceValue,
+  });
+  //foreign key
+  product.addMovement(movement);
+  console.log("purchase added");
+  res.status(201).send(movement);
+});
+
+app.post("/addReturnPurchase", async (req, res) => {
+  const product = await Product.findOne({
+    where: { productName: req.body.productName },
+  });
+  var lastMovement = await Movement.findAll({
+    where: {
+      [Op.and]: [
+        { accSupport: req.body.accSupport },
+        { productIdKardex: product.idKardex },
+      ],
+    },
     limit: 1,
     order: [["updatedAt", "DESC"]],
   });
