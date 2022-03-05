@@ -22,7 +22,6 @@ import { MenuItemsSystem } from "./components/Menu/MenuItemsSystem";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
-import MovementAddSaleEvents from "./components/MovementBase/MovementBaseSale/MovementAddSaleEvents";
 import MovementAddPurchaseEvents from "./components/MovementBase/MovementBasePurchase/MovementAddPurchaseEvents";
 
 import { useState } from "react";
@@ -30,7 +29,6 @@ import { useState } from "react";
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
   const { verifyUser, readResult, isAdmin } = UserContext();
-  const { onClickRegisterSale } = MovementAddSaleEvents();
   const { onClickRegisterPurchase } = MovementAddPurchaseEvents();
   const [readResultUsed, setReadResultUsed] = useState(false);
   const [auth0Authenticated, setAuth0Authenticated] = useState(false);
@@ -155,8 +153,8 @@ function App() {
                     <Header menuItems={MenuItemsSystem} />{" "}
                     <MovementBaseSale
                       title="Venta"
-                      onClickEvent={onClickRegisterSale}
-                      message="La venta ha sido registrada con éxito!"
+                      messageRegister="La venta ha sido registrada con éxito!"
+                      messageAmount="La cantidad de existencias no es suficiente"
                       modalTitle="Venta registrada"
                     />
                     <Footer menuItems={MenuItemsSystem} />{" "}

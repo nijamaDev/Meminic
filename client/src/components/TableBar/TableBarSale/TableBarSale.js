@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../TableBar.css";
-
+import { MdOutlineDeleteForever } from "react-icons/md";
 const TableBarSale = ({ rowTitles, productsData }) => {
   const [counter, setCounter] = useState(0);
-
+  const [isDelete, setIsDelete] = useState(false);
   const addOnClick = (index) => {
     productsData[index].amount = productsData[index].amount + 1;
     setCounter(counter + 1);
@@ -14,16 +14,20 @@ const TableBarSale = ({ rowTitles, productsData }) => {
       setCounter(counter - 1);
     }
   };
-  // const handleAccSupport = (event) => {
-  //   const accSupport = event.target.value;
-  //   productsData.map((product) => (product.accSupport = accSupport));
-  //   supportVar[0] = accSupport;
-  //   setSupportValue(supportVar[0]);
-  // };
+
   const handleAccSupport = (key, event) => {
     const accSupport = event.target.value;
     productsData[key].accSupport = accSupport;
   };
+  const deleteOnClick = (key) => {
+    productsData.splice(key, 1);
+    if (isDelete === true) {
+      setIsDelete(false);
+    } else {
+      setIsDelete(true);
+    }
+  };
+
   return (
     <>
       <table className="products__table">
@@ -56,27 +60,25 @@ const TableBarSale = ({ rowTitles, productsData }) => {
                     </button>
                   </div>
                 </td>
-                <td>
+                <td className="accsupport__container">
                   <label>
                     <input
                       className="input__accsupport"
                       onChange={(e) => handleAccSupport(key, e)}
                     ></input>
                   </label>
+                  <button
+                    className="delete__button"
+                    onClick={() => deleteOnClick(key)}
+                  >
+                    <MdOutlineDeleteForever className="product__delete" />
+                  </button>
                 </td>
               </tr>
             );
           })}
         </tbody>
       </table>
-
-      {/* <div className="acc__support__container">
-        <label className="input__acc__support">
-          {" "}
-          Factura:
-          <input value={supportValue} onChange={(e) => handleAccSupport(e)}></input>
-        </label>
-      </div> */}
     </>
   );
 };

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "../TableBar.css";
+import { MdOutlineDeleteForever } from "react-icons/md";
 const TableBarPurchase = ({ rowTitles, productsData }) => {
   const [counter, setCounter] = useState(0);
+  const [isDelete, setIsDelete] = useState(false);
 
   const addOnClick = (index) => {
     productsData[index].amount = productsData[index].amount + 1;
@@ -22,6 +24,14 @@ const TableBarPurchase = ({ rowTitles, productsData }) => {
   const handleAccSupport = (key, event) => {
     const accSupport = event.target.value;
     productsData[key].accSupport = accSupport;
+  };
+  const deleteOnClick = (key) => {
+    productsData.splice(key, 1);
+    if (isDelete === true) {
+      setIsDelete(false);
+    } else {
+      setIsDelete(true);
+    }
   };
 
   return (
@@ -64,13 +74,19 @@ const TableBarPurchase = ({ rowTitles, productsData }) => {
                     ></input>
                   </label>
                 </td>
-                <td>
+                <td className="accsupport__container">
                   <label>
                     <input
                       className="input__accsupport"
                       onChange={(e) => handleAccSupport(key, e)}
                     ></input>
                   </label>
+                  <button
+                    className="delete__button"
+                    onClick={() => deleteOnClick(key)}
+                  >
+                    <MdOutlineDeleteForever className="product__delete" />
+                  </button>
                 </td>
               </tr>
             );

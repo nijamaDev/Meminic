@@ -2,6 +2,7 @@ import "../SearchBar.css";
 
 import TableBarPurchase from "../../TableBar/TableBarPurchase/TableBarPurchase";
 import SearchBarPurchaseEvents from "./SearchBarPurchaseEvents";
+import { MdOutlineDeleteForever } from "react-icons/md";
 function SearchBarPurchase({
   placeholder,
   data,
@@ -39,8 +40,9 @@ function SearchBarPurchase({
                   <td>
                     <p>4000</p>
                   </td>
-                  <td>
+                  <td className="accsupport__container">
                     <p>123</p>
+                    <MdOutlineDeleteForever className="product__delete" />
                   </td>
                 </tr>
               );

@@ -6,20 +6,35 @@ const MovementContext = () => {
       const sale = await axios.post("http://localhost:5000/addSale", {
         productName: data.name,
         outputAmount: data.amount,
-        accSupport : data.accSupport
+        accSupport: data.accSupport,
       });
       return sale;
     } catch (error) {
       console.log("error");
     }
   };
+
+  const addSaleVerification = async (data) => {
+    try {
+      const saleVeritication = await axios.post(
+        "http://localhost:5000/addSaleVerification",
+        {
+          data,
+        }
+      );
+      return saleVeritication;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   const addPurchase = async (data) => {
     try {
       const purchase = await axios.post("http://localhost:5000/addPurchase", {
         productName: data.name,
         inputAmount: data.amount,
         unitValue: data.unitValue,
-        accSupport : data.accSupport
+        accSupport: data.accSupport,
       });
       return purchase;
     } catch (error) {
@@ -28,6 +43,7 @@ const MovementContext = () => {
   };
   return {
     addSale,
+    addSaleVerification,
     addPurchase,
   };
 };

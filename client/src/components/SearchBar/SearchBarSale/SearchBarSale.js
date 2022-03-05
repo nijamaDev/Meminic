@@ -1,6 +1,8 @@
 import "../SearchBar.css";
 import TableBarSale from "../../TableBar/TableBarSale/TableBarSale";
 import SearchBarSaleEvents from "./SearchBarSaleEvents";
+import { MdOutlineDeleteForever } from "react-icons/md";
+
 function SearchBarSale({
   placeholder,
   data,
@@ -14,11 +16,7 @@ function SearchBarSale({
   return (
     <div className="search">
       {addProduct ? (
-        <TableBarSale
-          rowTitles={rowTitles}
-          productsData={resultsArray}
-          
-        />
+        <TableBarSale rowTitles={rowTitles} productsData={resultsArray} />
       ) : (
         <table className="products__table">
           <thead className="products__table__head">
@@ -39,8 +37,9 @@ function SearchBarSale({
                       <button className="products__table__button">+</button>
                     </div>
                   </td>
-                  <td>
+                  <td className="accsupport__container">
                     <p>4000</p>
+                    <MdOutlineDeleteForever className="product__delete" />
                   </td>
                 </tr>
               );
