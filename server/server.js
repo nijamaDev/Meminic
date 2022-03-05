@@ -167,6 +167,10 @@ app.post("/getProducts", async (req, res) => {
 
 // ===================================== Movement ==================================
 
+/**
+ * Consulta que se encarga de añadir el inventario inicial a la tabla de movimientos
+ */
+
 app.post("/addInitialInventory", async (req, res) => {
   const product = await Product.findByPk(req.body.idProduct);
   const movement = await Movement.create({
@@ -186,6 +190,10 @@ app.post("/addInitialInventory", async (req, res) => {
   res.status(201).send(movement);
 });
 
+/**
+ * Consulta que se encarga de añadir una venta a la tabla de movimientos
+ */
+
 app.post("/addSale", async (req, res) => {
   const product = await Product.findOne({
     where: { productName: req.body.productName },
@@ -197,7 +205,6 @@ app.post("/addSale", async (req, res) => {
   });
   lastMovement = lastMovement[0];
   const unitValue = lastMovement.unitValue;
-
   const outputAmount = req.body.outputAmount;
   const outputValue = outputAmount * unitValue;
   const balanceAmount = lastMovement.balanceAmount - outputAmount;
@@ -219,6 +226,60 @@ app.post("/addSale", async (req, res) => {
   res.status(201).send(movement);
 });
 
+/**
+ * Consultar que permite verificar si la venta es posible
+ * basado en las existencias del producto
+ */
+
+// app.post("/addSaleVerification", async (req, res) => {
+//   const product = await Product.findOne({
+//     where: { productName: req.body.productName },
+//   });
+//   var lastMovement = await Movement.findAll({
+//     where: { productIdKardex: product.idKardex },
+//     limit: 1,
+//     order: [["updatedAt", "DESC"]],
+//   });
+//   lastMovement = lastMovement[0];
+//   const balanceAmount = lastMovement.balanceAmount - req.body.outputAmount;
+//   var isPossible = false;
+//   if (balanceAmount >= 0) {
+//     isPossible = true;
+//   }
+//   res.status(201).send(isPossible);
+// });
+
+app.post("/addSaleVerification", async (req, res) => {
+  var isPossible = true;
+  var productNotEnough = { index: 0 };
+  // console.log("data", req.body.data);
+
+  for (let i = 0; i < req.body.data.length; i++) {
+    console.log(
+      "==============================req data ========================",
+      req.body.data[i]
+    );
+    const product = await Product.findOne({
+      where: { productName: req.body.data[i].name },
+    });
+    var lastMovement = await Movement.findAll({
+      where: { productIdKardex: product.idKardex },
+      limit: 1,
+      order: [["updatedAt", "DESC"]],
+    });
+    lastMovement = lastMovement[0];
+    const balanceAmount = lastMovement.balanceAmount - req.body.data[i].amount;
+    if (balanceAmount < 0) {
+      isPossible = false;
+      productNotEnough = { index: i };
+    }
+  }
+  if (isPossible === true) {
+    res.status(201).send(isPossible);
+  } else {
+    res.status(201).send({ productNotEnough });
+  }
+});
 
 /**
  * Consulta que se encarga de añadir una compra a la tabla de movimientos
@@ -236,7 +297,7 @@ app.post("/addPurchase", async (req, res) => {
   lastMovement = lastMovement[0];
   //Valor de saldo anterior + cantidad actual * valor unitariofalta la division, y este seria el ponderado no?
   const weightedValue =
-    (lastMovement.balanceValue + (req.body.inputAmount * req.body.unitValue)) /
+    (lastMovement.balanceValue + req.body.inputAmount * req.body.unitValue) /
     (lastMovement.balanceAmount + req.body.inputAmount);
   const unitValue = req.body.unitValue;
   const inputAmount = req.body.inputAmount;
