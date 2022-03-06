@@ -2,10 +2,11 @@
   background-color: #1c1c2d;
   padding-top: 2.5em;
   padding-bottom: 1em;
+  transition: all 0.5s ease;
 }
 .menu__title {
   padding-top: 25px;
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   font-size: 1rem;
   font-weight: bold;
   line-height: 32px;
@@ -21,7 +22,7 @@
 
 .menu__footer li {
   list-style: none;
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 2rem;
@@ -59,7 +60,7 @@
 }
 
 .menu__copyright {
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   color: #ffffffa3;
   font-weight: 400;
   font-size: 1rem;

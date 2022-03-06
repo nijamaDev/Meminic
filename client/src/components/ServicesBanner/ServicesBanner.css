@@ -1,12 +1,12 @@
 .services__container {
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   margin: auto 1.5em;
   text-align: left;
   color: white;
 }
 .services__title {
   margin: 0;
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   font-size: 1.2rem;
   font-weight: normal;
   line-height: 32px;
@@ -43,13 +43,13 @@
 .services__buttons {
   display: flex;
   justify-content: center;
+  margin-bottom: 3rem;
 }
-
 .services__button__contact {
   background: none;
   border: 0;
   color: #ffffff;
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   font-size: 16px;
   align-self: center;
   text-decoration: none;

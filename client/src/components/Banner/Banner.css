@@ -4,7 +4,7 @@
 }
 
 .over__text {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   position: absolute;
   top: 15vw;
   left: 5vw;
@@ -22,7 +22,6 @@
   width: 100%;
   opacity: 0.35;
 }
-
 @media screen and (min-width: 1000px) {
   .banner__container__image {
     height: 550px;
