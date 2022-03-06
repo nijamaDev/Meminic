@@ -495,6 +495,9 @@ app.post("/salesByMonth", async (req, res) => {
   var months = [];
   var resultsMonths = [];
   var resultsCount = [];
+  var duplicated = false;
+  var actualYear = new Date().getFullYear();
+  var laterYear = new Date().getFullYear() + 1;
   for (let j = 0; j < products.length; j++) {
     movement = await products[j].getMovement({
       where: {
@@ -503,8 +506,8 @@ app.post("/salesByMonth", async (req, res) => {
           {
             date: {
               [Op.and]: {
-                [Op.gte]: "2022-01-01",
-                [Op.lte]: "2023-01-01",
+                [Op.gte]: actualYear + "-" + "01" + "-" + "01",
+                [Op.lte]: laterYear + "-" + "01" + "-" + "01",
               },
             },
           },
@@ -514,7 +517,6 @@ app.post("/salesByMonth", async (req, res) => {
         [sequelize.fn("date_trunc", "month", sequelize.col("date")), "dateOn"],
         [sequelize.fn("count", "*"), "count"],
       ],
-      // group: [sequelize.fn("extract(month)", sequelize.col("date")), "date"],
       group: "dateOn",
     });
     for (let i = 0; i < movement.length; i++) {
@@ -529,20 +531,67 @@ app.post("/salesByMonth", async (req, res) => {
     salesCount.push(parseFloat(salesAmount[k]));
   }
   for (let z = 0; z < months.length; z++) {
-    for (let n = 0; n < months.length; n++) {
-      // do not compare same elements
+    for (let n = 0; n < months[z].length; n++) {
       if (z !== n) {
-        // check if elements match
         if (months[z] === months[n]) {
           resultsMonths.push(months[z]);
           resultsCount.push(salesCount[z] + salesCount[n]);
           resultsMonths.splice(n, 1);
           resultsCount.splice(n, 1);
+          duplicated = true;
         }
       }
     }
+    if (duplicated === false) {
+      resultsMonths.push(months[z]);
+      resultsCount.push(salesCount[z]);
+    }
   }
+
   res.status(201).send({ months: resultsMonths, count: resultsCount });
+});
+
+/**
+ * Consulta que retorna la cantidad de ventas en el ultimo mes por productos
+ */
+
+app.post("/productsSalesByLastMonth", async (req, res) => {
+  // find the user
+  const user = await User.findByPk(req.body.email);
+  // //find the id of a store
+  const store = await Store.findByPk(user.dataValues.storeStoreId);
+  // // get the products of the current store
+  const products = await Product.findAll({
+    distinct: true,
+    where: { storeStoreId: store.dataValues.store_id },
+  });
+  // get all movements of the current store
+  var movement;
+  var salesAmount = [];
+  var productsSold = [];
+  var actualMonth = new Date().getMonth() + 1;
+  var actualYear = new Date().getFullYear();
+  var laterMonth = new Date().getMonth() + 2;
+  for (let j = 0; j < products.length; j++) {
+    movement = await products[j].getMovement({
+      where: {
+        [Op.and]: [
+          { movementType: "Venta" },
+          {
+            date: {
+              [Op.and]: {
+                [Op.gte]: actualYear + "-" + actualMonth + "-" + "01",
+                [Op.lte]: actualYear + "-" + laterMonth + "-" + "01",
+              },
+            },
+          },
+        ],
+      },
+    });
+    salesAmount.push(movement.length);
+    productsSold.push(products[j].dataValues.productName);
+  }
+  res.status(201).send({ amount: salesAmount, products: productsSold });
 });
 
 //Routes
