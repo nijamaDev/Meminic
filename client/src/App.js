@@ -16,7 +16,6 @@ import MovementBasePurchase from "./components/MovementBase/MovementBasePurchase
 import MovementBaseReturnSale from "./components/MovementBase/MovementBaseReturnSale/MovementBaseReturnSale";
 import MovementAddPurchaseEvents from "./components/MovementBase/MovementBasePurchase/MovementAddPurchaseEvents";
 import "./index.css";
-import "./components/ModulesBox/ModulesBox.css";
 import UserContext from "./context/UserContext";
 import Auth0Hook from "./hooks/Auth0Hook";
 import { MenuItemsLogin } from "./components/Menu/MenuItemsLogin";
@@ -27,6 +26,7 @@ import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller
 import MovementBaseReturnPurchase from "./components/MovementBase/MovementBaseReturnPurchase/MovementBaseReturnPurchase";
 
 import { useState } from "react";
+import ContactPage from "./components/Contact/ContactPage";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
@@ -168,6 +168,14 @@ function App() {
               </>
             }
           />
+          <Route path="/contact"
+          element={
+            <>
+            <Header menuItems={MenuItemsSystem} />
+            <ContactPage/>
+            <Footer menuItems={MenuItemsLogin} />
+            </>
+          } />
           <Route
             path="/movements/purchases"
             element={

@@ -4,7 +4,7 @@
 }
 
 .over__text {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   position: absolute;
   top: 15vw;
   left: 5vw;
@@ -21,4 +21,21 @@
 .img__home {
   width: 100%;
   opacity: 0.35;
+}
+
+@media screen and (min-width: 1000px) {
+  .banner__container {
+    width: 50%;
+    display: inline-flex;
+    vertical-align: top;
+  }
+  .p__home {
+    font-size: 5vw;
+  }
+  .img__home {
+    width: 130%;
+    position: relative;
+    left: -30%;
+    opacity: 0.35;
+  }
 }

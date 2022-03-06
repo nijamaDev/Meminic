@@ -1,0 +1,15 @@
+.form__user {
+  margin: auto;
+}
+.div__item {
+  display: none;
+}
+.input__form {
+  border-radius: 8px;
+}
+.button__form {
+  background-color: #ef6d58;
+  align-items: center;
+  margin-top: 1.2em;
+  margin-bottom: 1em;
+}

@@ -16,7 +16,7 @@ export const MenuItemsLogin = [
   },
   {
     title: "Contáctanos",
-    url: "#",
+    url: "/contact",
     cName: "nav-links",
   },
 ];
