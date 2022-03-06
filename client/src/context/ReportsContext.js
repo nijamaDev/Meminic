@@ -9,6 +9,7 @@ const ReportsContext = () => {
           email: email,
         }
       );
+      console.log("hola");
       return salesByMonthData;
     } catch (error) {
       console.log("error");

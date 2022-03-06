@@ -440,30 +440,33 @@ app.post("/salesByMonth", async (req, res) => {
   // //find the id of a store
   const store = await Store.findByPk(user.dataValues.storeStoreId);
   // // get the products of the current store
-  const products = await store.getProduct();
+  // const products = await store.getProduct();
+  const products = await Product.findAll({
+    distinct: true,
+    where: { storeStoreId: store.dataValues.store_id },
+  });
   // get all movements of the current store
-  var movement;
+  // var movement;
   // for (let j = 0; j < products.length; j++) {
   //   movement = await products[j].getMovement();
-  for (let i = 0; i < products.length; i++) {
-    var salesByMonthData = await Product.findAll({
-      where: {
-        [Op.and]: [
-          { idKardex: products[i].dataValues.idKardex },
-          { storeStoreId: "1" },
-          { movementType: "Venta" },
-        ],
-      },
-      include: { model: Movement, as: "Movement" },
-    });
-  }
+  // for (let i = 0; i < products.length; i++) {
+  //   var salesByMonthData = await Product.findAll({
+  //     include: { model: Movement, as: "Movement" },
+  //     where: {
+  //       [Op.and]: [
+  //         { idKardex: products[i].dataValues.idKardex },
+  //         { storeStoreId: user.dataValues.storeStoreId },
+  //         { movementType: "Venta" },
+  //       ],
+  //     },
+  //   });
   // }
 
   console.log(
     "================================================ movimientos ===============================",
-    salesByMonthData
+    products[0].dataValues.idKardex,
+    user.dataValues.storeStoreId
   );
-  // var salesByMonthData = Product.findAll({ where: {idKardex: }, include: [Movement] });
 });
 
 //Routes
