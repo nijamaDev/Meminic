@@ -4,6 +4,8 @@ import "./ServicesBanner.css";
 import { ServicesItems } from "./ServicesItems";
 import RegisterButton from "../RegisterButton/RegisterButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
+
 const ServicesBanner = () => {
   const { loginWithRedirect } = useAuth0();
   return (
@@ -18,21 +20,24 @@ const ServicesBanner = () => {
         {" "}
         ¿Qué ofrecemos?{" "}
       </h3>
-      {ServicesItems.map((item, index) => {
-        return (
-          <p className={item.servicesClass} key={index}>
-            {" "}
-            <img src={check} className="services__icon" alt="check icon" />{" "}
-            {item.title}
-          </p>
-        );
-      })}
+      <div className="services__offered__div">
+        {ServicesItems.map((item, index) => {
+          return (
+            <p className={item.servicesClass} key={index}>
+              {" "}
+              <img src={check} className="services__icon" alt="check icon" />{" "}
+              {item.title}
+            </p>
+          );
+        })}
+      </div>
       <h3 className="services__offered_text">
         ¿Estas interesado en trabajar con nosotros? Regístrate para empezar
       </h3>
       <div id="register" className="services__buttons">
         <RegisterButton onClick={() => loginWithRedirect()} />
-        <button className="services__button__contact">contáctanos</button>
+        <Link className="services__button__contact" to="/contact">contáctanos
+        </Link>
       </div>
     </div>
   );

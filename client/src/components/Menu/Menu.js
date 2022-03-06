@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Menu = ({ NameClass, Items }) => {
   return (
@@ -7,9 +8,9 @@ const Menu = ({ NameClass, Items }) => {
         {Items.map((item, index) => {
           return (
             <li key={index}>
-              <a className={item.cName} href={item.url}>
+              <Link className={item.cName} to={item.url}>
                 {item.title}
-              </a>
+              </Link>
             </li>
           );
         })}

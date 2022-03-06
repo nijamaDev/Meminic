@@ -1,7 +1,7 @@
 import React from "react";
 import ModuleBox from "../ModulesBox/ModulesBox";
-import "../ModulesBox/ModulesBox.css";
 import LogOut from "../LogOut/LogOut";
+import "./ModulesSection.css"
 
 const ModulesSectionSeller = ({ Modules }) => {
   return (

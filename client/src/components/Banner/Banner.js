@@ -5,11 +5,13 @@ import "./Banner.css";
 const Banner = () => {
   return (
     <div id="about" className="banner__container">
-      <img
-        src={shop_img}
-        alt="Ilustración de tienda colombiana"
-        className="img__home"
-      />
+      <div className="banner__container__image">
+        <img
+          src={shop_img}
+          alt="Ilustración de tienda colombiana"
+          className="img__home"
+        />
+      </div>
       <div className="over__text">
         <p className="p__home"> Cada </p>
         <p className="p__home"> detalle </p>
