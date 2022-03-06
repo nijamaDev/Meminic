@@ -21,11 +21,11 @@ const MovementBaseReturnPurchase = ({ title, messageRegister, modalTitle }) => {
   const [getData, setGetDate] = useState(true);
   const [addMovement, setAddMovement] = useState(false);
   const [isNotPosible, setIsNotPosible] = useState(false);
-  const [productNameNotEnough, setProductNameNotEnough] = useState("");
-  const { addReturnPurchase, addReturnPurchaseVerification } = MovementContext();
+  // const [productNameNotEnough, setProductNameNotEnough] = useState("");
+  const { addReturnPurchase, addReturnVerification } = MovementContext();
   const navigate = useNavigate();
   const onClickRegisterReturnPurchase = (array) => {
-    addReturnPurchaseVerification(array).then(function (response) {
+    addReturnVerification(array).then(function (response) {
       if (response.data === true) {
         array.map((product) => {
           return addReturnPurchase(product);
@@ -35,9 +35,6 @@ const MovementBaseReturnPurchase = ({ title, messageRegister, modalTitle }) => {
         setIsNotPosible(false);
         return true;
       } else {
-        setProductNameNotEnough(
-          array[response.data.productNotEnough.index].name
-        );
         setIsNotPosible(true);
         return response;
       }
@@ -96,10 +93,10 @@ const MovementBaseReturnPurchase = ({ title, messageRegister, modalTitle }) => {
       {isNotPosible ? (
         <Modal
           message={
-            productNameNotEnough + " no cuenta con suficiente existencias"
+            "Verifique el número de factura o la cantidad de existencias"
           }
           textButton={"Aceptar"}
-          title="Devolución de venta no registrada"
+          title="Devolución de compra no registrada"
           iconURL={error_icon}
           altImg={"error"}
           onClickEvent={() => setIsNotPosible(!isNotPosible)}
@@ -111,4 +108,4 @@ const MovementBaseReturnPurchase = ({ title, messageRegister, modalTitle }) => {
   );
 };
 
-export default MovementBaseReturnPurchase ;
+export default MovementBaseReturnPurchase;

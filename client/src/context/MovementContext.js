@@ -63,19 +63,7 @@ const MovementContext = () => {
       console.log("error");
     }
   };
-  const addReturnPurchaseVerification = async (data) => {
-    try {
-      const returnPurchaseVeritication = await axios.post(
-        "http://localhost:5000/addReturnPurchaseVerification",
-        {
-          data,
-        }
-      );
-      return returnPurchaseVeritication;
-    } catch (error) {
-      console.log("error");
-    }
-  };
+
   /**
    * Función que se encarga de llamar a la consulta returnVerification
    * @param {*} data
@@ -118,7 +106,6 @@ const MovementContext = () => {
     addReturnSale,
     addReturnVerification,
     addReturnPurchase,
-    addReturnPurchaseVerification,
   };
 };
 

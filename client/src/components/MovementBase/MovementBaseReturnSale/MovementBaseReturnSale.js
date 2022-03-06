@@ -30,11 +30,12 @@ const MovementBaseReturnSale = ({
   const navigate = useNavigate();
   const { addReturnSale, addReturnVerification } = MovementContext();
   const onClickRegisterReturnSale = (array) => {
-    addReturnVerification(productsList).then(function (response) {
+    addReturnVerification(array).then(function (response) {
       if (response.data) {
         array.map((product) => {
           return addReturnSale(product);
         });
+        productsList = [];
         setAddMovement(true);
         setAddMovementError(false);
         return true;
