@@ -133,3 +133,8 @@
   .module__box__list {
   transform: translate(-137px, 3px);
 }
+
+.modules__section,
+.modules__section__seller {
+  margin-bottom: 60px;
+}
