@@ -29,7 +29,7 @@
 }
 
 .module__box__clicked:nth-child(2) {
-  margin-bottom: 14rem;
+  margin-bottom: 17rem;
 }
 
 .module__box__clicked:nth-child(3) {
@@ -132,4 +132,9 @@
   .module__box__clicked:nth-child(1)
   .module__box__list {
   transform: translate(-137px, 3px);
+}
+
+.modules__section,
+.modules__section__seller {
+  margin-bottom: 60px;
 }

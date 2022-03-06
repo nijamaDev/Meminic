@@ -432,6 +432,14 @@ app.post("/addReturnVerification", async (req, res) => {
   res.status(201).send(isPossible);
 });
 
+//Returns the movements of a product
+app.post("/getMovements", async (req, res) => {
+  const product = await Product.findOne({
+    where: { productName: req.body.productName },
+  });
+  const movements = await product.getMovement();
+  res.status(201).send(movements);
+});
 // ===================================== Reports =======================================
 /**
  * Consulta que permite saber número de ventas por productos en el año

@@ -1,12 +1,12 @@
 .services__container {
-  font-family: 'Epilogue', sans-serif;
+  font-family: "Epilogue", sans-serif;
   margin: auto 1.5em;
   text-align: left;
   color: white;
 }
 .services__title {
   margin: 0;
-  font-family: 'Epilogue', sans-serif;
+  font-family: "Epilogue", sans-serif;
   font-size: 1.2rem;
   font-weight: normal;
   line-height: 32px;
@@ -49,7 +49,7 @@
   background: none;
   border: 0;
   color: #ffffff;
-  font-family: 'Epilogue', sans-serif;
+  font-family: "Epilogue", sans-serif;
   font-size: 16px;
   align-self: center;
   text-decoration: none;
@@ -60,6 +60,9 @@
 }
 
 @media screen and (min-width: 1000px) {
+  .services__buttons {
+    margin-bottom: 60px;
+  }
   .services__container {
     width: 50%;
     padding: 0;
@@ -85,5 +88,8 @@
     margin-left: 1em;
     text-align: center;
     justify-content: center;
+  }
+  .services__title {
+    margin-left: 7px;
   }
 }
