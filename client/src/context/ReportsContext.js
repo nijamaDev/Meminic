@@ -29,6 +29,20 @@ const ReportsContext = () => {
     }
   };
 
-  return { salesByYear, salesByMonth };
+  const salesBylastMonth = async (email) => {
+    try {
+      const salesByLastMonthData = await axios.post(
+        "http://localhost:5000/productsSalesByLastMonth",
+        {
+          email: email,
+        }
+      );
+      return salesByLastMonthData;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+  return { salesByYear, salesByMonth, salesBylastMonth };
 };
 export default ReportsContext;

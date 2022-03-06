@@ -26,7 +26,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
 import MovementBaseReturnPurchase from "./components/MovementBase/MovementBaseReturnPurchase/MovementBaseReturnPurchase";
-
 import { useState } from "react";
 
 function App() {
@@ -37,7 +36,7 @@ function App() {
   const [auth0Authenticated, setAuth0Authenticated] = useState(false);
   const { onClickProductsTable, productsList, isClicked } =
     ProductReadTableEvents();
-
+  
   return (
     <Router>
       <div>
