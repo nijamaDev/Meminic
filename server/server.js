@@ -432,6 +432,16 @@ app.post("/addReturnVerification", async (req, res) => {
   res.status(201).send(isPossible);
 });
 
+
+//Returns the movements of a product
+app.post("/getMovements", async (req, res) => {
+  const product = await Product.findOne({
+    where: { productName: req.body.productName },
+  });
+  const movements = await product.getMovement();
+  res.status(201).send(movements);
+});
+
 //Routes
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

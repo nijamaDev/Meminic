@@ -25,7 +25,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
 import MovementBaseReturnPurchase from "./components/MovementBase/MovementBaseReturnPurchase/MovementBaseReturnPurchase";
-
+import MovementBaseVisualize from "./components/MovementBase/MovementBaseVisualize/MovementBaseVisualize"; 
 import { useState } from "react";
 
 function App() {
@@ -222,6 +222,26 @@ function App() {
                       title="Devolución de compra"
                       messageRegister="La devolución de compra ha sido registrada con éxito!"
                       modalTitle="Devolución de compra registrada"
+                    />
+                    <Footer menuItems={MenuItemsSystem} />{" "}
+                  </>
+                ) : (
+                  <></>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/movements/visualize"
+            element={
+              <>
+                {isAuthenticated ? (
+                  <>
+                    <Header menuItems={MenuItemsSystem} />{" "}
+                    <MovementBaseVisualize
+                      title="Consulta de movimientos"
+                      // messageRegister="La devolución de compra ha sido registrada con éxito!"
+                      // modalTitle="Devolución de compra registrada"
                     />
                     <Footer menuItems={MenuItemsSystem} />{" "}
                   </>

@@ -99,6 +99,22 @@ const MovementContext = () => {
     }
   };
 
+
+  /**
+   * This function gets the movements of a product
+   * @param {*} id
+   */
+   const getMovements = async (productName) => {
+    try {
+      const movements = await axios.post("http://localhost:5000/getMovements", {
+        productName: productName,
+      });
+      return movements;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   return {
     addSale,
     addSaleVerification,
@@ -106,6 +122,7 @@ const MovementContext = () => {
     addReturnSale,
     addReturnVerification,
     addReturnPurchase,
+    getMovements
   };
 };
 
