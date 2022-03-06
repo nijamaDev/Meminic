@@ -4,8 +4,9 @@ import Chart from "chart.js/auto";
 import ReportsContext from "../../context/ReportsContext";
 import Auth0Hook from "../../hooks/Auth0Hook";
 const Graphics = () => {
-  const { salesByMonth } = ReportsContext();
+  const { salesByYear, salesByMonth } = ReportsContext();
   const { user } = Auth0Hook();
+  salesByYear(user.email);
   salesByMonth(user.email);
   const data = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],

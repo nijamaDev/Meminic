@@ -1,6 +1,20 @@
 import axios from "axios";
 
 const ReportsContext = () => {
+  const salesByYear = async (email) => {
+    try {
+      const salesByYearData = await axios.post(
+        "http://localhost:5000/productsSalesByYear",
+        {
+          email: email,
+        }
+      );
+      return salesByYearData;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   const salesByMonth = async (email) => {
     try {
       const salesByMonthData = await axios.post(
@@ -9,12 +23,12 @@ const ReportsContext = () => {
           email: email,
         }
       );
-      console.log("hola");
       return salesByMonthData;
     } catch (error) {
       console.log("error");
     }
   };
-  return { salesByMonth };
+
+  return { salesByYear, salesByMonth };
 };
 export default ReportsContext;
