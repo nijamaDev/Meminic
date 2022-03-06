@@ -25,7 +25,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
 import MovementBaseReturnPurchase from "./components/MovementBase/MovementBaseReturnPurchase/MovementBaseReturnPurchase";
-import MovementBaseVisualize from "./components/MovementBase/MovementBaseVisualize/MovementBaseVisualize"; 
+import MovementBaseVisualize from "./components/MovementBase/MovementBaseVisualize/MovementBaseVisualize";
 
 import { useState } from "react";
 import ContactPage from "./components/Contact/ContactPage";
@@ -38,7 +38,7 @@ function App() {
   const [auth0Authenticated, setAuth0Authenticated] = useState(false);
   const { onClickProductsTable, productsList, isClicked } =
     ProductReadTableEvents();
-  
+
   return (
     <Router>
       <div>
@@ -170,14 +170,16 @@ function App() {
               </>
             }
           />
-          <Route path="/contact"
-          element={
-            <>
-            <Header menuItems={MenuItemsSystem} />
-            <ContactPage/>
-            <Footer menuItems={MenuItemsLogin} />
-            </>
-          } />
+          <Route
+            path="/contact"
+            element={
+              <>
+                <Header menuItems={MenuItemsSystem} />
+                <ContactPage />
+                <Footer menuItems={MenuItemsLogin} />
+              </>
+            }
+          />
           <Route
             path="/movements/purchases"
             element={
@@ -242,24 +244,22 @@ function App() {
             }
           />
           <Route
-
             path="/movements/visualize"
             element={
               <>
                 {isAuthenticated ? (
                   <>
                     <Header menuItems={MenuItemsSystem} />{" "}
-                    <MovementBaseVisualize
-                      title="Consulta de movimientos"
-                      // messageRegister="La devolución de compra ha sido registrada con éxito!"
-                      // modalTitle="Devolución de compra registrada"
-                    />
+                    <MovementBaseVisualize title="Consulta de movimientos" />
                     <Footer menuItems={MenuItemsSystem} />{" "}
                   </>
                 ) : (
                   <></>
                 )}
               </>
+            }
+          />
+          <Route
             path="/reports"
             element={
               isAuthenticated ? (
