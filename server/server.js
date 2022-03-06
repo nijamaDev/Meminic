@@ -352,6 +352,60 @@ app.post("/addReturnSale", async (req, res) => {
 });
 
 /**
+ * Consulta que se encarga de añadir una devolucion de compra a la tabla de movimientos
+ */
+app.post("/addReturnPurchase", async (req, res) => {
+  const product = await Product.findOne({
+    where: { productName: req.body.productName },
+  });
+  var accSupportMovement = await Movement.findAll({
+    where: {
+      [Op.and]: [
+        { accSupport: req.body.accSupport },
+        { productIdKardex: product.idKardex },
+      ],
+    },
+    limit: 1,
+    order: [["updatedAt", "DESC"]],
+  });
+  accSupportMovement = accSupportMovement[0];
+
+  var lastMovement = await Movement.findAll({
+    where: { productIdKardex: product.idKardex },
+    limit: 1,
+    order: [["updatedAt", "DESC"]],
+  });
+  lastMovement = lastMovement[0];
+  //Valor de saldo anterior - cantidad actual * valor unitario
+  const weightedValue =
+    (lastMovement.balanceValue -
+      req.body.outputAmount * accSupportMovement.unitValue) /
+    (lastMovement.balanceAmount - req.body.outputAmount);
+  const unitValue = accSupportMovement.unitValue;
+  const inputAmount = req.body.outputAmount;
+  // valor de entrada = cantidad ingresada * valor unitario registrado en el movimiento
+  //correspondiente a la factura de compra
+  const inputValue = req.body.outputAmount * accSupportMovement.unitValue;
+  const balanceAmount = lastMovement.balanceAmount - req.body.outputAmount;
+  const balanceValue = weightedValue * balanceAmount;
+  const movement = await Movement.create({
+    date: new Date(),
+    movementType: "Devolución de compra",
+    accSupport: req.body.accSupport,
+    unitValue: unitValue,
+    weightedValue: weightedValue,
+    inputAmount: inputAmount,
+    inputValue: inputValue,
+    balanceAmount: balanceAmount,
+    balanceValue: balanceValue,
+  });
+  //foreign key
+  product.addMovement(movement);
+  console.log("return purchase added");
+  res.status(201).send(movement);
+});
+
+/**
  * Consulta que verifica si la factura ingresada se encuentra ya en
  * la base de datos
  */

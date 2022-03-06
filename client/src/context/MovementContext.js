@@ -63,6 +63,19 @@ const MovementContext = () => {
       console.log("error");
     }
   };
+  const addReturnPurchaseVerification = async (data) => {
+    try {
+      const returnPurchaseVeritication = await axios.post(
+        "http://localhost:5000/addReturnPurchaseVerification",
+        {
+          data,
+        }
+      );
+      return returnPurchaseVeritication;
+    } catch (error) {
+      console.log("error");
+    }
+  };
   /**
    * Función que se encarga de llamar a la consulta returnVerification
    * @param {*} data
@@ -76,8 +89,23 @@ const MovementContext = () => {
           data,
         }
       );
-      
       return returnVerification;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+  const addReturnPurchase = async (data) => {
+    try {
+      const returnPurchase = await axios.post(
+        "http://localhost:5000/addReturnPurchase",
+        {
+          productName: data.name,
+          outputAmount: data.amount,
+          accSupport: data.accSupport,
+        }
+      );
+      return returnPurchase;
     } catch (error) {
       console.log("error");
     }
@@ -89,6 +117,8 @@ const MovementContext = () => {
     addPurchase,
     addReturnSale,
     addReturnVerification,
+    addReturnPurchase,
+    addReturnPurchaseVerification,
   };
 };
 
