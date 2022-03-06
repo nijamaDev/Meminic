@@ -15,6 +15,7 @@ import MovementBaseSale from "./components/MovementBase/MovementBaseSale/Movemen
 import MovementBasePurchase from "./components/MovementBase/MovementBasePurchase/MovementBasePurchase";
 import MovementBaseReturnSale from "./components/MovementBase/MovementBaseReturnSale/MovementBaseReturnSale";
 import MovementAddPurchaseEvents from "./components/MovementBase/MovementBasePurchase/MovementAddPurchaseEvents";
+import Graphics from "./components/Graphics/Graphics";
 import "./index.css";
 import UserContext from "./context/UserContext";
 import Auth0Hook from "./hooks/Auth0Hook";
@@ -24,6 +25,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
 import MovementBaseReturnPurchase from "./components/MovementBase/MovementBaseReturnPurchase/MovementBaseReturnPurchase";
+import MovementBaseVisualize from "./components/MovementBase/MovementBaseVisualize/MovementBaseVisualize";
 
 import { useState } from "react";
 import ContactPage from "./components/Contact/ContactPage";
@@ -168,14 +170,16 @@ function App() {
               </>
             }
           />
-          <Route path="/contact"
-          element={
-            <>
-            <Header menuItems={MenuItemsSystem} />
-            <ContactPage/>
-            <Footer menuItems={MenuItemsLogin} />
-            </>
-          } />
+          <Route
+            path="/contact"
+            element={
+              <>
+                <Header menuItems={MenuItemsSystem} />
+                <ContactPage />
+                <Footer menuItems={MenuItemsLogin} />
+              </>
+            }
+          />
           <Route
             path="/movements/purchases"
             element={
@@ -237,6 +241,35 @@ function App() {
                   <></>
                 )}
               </>
+            }
+          />
+          <Route
+            path="/movements/visualize"
+            element={
+              <>
+                {isAuthenticated ? (
+                  <>
+                    <Header menuItems={MenuItemsSystem} />{" "}
+                    <MovementBaseVisualize title="Consulta de movimientos" />
+                    <Footer menuItems={MenuItemsSystem} />{" "}
+                  </>
+                ) : (
+                  <></>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/reports"
+            element={
+              isAuthenticated ? (
+                <>
+                  <Header menuItems={MenuItemsSystem} /> <Graphics />
+                  <Footer menuItems={MenuItemsSystem} />{" "}
+                </>
+              ) : (
+                <></>
+              )
             }
           />
         </Routes>

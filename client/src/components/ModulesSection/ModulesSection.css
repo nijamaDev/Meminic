@@ -1,1 +1,18 @@
-/* requires flexbox maybe */
+.modules__section_boxes {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 80%;
+}
+.module__box,
+.module__box__clicked {
+  margin: 1rem 5%;
+}
+
+@media screen and (min-width: 1400px) {
+  .module__box,
+  .module__box__clicked {
+    margin: 2rem 8%;
+  }
+}

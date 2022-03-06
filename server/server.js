@@ -432,6 +432,176 @@ app.post("/addReturnVerification", async (req, res) => {
   res.status(201).send(isPossible);
 });
 
+//Returns the movements of a product
+app.post("/getMovements", async (req, res) => {
+  const product = await Product.findOne({
+    where: { productName: req.body.productName },
+  });
+  const movements = await product.getMovement();
+  res.status(201).send(movements);
+});
+// ===================================== Reports =======================================
+/**
+ * Consulta que permite saber número de ventas por productos en el año
+ */
+
+app.post("/productsSalesByYear", async (req, res) => {
+  // find the user
+  const user = await User.findByPk(req.body.email);
+  // //find the id of a store
+  const store = await Store.findByPk(user.dataValues.storeStoreId);
+  // // get the products of the current store
+  const products = await Product.findAll({
+    distinct: true,
+    where: { storeStoreId: store.dataValues.store_id },
+  });
+  // get all movements of the current store
+  var movement;
+  var salesAmount = [];
+  var productsSold = [];
+  for (let j = 0; j < products.length; j++) {
+    movement = await products[j].getMovement({
+      where: {
+        [Op.and]: [
+          { movementType: "Venta" },
+          {
+            date: {
+              [Op.and]: {
+                [Op.gte]: "2022-01-01",
+                [Op.lte]: "2023-01-01",
+              },
+            },
+          },
+        ],
+      },
+    });
+    salesAmount.push(movement.length);
+    productsSold.push(products[j].dataValues.productName);
+  }
+  res.status(201).send({ amount: salesAmount, products: productsSold });
+});
+
+/**
+ * Consulta que se encarga de devolver las ventas por mes en un año
+ */
+
+app.post("/salesByMonth", async (req, res) => {
+  // find the user
+  const user = await User.findByPk(req.body.email);
+  // //find the id of a store
+  const store = await Store.findByPk(user.dataValues.storeStoreId);
+  // // get the products of the current store
+  const products = await Product.findAll({
+    distinct: true,
+    where: { storeStoreId: store.dataValues.store_id },
+  });
+  // get all movements of the current store
+  var movement;
+  var salesAmount = [];
+  var salesCount = [];
+  var dates = [];
+  var months = [];
+  var resultsMonths = [];
+  var resultsCount = [];
+  var duplicated = false;
+  var actualYear = new Date().getFullYear();
+  var laterYear = new Date().getFullYear() + 1;
+  for (let j = 0; j < products.length; j++) {
+    movement = await products[j].getMovement({
+      where: {
+        [Op.and]: [
+          { movementType: "Venta" },
+          {
+            date: {
+              [Op.and]: {
+                [Op.gte]: actualYear + "-" + "01" + "-" + "01",
+                [Op.lte]: laterYear + "-" + "01" + "-" + "01",
+              },
+            },
+          },
+        ],
+      },
+      attributes: [
+        [sequelize.fn("date_trunc", "month", sequelize.col("date")), "dateOn"],
+        [sequelize.fn("count", "*"), "count"],
+      ],
+      group: "dateOn",
+    });
+    for (let i = 0; i < movement.length; i++) {
+      salesAmount.push(movement[i].dataValues.count);
+      dates.push(movement[i].dataValues.dateOn);
+    }
+  }
+  for (let k = 0; k < dates.length; k++) {
+    months.push(JSON.stringify(dates[k])[6] + JSON.stringify(dates[k])[7]);
+  }
+  for (let k = 0; k < salesAmount.length; k++) {
+    salesCount.push(parseFloat(salesAmount[k]));
+  }
+  for (let z = 0; z < months.length; z++) {
+    for (let n = 0; n < months[z].length; n++) {
+      if (z !== n) {
+        if (months[z] === months[n]) {
+          resultsMonths.push(months[z]);
+          resultsCount.push(salesCount[z] + salesCount[n]);
+          resultsMonths.splice(n, 1);
+          resultsCount.splice(n, 1);
+          duplicated = true;
+        }
+      }
+    }
+    if (duplicated === false) {
+      resultsMonths.push(months[z]);
+      resultsCount.push(salesCount[z]);
+    }
+  }
+
+  res.status(201).send({ months: resultsMonths, count: resultsCount });
+});
+
+/**
+ * Consulta que retorna la cantidad de ventas en el ultimo mes por productos
+ */
+
+app.post("/productsSalesByLastMonth", async (req, res) => {
+  // find the user
+  const user = await User.findByPk(req.body.email);
+  // //find the id of a store
+  const store = await Store.findByPk(user.dataValues.storeStoreId);
+  // // get the products of the current store
+  const products = await Product.findAll({
+    distinct: true,
+    where: { storeStoreId: store.dataValues.store_id },
+  });
+  // get all movements of the current store
+  var movement;
+  var salesAmount = [];
+  var productsSold = [];
+  var actualMonth = new Date().getMonth() + 1;
+  var actualYear = new Date().getFullYear();
+  var laterMonth = new Date().getMonth() + 2;
+  for (let j = 0; j < products.length; j++) {
+    movement = await products[j].getMovement({
+      where: {
+        [Op.and]: [
+          { movementType: "Venta" },
+          {
+            date: {
+              [Op.and]: {
+                [Op.gte]: actualYear + "-" + actualMonth + "-" + "01",
+                [Op.lte]: actualYear + "-" + laterMonth + "-" + "01",
+              },
+            },
+          },
+        ],
+      },
+    });
+    salesAmount.push(movement.length);
+    productsSold.push(products[j].dataValues.productName);
+  }
+  res.status(201).send({ amount: salesAmount, products: productsSold });
+});
+
 //Routes
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

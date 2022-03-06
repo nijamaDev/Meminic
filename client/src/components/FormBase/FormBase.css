@@ -4,7 +4,7 @@
 }
 .box__name {
   color: #391400;
-  font-family: "Epilogue", sans-serif, bold;
+  font-family: 'Epilogue', sans-serif, bold;
   font-size: 1.5rem;
   text-align: center;
 }
@@ -20,7 +20,7 @@
 
 .label__item {
   color: rgba(2, 2, 2, 0.64);
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   font-size: 1rem;
 }
 
@@ -32,7 +32,7 @@
   border-width: 0.1rem;
   border-color: #f3d1bf;
   padding: 0.3rem 1rem 0.3rem 1rem;
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
 }
 
 .button__form {
@@ -40,7 +40,7 @@
   margin: auto;
   background-color: #28293e;
   color: #ffffff;
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   font-weight: 900;
   font-size: 14px;
   line-height: 14px;
@@ -56,10 +56,12 @@
 }
 
 .div__item {
-  width: 7rem;
   padding-top: 0.2rem;
   display: flex;
   align-content: center;
+}
+.div__item label {
+  width: 7rem;
 }
 .bar {
   margin-top: 1.5rem;
@@ -84,7 +86,7 @@
   border-color: #f3d1bf;
   background-color: #ffffff;
   padding: 0.5rem 1rem 0.5rem 1rem;
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
 }
 
 .user__management__box {
@@ -116,7 +118,7 @@
 
 .input__message__error {
   margin: 0;
-  font-family: "Epilogue", sans-serif;
+  font-family: 'Epilogue', sans-serif;
   font-size: 13px;
   color: #f24024;
   font-weight: 600;

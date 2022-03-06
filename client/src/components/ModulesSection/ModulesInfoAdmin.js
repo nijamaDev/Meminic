@@ -27,6 +27,10 @@ export const ModulesInfoAdmin = [
         title: "Devolución de venta",
         url: "/movements/returnSale",
       },
+      {
+        title: "Consultar movimientos",
+        url: "/movements/visualize",
+      },
     ],
   },
   {

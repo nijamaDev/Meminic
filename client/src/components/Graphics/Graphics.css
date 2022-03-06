@@ -1,0 +1,39 @@
+.reports__container {
+  margin: 20px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 12px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.reports__title {
+  font-family: "Epilogue", sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 846px) {
+  .reports__container {
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .reports__graph {
+    width: 430px;
+    height: auto;
+  }
+}
