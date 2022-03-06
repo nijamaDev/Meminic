@@ -1,8 +1,11 @@
 .form__user {
   margin: auto;
 }
-.div__item {
+.contact__form__block label {
   display: none;
+}
+.div__item {
+  /* width: auto; */
 }
 .input__form {
   border-radius: 8px;

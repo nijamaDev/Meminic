@@ -10,5 +10,12 @@
 }
 .module__box,
 .module__box__clicked {
-  margin: 2rem;
+  margin: 1rem 5%;
+}
+
+@media screen and (min-width: 1400px) {
+  .module__box,
+  .module__box__clicked {
+    margin: 2rem 8%;
+  }
 }
