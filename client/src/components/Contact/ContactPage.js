@@ -1,5 +1,4 @@
 import ContactForm from "../ContactForm/ContactForm";
-import map_img from "../../assets/map.png";
 import map_point_img from "../../assets/map-point.png";
 import call_img from "../../assets/call.png";
 import msg_img from "../../assets/msg.png";
@@ -27,12 +26,7 @@ const ContactPage = () => {
           </div>
         </div>
         <div className="map__container">
-          {/* <div className="map__img__point__container"> */}
             <img className="map__point__img" src={map_point_img} alt="map point" />
-          {/* </div> */}
-          {/* <div className="map__img__container"> */}
-            {/* <img className="map__img" src={map_img} alt="map" /> */}
-          {/* </div> */}
         </div>
         <div className="info__container">
           <Card img={call_img} title="TELÉFONO" content="2672076"/>
