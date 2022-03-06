@@ -70,7 +70,7 @@ const MovementBaseReturnSale = ({
       />
       <div className="movements__button_container">
         <button
-          onClick={() => navigate("/users")}
+          onClick={() => navigate("/")}
           className="movements__button__cancel"
         >
           Regresar

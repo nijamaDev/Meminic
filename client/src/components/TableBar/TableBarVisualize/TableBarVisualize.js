@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "../TableBar.css";
 const TableBarVisualize = ({ rowTitles, productsData }) => {
-
   return (
     <>
       <table className="products__table">

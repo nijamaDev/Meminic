@@ -6,7 +6,7 @@ export const MenuItemsSystem = [
   },
   {
     title: "Movimientos",
-    url: "/movements",
+    url: "/",
     cName: "nav-links",
   },
   {

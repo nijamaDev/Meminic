@@ -17,14 +17,20 @@ const ContactPage = () => {
             inventarios y contabilidad de tu tienda
           </p>
         </div>
-        <div className="contact__form__container">
-          <div className="contact__form__block">
-            <h2 className="contact__form__title">Contáctanos</h2>
-            <ContactForm />
+        <div className="contact__form__img__container">
+          <div className="contact__form__container">
+            <div className="contact__form__block">
+              <h2 className="contact__form__title">Contáctanos</h2>
+              <ContactForm />
+            </div>
           </div>
-        </div>
-        <div className="map__container">
-            <img className="map__point__img" src={map_point_img} alt="map point" />
+          <div className="map__container">
+            <img
+              className="map__point__img"
+              src={map_point_img}
+              alt="map point"
+            />
+          </div>
         </div>
         <div className="info__container">
           <Card img={call_img} title="TELÉFONO" content="2672076" />

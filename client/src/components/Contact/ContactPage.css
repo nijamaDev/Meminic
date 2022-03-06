@@ -12,12 +12,19 @@
 .contact__title {
   font-weight: 800;
   font-size: 3em;
+  font-family: "Epilogue", sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 32px;
 }
 
 .contact__top__text {
   color: rgba(255, 255, 255, 0.8);
   font-size: 1.3em;
   margin: 0 auto;
+  font-family: "Epilogue", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .contact__form__container {
@@ -26,16 +33,17 @@
 }
 .contact__form__block {
   background-color: white;
-  border-radius: 30px;
+  border-radius: 5px;
   margin: 2em;
   padding: 1em 2em;
 }
 .contact__form__title {
+  font-family: "Epilogue", sans-serif;
   margin-bottom: 10px;
   color: #391400;
 }
 .map__container {
-  background: url('../../assets/map.png');
+  background: url("../../assets/map.png");
   background-size: 200vw;
   background-position: center;
   display: flex;
@@ -55,7 +63,27 @@
   padding: 1rem;
 }
 @media screen and (min-width: 768px) {
+  .contact__form__img__container {
+    display: flex;
+  }
+  .contact__form__container:nth-child(1) {
+    order: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .contact__top__text {
     width: 50%;
+  }
+  .map__container {
+    height: 40vw;
+    width: 40%;
+    border-radius: 1000px;
+    margin-left: 170px;
+    margin-right: 170px;
+    margin-top: 50px;
+  }
+  .contact__form__container {
+    padding-bottom: 0;
   }
 }

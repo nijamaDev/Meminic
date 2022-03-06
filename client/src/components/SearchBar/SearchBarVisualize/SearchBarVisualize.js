@@ -1,7 +1,6 @@
 import "../SearchBar.css";
 import TableBarVisualize from "../../TableBar/TableBarVisualize/TableBarVisualize";
 import SearchBarVisualizeEvents from "./SearchBarVisualizeEvents";
-import { MdOutlineDeleteForever } from "react-icons/md";
 
 function SearchBarVisualize({
   placeholder,
@@ -30,17 +29,17 @@ function SearchBarVisualize({
             {initialMovements.map((item, key) => {
               return (
                 <tr key={key}>
-                <td> {item.date} </td>
-                <td> {item.accSupport}</td>
-                <td> {item.movementType} </td>
-                <td> {item.unitValue} </td>
-                <td> {item.weightedValue} </td>
-                <td> {item.inputAmount} </td>
-                <td> {item.inputValue} </td>
-                <td> {item.outputAmount} </td>
-                <td> {item.outputValue} </td>
-                <td> {item.balanceAmount} </td>
-                <td> {item.balanceValue} </td>
+                  <td> {item.date} </td>
+                  <td> {item.accSupport}</td>
+                  <td> {item.movementType} </td>
+                  <td> {item.unitValue} </td>
+                  <td> {item.weightedValue} </td>
+                  <td> {item.inputAmount} </td>
+                  <td> {item.inputValue} </td>
+                  <td> {item.outputAmount} </td>
+                  <td> {item.outputValue} </td>
+                  <td> {item.balanceAmount} </td>
+                  <td> {item.balanceValue} </td>
                 </tr>
               );
             })}
