@@ -11,7 +11,10 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import ProductReadTableEvents from "./components/ProductReadTable/ProductReadTableEvents";
 import ProductReadTable from "./components/ProductReadTable/ProductReadTable";
 import UserSectionModal from "./components/UserSectionModal/UserSectionModal";
-import MovementBase from "./components/MovementBase/MovementBase";
+import MovementBaseSale from "./components/MovementBase/MovementBaseSale/MovementBaseSale";
+import MovementBasePurchase from "./components/MovementBase/MovementBasePurchase/MovementBasePurchase";
+import MovementBaseReturnSale from "./components/MovementBase/MovementBaseReturnSale/MovementBaseReturnSale";
+import MovementAddPurchaseEvents from "./components/MovementBase/MovementBasePurchase/MovementAddPurchaseEvents";
 import "./index.css";
 import UserContext from "./context/UserContext";
 import Auth0Hook from "./hooks/Auth0Hook";
@@ -20,18 +23,20 @@ import { MenuItemsSystem } from "./components/Menu/MenuItemsSystem";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
-import MovementAddSaleEvents from "./components/MovementBase/MovementAddSaleEvents";
+import MovementBaseReturnPurchase from "./components/MovementBase/MovementBaseReturnPurchase/MovementBaseReturnPurchase";
+
 import { useState } from "react";
 import ContactPage from "./components/Contact/ContactPage";
 
 function App() {
   const { user, isAuthenticated } = Auth0Hook();
   const { verifyUser, readResult, isAdmin } = UserContext();
-  const { onClickRegisterSale } = MovementAddSaleEvents();
+  const { onClickRegisterPurchase } = MovementAddPurchaseEvents();
   const [readResultUsed, setReadResultUsed] = useState(false);
   const [auth0Authenticated, setAuth0Authenticated] = useState(false);
   const { onClickProductsTable, productsList, isClicked } =
     ProductReadTableEvents();
+
   return (
     <Router>
       <div>
@@ -149,10 +154,10 @@ function App() {
                 {isAuthenticated ? (
                   <>
                     <Header menuItems={MenuItemsSystem} />{" "}
-                    <MovementBase
+                    <MovementBaseSale
                       title="Venta"
-                      onClickEvent={onClickRegisterSale}
-                      message="La venta ha sido registrada con éxito!"
+                      messageRegister="La venta ha sido registrada con éxito!"
+                      messageAmount="La cantidad de existencias no es suficiente"
                       modalTitle="Venta registrada"
                     />
                     <Footer menuItems={MenuItemsSystem} />{" "}
@@ -171,6 +176,69 @@ function App() {
             <Footer menuItems={MenuItemsLogin} />
             </>
           } />
+          <Route
+            path="/movements/purchases"
+            element={
+              <>
+                {isAuthenticated ? (
+                  <>
+                    <Header menuItems={MenuItemsSystem} />{" "}
+                    <MovementBasePurchase
+                      title="Compra"
+                      onClickEvent={onClickRegisterPurchase}
+                      message="La compra ha sido registrada con éxito!"
+                      modalTitle="Compra registrada"
+                    />
+                    <Footer menuItems={MenuItemsSystem} />{" "}
+                  </>
+                ) : (
+                  <></>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/movements/returnSale"
+            element={
+              <>
+                {isAuthenticated ? (
+                  <>
+                    <Header menuItems={MenuItemsSystem} />{" "}
+                    <MovementBaseReturnSale
+                      title="Devolución en venta"
+                      message="La devolución ha sido registrada con éxito!"
+                      modalTitle="Devolución registrada"
+                      messageError="No fue posible realizar la devolución, revise el número de factura "
+                      modalTitleError="Devolución no registrada"
+                    />
+                    <Footer menuItems={MenuItemsSystem} />{" "}
+                  </>
+                ) : (
+                  <></>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/movements/returnPurchases"
+            element={
+              <>
+                {isAuthenticated ? (
+                  <>
+                    <Header menuItems={MenuItemsSystem} />{" "}
+                    <MovementBaseReturnPurchase
+                      title="Devolución de compra"
+                      messageRegister="La devolución de compra ha sido registrada con éxito!"
+                      modalTitle="Devolución de compra registrada"
+                    />
+                    <Footer menuItems={MenuItemsSystem} />{" "}
+                  </>
+                ) : (
+                  <></>
+                )}
+              </>
+            }
+          />
         </Routes>
       </div>
     </Router>

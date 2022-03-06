@@ -81,6 +81,7 @@ const ProductContext = () => {
       const initialInventory = await axios.post(
         "http://localhost:5000/addInitialInventory",
         {
+          accSupport: data["No de Factura"],
           unitValue: data["Valor unitario inicial"],
           inputAmount: data["Cantidad inicial"],
           idProduct: idProduct,

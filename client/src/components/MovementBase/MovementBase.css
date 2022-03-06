@@ -35,3 +35,11 @@
   gap: 12px;
   margin-bottom: 42px;
 }
+
+.movements__label {
+  display: flex;
+  justify-content: center;
+  transform: translate(0px, -115px);
+  color: #ef6d58;
+  font-family: "Epilogue", sans-serif;
+}
