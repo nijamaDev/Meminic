@@ -41,9 +41,10 @@
   height: 280px;
   position: absolute;
   top: 80px;
-  left: -100%;
-  opacity: 1;
-  transition: all 0.5s ease;
+  left: 100vw;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.3s ease-in;
   list-style: none;
 }
 
@@ -83,6 +84,12 @@
 .navbar__close {
   display: flex;
 }
+.nav-links:hover {
+  background: #6d76f7;
+  border-radius: 20px;
+  transition: none;
+  display: flex;
+}
 
 @media screen and (min-width: 824px) {
   .menu-icon,
@@ -98,6 +105,7 @@
     width: auto;
     margin: auto;
     height: auto;
+    opacity: 1;
   }
   .nav-menu li {
     width: auto;
