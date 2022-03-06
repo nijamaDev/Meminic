@@ -42,6 +42,9 @@ const UserSectionModal = () => {
           e.target.reset();
         }
         if (data.Estado === "Inactivo") {
+          window.emailjs.send(
+            'service_p28c6ys', 'template_qfqxc73', data
+          )
           setToggleSuccessUpdate(false);
           setToggleDelete(true);
           e.target.reset();
