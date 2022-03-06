@@ -6,13 +6,13 @@ export const rowTitleVisualize = [
     title: "No. Factura",
   },
   {
-    title: "Tipo de movimiento",
+    title: "Tipo",
   },
   {
-    title: "Valor unitario",
+    title: "Valor unit",
   },
   {
-    title: "Valor unitario ponderado",
+    title: "Valor unit pond",
   },
   {
     title: "Cant. entradas",
