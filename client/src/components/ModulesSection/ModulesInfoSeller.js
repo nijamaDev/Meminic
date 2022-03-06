@@ -4,19 +4,19 @@ export const ModulesInfoSeller = [
     modulesItems: [
       {
         title: "Venta",
-        url: "/movements",
+        url: "/movements/sales",
       },
       {
         title: "Compra",
-        url: "/movements",
+        url: "/movements/purchases",
       },
       {
         title: "Devolución de compra",
-        url: "/movements",
+        url: "/movements/returnPurchases",
       },
       {
-        title: "Devolución de compra",
-        url: "/movements",
+        title: "Devolución de venta",
+        url: "/movements/returnSale",
       },
     ],
   },

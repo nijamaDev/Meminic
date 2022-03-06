@@ -8,12 +8,6 @@
   width: 100%;
 }
 
-.products__table th {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-}
-
 .products__table__head tr th {
   border-bottom: 1px solid #c4c4c4;
 }
@@ -31,4 +25,55 @@
 
 .products__table__body tr td:nth-child(1) {
   border-right: 1px solid #c4c4c4;
+}
+
+.input__unit__value,
+.input__accsupport {
+  width: 80%;
+  border: none;
+  border-radius: 50px;
+  font-family: "Epilogue", sans-serif;
+  text-align: center;
+}
+
+.acc__support__container {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.input__acc__support {
+  font-weight: bold;
+}
+
+.input__acc__support,
+.input__acc__support input {
+  font-family: "Epilogue", sans-serif;
+  text-align: center;
+}
+
+.input__acc__support input {
+  border-radius: 50px;
+  border: none;
+  width: 30%;
+  margin-left: 12px;
+}
+
+.delete__button {
+  padding: 0;
+  border: none;
+  background: none;
+  margin: 0;
+}
+
+.product__delete {
+  width: 30px;
+  height: 30px;
+  color: #ef6c57;
+}
+
+.accsupport__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

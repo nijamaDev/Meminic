@@ -17,15 +17,15 @@ export const ModulesInfoAdmin = [
       },
       {
         title: "Compra",
-        url: "/movements",
+        url: "/movements/purchases",
       },
       {
         title: "Devolución de compra",
-        url: "/movements",
+        url: "/movements/returnPurchases",
       },
       {
-        title: "Devolución de compra",
-        url: "/movements",
+        title: "Devolución de venta",
+        url: "/movements/returnSale",
       },
     ],
   },
