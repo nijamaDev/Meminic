@@ -4,14 +4,15 @@ import { GoThreeBars } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
 import Menu from "../Menu/Menu";
 import logo from "../../assets/logo.svg";
+import { Link } from "react-router-dom";
 
 const Header = ({ menuItems }) => {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <nav className="navbar__container">
-      <a href="/">
+      <Link to="/">
         <img src={logo} className="navbar__container__logo" alt="méminic" />
-      </a>
+      </Link>
       <div>
         <div className="menu-icon"></div>
         <div

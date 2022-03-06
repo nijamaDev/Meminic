@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import arrowDown from "../../assets/arrow_down.svg";
 import arrowUp from "../../assets/arrow_up.svg";
 import "./ModulesBox.css";
@@ -20,7 +21,7 @@ const ModuleBox = ({ name, items }) => {
                 {items.map((item, index) => {
                   return (
                     <li key={index}>
-                      <a href={item.url}>{item.title}</a>
+                      <Link to={item.url}>{item.title}</Link>
                     </li>
                   );
                 })}

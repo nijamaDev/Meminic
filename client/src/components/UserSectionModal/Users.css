@@ -1,0 +1,18 @@
+.users__management__section {
+  background-color: #fdf0e9;
+}
+
+.users__section_boxes {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4rem;
+}
+
+.user__management_options {
+  justify-content: center;
+}
+
+.user__table {
+  margin-bottom: 4rem;
+}

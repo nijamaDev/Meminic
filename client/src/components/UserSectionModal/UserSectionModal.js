@@ -5,6 +5,7 @@ import check_icon from "../../assets/check_icon.svg";
 import error_icon from "../../assets/error_icon.svg";
 import UserManagementSection from "../UsersManagementSection/UsersManagementSection";
 import Auth0Hook from "../../hooks/Auth0Hook";
+import "./Users.css"
 const UserSectionModal = () => {
   const { searchUser, addUser, updateUser } = UserContext();
   const [toggleSuccess, setToggleSuccess] = useState(false);
