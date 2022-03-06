@@ -2,14 +2,14 @@ import SearchBarSale from "../../SearchBar/SearchBarSale/SearchBarSale";
 import ProductContext from "../../../context/ProductContext";
 import UserContext from "../../../context/UserContext";
 import Auth0Hook from "../../../hooks/Auth0Hook";
-import { rowTitlesReturnPurchase } from "./rowTitlesReturnPurchase";
+import { rowTitleSales } from "../MovementBaseSale/rowTitlesSales";
 import { useState } from "react";
 import "../MovementBase.css";
 import Modal from "../../Modal/Modal";
 import check_icon from "../../../assets/check_icon.svg";
 import error_icon from "../../../assets/error_icon.svg";
 import { useNavigate } from "react-router-dom";
-import { InitialProducts } from "../InitialProducts";
+import { InitialProducts } from "../initialProducts";
 import MovementContext from "../../../context/MovementContext";
 var productsList = [];
 
@@ -21,7 +21,6 @@ const MovementBaseReturnPurchase = ({ title, messageRegister, modalTitle }) => {
   const [getData, setGetDate] = useState(true);
   const [addMovement, setAddMovement] = useState(false);
   const [isNotPosible, setIsNotPosible] = useState(false);
-  // const [productNameNotEnough, setProductNameNotEnough] = useState("");
   const { addReturnPurchase, addReturnVerification } = MovementContext();
   const navigate = useNavigate();
   const onClickRegisterReturnPurchase = (array) => {
@@ -60,7 +59,7 @@ const MovementBaseReturnPurchase = ({ title, messageRegister, modalTitle }) => {
       <SearchBarSale
         placeholder="Ingresa el nombre del producto"
         data={productDataArray}
-        rowTitles={rowTitlesReturnPurchase}
+        rowTitles={rowTitleSales}
         resultsArray={productsList}
         initialProducts={InitialProducts}
       />

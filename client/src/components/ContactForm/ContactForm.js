@@ -1,36 +1,41 @@
 import FormBase from "../FormBase/FormBase";
-import "./ContactForm.css"
-
+import "./ContactForm.css";
 
 const ContactForm = () => {
-  const itemsInput = [{
-    title:"email ",
-    type:"text",
-    required: true,
-    placeholder:"Email"
-  },{
-    title:"motivo ",
-    type:"text",
-    required: true,
-    placeholder:"Motivo"
-  },{
-    title:"mensaje ",
-    type:"text",
-    required: true,
-    placeholder:"Mensaje"
-  }];
+  const itemsInput = [
+    {
+      title: "email ",
+      type: "text",
+      required: "Este campo es requerido",
+      message: "Ingrese un email válido",
+      value: /\S+@\S+\.\S+/,
+      placeholder: "Email",
+    },
+    {
+      title: "motivo ",
+      type: "text",
+      required: "Este campo es requerido",
+      placeholder: "Motivo",
+    },
+    {
+      title: "mensaje ",
+      type: "text",
+      required: "Este campo es requerido",
+      placeholder: "Mensaje",
+    },
+  ];
   const onSubmitFunct = (data) => {
     console.log(data);
-  }
+  };
   return (
-      <>
-        <FormBase
-          formId="ContactForm"
-          onSubmitFunct={onSubmitFunct}
-          buttonName="ENVIAR"
-          itemsInput={itemsInput}
-        /> 
-      </>
+    <>
+      <FormBase
+        formId="ContactForm"
+        onSubmitFunct={onSubmitFunct}
+        buttonName="ENVIAR"
+        itemsInput={itemsInput}
+      />
+    </>
   );
 };
 

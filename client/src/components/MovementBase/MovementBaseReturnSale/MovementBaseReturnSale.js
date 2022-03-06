@@ -9,7 +9,7 @@ import Modal from "../../Modal/Modal";
 import check_icon from "../../../assets/check_icon.svg";
 import error_icon from "../../../assets/error_icon.svg";
 import { useNavigate } from "react-router-dom";
-import { InitialProducts } from "../InitialProducts";
+import { InitialProducts } from "../initialProducts";
 import MovementContext from "../../../context/MovementContext";
 var productsList = [];
 

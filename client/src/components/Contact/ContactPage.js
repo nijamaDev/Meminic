@@ -3,20 +3,18 @@ import map_point_img from "../../assets/map-point.png";
 import call_img from "../../assets/call.png";
 import msg_img from "../../assets/msg.png";
 import compass_img from "../../assets/compass.png";
-import "./ContactPage.css"
+import "./ContactPage.css";
 import Card from "../Card/Card";
-
 
 const ContactPage = () => {
   return (
-      <>
+    <>
       <div className="contact__full">
         <div className="contact__container">
-          <h1 className="contact__title">
-          Contacto
-          </h1>
+          <h1 className="contact__title">Contacto</h1>
           <p className="contact__top__text">
-          Méminic ofrece servicios de calidad que incluyen el control de inventarios y contabilidad de tu tienda
+            Méminic ofrece servicios de calidad que incluyen el control de
+            inventarios y contabilidad de tu tienda
           </p>
         </div>
         <div className="contact__form__container">
@@ -29,12 +27,16 @@ const ContactPage = () => {
             <img className="map__point__img" src={map_point_img} alt="map point" />
         </div>
         <div className="info__container">
-          <Card img={call_img} title="TELÉFONO" content="2672076"/>
-          <Card img={msg_img} title="EMAIL" content="support@meminic.com"/>
-          <Card img={compass_img} title="DIRECCIÓN" content="2247 Lunetta Street, TX 76301"/>
+          <Card img={call_img} title="TELÉFONO" content="2672076" />
+          <Card img={msg_img} title="EMAIL" content="support@meminic.com" />
+          <Card
+            img={compass_img}
+            title="DIRECCIÓN"
+            content="2247 Lunetta Street, TX 76301"
+          />
         </div>
       </div>
-      </>
+    </>
   );
 };
 

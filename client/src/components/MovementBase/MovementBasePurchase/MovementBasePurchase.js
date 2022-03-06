@@ -8,7 +8,7 @@ import "../MovementBase.css";
 import Modal from "../../Modal/Modal";
 import check_icon from "../../../assets/check_icon.svg";
 import { useNavigate } from "react-router-dom";
-import { InitialProducts } from "../InitialProducts";
+import { InitialProducts } from "../initialProducts";
 var productsList = [];
 
 const MovementBasePurchase = ({ title, onClickEvent, message, modalTitle }) => {
