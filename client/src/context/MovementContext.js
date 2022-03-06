@@ -41,10 +41,54 @@ const MovementContext = () => {
       console.log("error");
     }
   };
+
+  /**
+   * Función asíncrona que se encarga de realizar la consulta addReturnSale
+   * definida en el server
+   * @param {*} data
+   * @returns {Promise}
+   */
+  const addReturnSale = async (data) => {
+    try {
+      const returnSale = await axios.post(
+        "http://localhost:5000/addReturnSale",
+        {
+          productName: data.name,
+          outputAmount: data.amount,
+          accSupport: data.accSupport,
+        }
+      );
+      return returnSale;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+  /**
+   * Función que se encarga de llamar a la consulta returnVerification
+   * @param {*} data
+   * @returns {Promise}
+   */
+  const addReturnVerification = async (data) => {
+    try {
+      const returnVerification = await axios.post(
+        "http://localhost:5000/addReturnVerification",
+        {
+          data,
+        }
+      );
+      
+      return returnVerification;
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   return {
     addSale,
     addSaleVerification,
     addPurchase,
+    addReturnSale,
+    addReturnVerification,
   };
 };
 

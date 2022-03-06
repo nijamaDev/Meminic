@@ -15,8 +15,8 @@ export const ModulesInfoSeller = [
         url: "/movements",
       },
       {
-        title: "Devolución de compra",
-        url: "/movements",
+        title: "Devolución de venta",
+        url: "/movements/returnSale",
       },
     ],
   },

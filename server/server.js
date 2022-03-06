@@ -3,7 +3,7 @@ const express = require("express");
 const sequelize = require("./database/database.js");
 const app = express();
 const cors = require("cors");
-const { Op } = require("@sequelize/core");
+const { Op } = require("sequelize");
 const User = require("./database/models/user.js");
 const Store = require("./database/models/store.js");
 const Product = require("./database/models/product.js");
@@ -166,7 +166,7 @@ app.post("/getProducts", async (req, res) => {
   res.status(201).send(products);
 });
 
-// ===================================== Movement ==================================
+// ===================================== Movements ==================================
 
 /**
  * Consulta que se encarga de añadir el inventario inicial a la tabla de movimientos
@@ -205,9 +205,10 @@ app.post("/addSale", async (req, res) => {
     order: [["updatedAt", "DESC"]],
   });
   lastMovement = lastMovement[0];
+  const weightedValue = lastMovement.weightedValue;
   const unitValue = lastMovement.unitValue;
   const outputAmount = req.body.outputAmount;
-  const outputValue = outputAmount * unitValue;
+  const outputValue = outputAmount * lastMovement.weightedValue;
   const balanceAmount = lastMovement.balanceAmount - outputAmount;
   const balanceValue = lastMovement.balanceValue - outputValue;
   const movement = await Movement.create({
@@ -215,7 +216,7 @@ app.post("/addSale", async (req, res) => {
     accSupport: req.body.accSupport,
     movementType: "Venta",
     unitValue: unitValue,
-    weightedValue: unitValue,
+    weightedValue: weightedValue,
     outputAmount: outputAmount,
     outputValue: outputValue,
     balanceAmount: balanceAmount,
@@ -298,11 +299,11 @@ app.post("/addPurchase", async (req, res) => {
   res.status(201).send(movement);
 });
 
-app.post("/addReturnPurchase", async (req, res) => {
+app.post("/addReturnSale", async (req, res) => {
   const product = await Product.findOne({
     where: { productName: req.body.productName },
   });
-  var lastMovement = await Movement.findAll({
+  var movementaccSupport = await Movement.findAll({
     where: {
       [Op.and]: [
         { accSupport: req.body.accSupport },
@@ -312,32 +313,69 @@ app.post("/addReturnPurchase", async (req, res) => {
     limit: 1,
     order: [["updatedAt", "DESC"]],
   });
+  var lastMovement = await Movement.findAll({
+    where: { productIdKardex: product.idKardex },
+    limit: 1,
+    order: [["updatedAt", "DESC"]],
+  });
   lastMovement = lastMovement[0];
-  //Valor de saldo anterior + cantidad actual * valor unitariofalta la division, y este seria el ponderado no?
+  movementaccSupport = movementaccSupport[0];
+  const unitValue = movementaccSupport.unitValue;
+  // Valor saldo anterior + cantidad ingresada * costo del producto cuando realizó la venta
   const weightedValue =
-    (lastMovement.balanceValue + req.body.inputAmount * req.body.unitValue) /
-    (lastMovement.balanceAmount + req.body.inputAmount);
-  const unitValue = req.body.unitValue;
-  const inputAmount = req.body.inputAmount;
-  // valor de entrada = cantidad ingresada * valor unitario ingresado
-  const inputValue = req.body.inputAmount * req.body.unitValue;
-  const balanceAmount = lastMovement.balanceAmount + req.body.inputAmount;
-  const balanceValue = lastMovement.balanceValue + inputValue;
+    (lastMovement.balanceValue +
+      req.body.outputAmount * movementaccSupport.unitValue) /
+    (lastMovement.balanceAmount + req.body.outputAmount);
+  // Cantidad a devolver
+  const outputAmount = req.body.outputAmount;
+  // Valor unitario por el cual fue vendido el producto * cantidad ingresada
+  const outputValue = movementaccSupport.unitValue * outputAmount;
+  // Cantidad ingresada + cantidad anterior
+  const balanceAmount = lastMovement.balanceAmount + outputAmount;
+  // Cantidad ingresada * valor promedio ponderado
+  const balanceValue = balanceAmount * weightedValue;
   const movement = await Movement.create({
     date: new Date(),
-    movementType: "Compra",
+    movementType: "Devolución de venta",
+    accSupport: movementaccSupport.accSupport,
     unitValue: unitValue,
-    accSupport: req.body.accSupport,
     weightedValue: weightedValue,
-    inputAmount: inputAmount,
-    inputValue: inputValue,
+    outputAmount: outputAmount,
+    outputValue: outputValue,
     balanceAmount: balanceAmount,
     balanceValue: balanceValue,
   });
   //foreign key
   product.addMovement(movement);
-  console.log("purchase added");
+  console.log("Return sale added");
   res.status(201).send(movement);
+});
+
+/**
+ * Consulta que verifica si la factura ingresada se encuentra ya en
+ * la base de datos
+ */
+app.post("/addReturnVerification", async (req, res) => {
+  var isPossible = true;
+  for (let i = 0; i < req.body.data.length; i++) {
+    const product = await Product.findOne({
+      where: { productName: req.body.data[i].name },
+    });
+    var movementaccSupport = await Movement.findAll({
+      where: {
+        [Op.and]: [
+          { accSupport: req.body.data[i].accSupport },
+          { productIdKardex: product.idKardex },
+        ],
+      },
+      limit: 1,
+      order: [["updatedAt", "DESC"]],
+    });
+    if (movementaccSupport.length === 0) {
+      isPossible = false;
+    }
+  }
+  res.status(201).send(isPossible);
 });
 
 //Routes
