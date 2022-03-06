@@ -1,9 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const sequelize = require("./database/database.js");
+const { Op } = require('sequelize');
 const app = express();
 const cors = require("cors");
-const { Op } = require("@sequelize/core");
 const User = require("./database/models/user.js");
 const Store = require("./database/models/store.js");
 const Product = require("./database/models/product.js");
@@ -206,8 +206,9 @@ app.post("/addSale", async (req, res) => {
   });
   lastMovement = lastMovement[0];
   const unitValue = lastMovement.unitValue;
+  const weightedValue = lastMovement.weightedValue;
   const outputAmount = req.body.outputAmount;
-  const outputValue = outputAmount * unitValue;
+  const outputValue = outputAmount * weightedValue;
   const balanceAmount = lastMovement.balanceAmount - outputAmount;
   const balanceValue = lastMovement.balanceValue - outputValue;
   const movement = await Movement.create({
@@ -215,7 +216,7 @@ app.post("/addSale", async (req, res) => {
     accSupport: req.body.accSupport,
     movementType: "Venta",
     unitValue: unitValue,
-    weightedValue: unitValue,
+    weightedValue: weightedValue,
     outputAmount: outputAmount,
     outputValue: outputValue,
     balanceAmount: balanceAmount,
@@ -271,7 +272,7 @@ app.post("/addPurchase", async (req, res) => {
     order: [["updatedAt", "DESC"]],
   });
   lastMovement = lastMovement[0];
-  //Valor de saldo anterior + cantidad actual * valor unitariofalta la division, y este seria el ponderado no?
+  //Valor de saldo anterior + cantidad actual * valor unitario/ valor anterior del saldo + cantidad actual
   const weightedValue =
     (lastMovement.balanceValue + req.body.inputAmount * req.body.unitValue) /
     (lastMovement.balanceAmount + req.body.inputAmount);
@@ -298,11 +299,47 @@ app.post("/addPurchase", async (req, res) => {
   res.status(201).send(movement);
 });
 
+
+
+/**
+ * Consulta que verifica si las existencias de los productos
+ * son suficientes para realizar la devolucion de compra
+ */
+ app.post("/addReturnPurchaseVerification", async (req, res) => {
+  var isPossible = true;
+  var productNotEnough = { index: 0 };
+  for (let i = 0; i < req.body.data.length; i++) {
+    const product = await Product.findOne({
+      where: { productName: req.body.data[i].name },
+    });
+    var lastMovement = await Movement.findAll({
+      where: { productIdKardex: product.idKardex },
+      limit: 1,
+      order: [["updatedAt", "DESC"]],
+    });
+    lastMovement = lastMovement[0];
+    const balanceAmount = lastMovement.balanceAmount - req.body.data[i].amount;
+    if (balanceAmount < 0) {
+      isPossible = false;
+      productNotEnough = { index: i };
+    }
+  }
+  if (isPossible === true) {
+    res.status(201).send(isPossible);
+  } else {
+    res.status(201).send({ productNotEnough });
+  }
+});
+
+
+/**
+ * Consulta que se encarga de añadir una devolucion de compra a la tabla de movimientos
+ */
 app.post("/addReturnPurchase", async (req, res) => {
   const product = await Product.findOne({
     where: { productName: req.body.productName },
   });
-  var lastMovement = await Movement.findAll({
+  var accSupportMovement = await Movement.findAll({
     where: {
       [Op.and]: [
         { accSupport: req.body.accSupport },
@@ -312,22 +349,30 @@ app.post("/addReturnPurchase", async (req, res) => {
     limit: 1,
     order: [["updatedAt", "DESC"]],
   });
+  accSupportMovement = accSupportMovement[0];
+
+  var lastMovement = await Movement.findAll({
+    where: { productIdKardex: product.idKardex },
+    limit: 1,
+    order: [["updatedAt", "DESC"]],
+  });
   lastMovement = lastMovement[0];
-  //Valor de saldo anterior + cantidad actual * valor unitariofalta la division, y este seria el ponderado no?
+  //Valor de saldo anterior - cantidad actual * valor unitario
   const weightedValue =
-    (lastMovement.balanceValue + req.body.inputAmount * req.body.unitValue) /
-    (lastMovement.balanceAmount + req.body.inputAmount);
-  const unitValue = req.body.unitValue;
-  const inputAmount = req.body.inputAmount;
-  // valor de entrada = cantidad ingresada * valor unitario ingresado
-  const inputValue = req.body.inputAmount * req.body.unitValue;
-  const balanceAmount = lastMovement.balanceAmount + req.body.inputAmount;
-  const balanceValue = lastMovement.balanceValue + inputValue;
+    (lastMovement.balanceValue - req.body.outputAmount * accSupportMovement.unitValue) /
+    (lastMovement.balanceAmount - req.body.outputAmount);
+  const unitValue = accSupportMovement.unitValue;
+  const inputAmount = req.body.outputAmount;
+  // valor de entrada = cantidad ingresada * valor unitario registrado en el movimiento 
+  //correspondiente a la factura de compra
+  const inputValue = req.body.outputAmount * accSupportMovement.unitValue; 
+  const balanceAmount = lastMovement.balanceAmount - req.body.outputAmount;
+  const balanceValue = weightedValue * balanceAmount;
   const movement = await Movement.create({
     date: new Date(),
-    movementType: "Compra",
-    unitValue: unitValue,
+    movementType: "Devolución de compra",
     accSupport: req.body.accSupport,
+    unitValue: unitValue,
     weightedValue: weightedValue,
     inputAmount: inputAmount,
     inputValue: inputValue,
@@ -336,7 +381,7 @@ app.post("/addReturnPurchase", async (req, res) => {
   });
   //foreign key
   product.addMovement(movement);
-  console.log("purchase added");
+  console.log("return purchase added");
   res.status(201).send(movement);
 });
 
