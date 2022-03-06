@@ -15,6 +15,7 @@ import MovementBaseSale from "./components/MovementBase/MovementBaseSale/Movemen
 import MovementBasePurchase from "./components/MovementBase/MovementBasePurchase/MovementBasePurchase";
 import MovementBaseReturnSale from "./components/MovementBase/MovementBaseReturnSale/MovementBaseReturnSale";
 import MovementAddPurchaseEvents from "./components/MovementBase/MovementBasePurchase/MovementAddPurchaseEvents";
+import Graphics from "./components/Graphics/Graphics";
 import "./index.css";
 import "./components/ModulesBox/ModulesBox.css";
 import UserContext from "./context/UserContext";
@@ -229,6 +230,19 @@ function App() {
                   <></>
                 )}
               </>
+            }
+          />
+          <Route
+            path="/reports"
+            element={
+              isAuthenticated ? (
+                <>
+                  <Header menuItems={MenuItemsSystem} /> <Graphics />
+                  <Footer menuItems={MenuItemsSystem} />{" "}
+                </>
+              ) : (
+                <></>
+              )
             }
           />
         </Routes>

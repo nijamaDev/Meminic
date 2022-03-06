@@ -432,6 +432,40 @@ app.post("/addReturnVerification", async (req, res) => {
   res.status(201).send(isPossible);
 });
 
+// ===================================== Reports =======================================
+
+app.post("/salesByMonth", async (req, res) => {
+  // find the user
+  const user = await User.findByPk(req.body.email);
+  // //find the id of a store
+  const store = await Store.findByPk(user.dataValues.storeStoreId);
+  // // get the products of the current store
+  const products = await store.getProduct();
+  // get all movements of the current store
+  var movement;
+  // for (let j = 0; j < products.length; j++) {
+  //   movement = await products[j].getMovement();
+  for (let i = 0; i < products.length; i++) {
+    var salesByMonthData = await Product.findAll({
+      where: {
+        [Op.and]: [
+          { idKardex: products[i].dataValues.idKardex },
+          { storeStoreId: "1" },
+          { movementType: "Venta" },
+        ],
+      },
+      include: { model: Movement, as: "Movement" },
+    });
+  }
+  // }
+
+  console.log(
+    "================================================ movimientos ===============================",
+    salesByMonthData
+  );
+  // var salesByMonthData = Product.findAll({ where: {idKardex: }, include: [Movement] });
+});
+
 //Routes
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
