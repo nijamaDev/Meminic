@@ -29,7 +29,7 @@
 }
 
 .menu__footer a {
-  padding: 0;
+  padding: 0 0.5rem;
 }
 
 .menu__container__social {
@@ -68,7 +68,9 @@
   text-align: center;
   padding-bottom: 1em;
 }
-
+.footer__div button {
+  display: none;
+}
 @media screen and (min-width: 1000px) {
   .menu__title {
     display: none;

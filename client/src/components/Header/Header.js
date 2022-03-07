@@ -5,6 +5,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import Menu from "../Menu/Menu";
 import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
+import LogOut from "../LogOut/LogOut";
 
 const Header = ({ menuItems }) => {
   const [isClicked, setIsClicked] = useState(false);

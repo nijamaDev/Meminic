@@ -17,7 +17,6 @@ const ModulesSectionAdmin = ({ Modules }) => {
           );
         })}
       </div>
-      <LogOut />
     </div>
   );
 };

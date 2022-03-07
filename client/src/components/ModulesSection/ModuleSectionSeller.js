@@ -16,7 +16,6 @@ const ModulesSectionSeller = ({ Modules }) => {
             />
           );
         })}
-        <LogOut />
       </div>
     </div>
   );

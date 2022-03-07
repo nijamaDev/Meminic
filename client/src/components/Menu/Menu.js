@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LogOut from "../LogOut/LogOut";
 
 const Menu = ({ NameClass, Items }) => {
   return (
@@ -14,6 +15,7 @@ const Menu = ({ NameClass, Items }) => {
             </li>
           );
         })}
+          <LogOut/>
       </ul>
     </div>
   );
