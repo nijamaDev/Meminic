@@ -49,3 +49,10 @@
   line-height: 32px;
   margin-bottom: 4px;
 }
+
+@media screen and (min-width: 768px) {
+  .modal-content {
+    width: 35%;
+    margin: 18% auto;
+  }
+}

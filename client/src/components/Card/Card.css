@@ -1,5 +1,5 @@
 .card__container {
-  font-family: 'Epilogue';
+  font-family: "Epilogue";
   margin: 20px;
   border: 2px solid #f3d1bf;
   padding: 1em 2.2em;
@@ -10,11 +10,14 @@
   color: #ef6d58;
   display: flex;
   align-items: center;
+  margin-bottom: 15px;
 }
 .card__img {
   width: 70px;
   margin-right: 1.4em;
 }
-.card__content {
+
+.card__content a {
+  text-decoration: none;
   color: #391400;
 }

@@ -24,6 +24,7 @@ import { MenuItemsSystem } from "./components/Menu/MenuItemsSystem";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ModulesInfoAdmin } from "./components/ModulesSection/ModulesInfoAdmin";
 import { ModulesInfoSeller } from "./components/ModulesSection/ModulesInfoSeller";
+import { MenuItemsSeller } from "./components/Menu/MenuItemsSeller";
 import MovementBaseReturnPurchase from "./components/MovementBase/MovementBaseReturnPurchase/MovementBaseReturnPurchase";
 import MovementBaseVisualize from "./components/MovementBase/MovementBaseVisualize/MovementBaseVisualize";
 
@@ -61,9 +62,9 @@ function App() {
                         auth0Authenticated &&
                         readResultUsed ? (
                           <div className="app__modules__container">
-                            <Header menuItems={MenuItemsSystem} />
                             {isAdmin ? (
                               <>
+                                <Header menuItems={MenuItemsSystem} />
                                 <UserProfile
                                   profileImg={user.picture}
                                   name={user.name}
@@ -72,9 +73,11 @@ function App() {
                                 <ModulesSectionAdmin
                                   Modules={ModulesInfoAdmin}
                                 />
+                                <Footer menuItems={MenuItemsSystem} />
                               </>
                             ) : (
                               <>
+                                <Header menuItems={MenuItemsSeller} />
                                 <UserProfile
                                   profileImg={user.picture}
                                   name={user.name}
@@ -84,10 +87,9 @@ function App() {
                                   Modules={ModulesInfoSeller}
                                   className="modules__box__seller"
                                 />
+                                <Footer menuItems={MenuItemsSeller} />
                               </>
                             )}
-
-                            <Footer menuItems={MenuItemsSystem} />
                           </div>
                         ) : (
                           <>
@@ -174,7 +176,7 @@ function App() {
             path="/contact"
             element={
               <>
-                <Header menuItems={MenuItemsSystem} />
+                <Header menuItems={MenuItemsLogin} />
                 <ContactPage />
                 <Footer menuItems={MenuItemsLogin} />
               </>

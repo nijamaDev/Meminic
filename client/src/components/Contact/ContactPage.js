@@ -33,8 +33,18 @@ const ContactPage = () => {
           </div>
         </div>
         <div className="info__container">
-          <Card img={call_img} title="TELÉFONO" content="2672076" />
-          <Card img={msg_img} title="EMAIL" content="support@meminic.com" />
+          <Card
+            img={call_img}
+            title="TELÉFONO"
+            content="2672076"
+            hrefurl="tel:2672076"
+          />
+          <Card
+            img={msg_img}
+            title="EMAIL"
+            content="avocadoteam.meminic@gmail.com"
+            hrefurl="mailto:avocadoteam.meminic@gmail.com"
+          />
           <Card
             img={compass_img}
             title="DIRECCIÓN"

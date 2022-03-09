@@ -62,7 +62,10 @@
   background-color: #fdf0e9;
   padding: 1rem;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 900px) {
+  .contact__form__block {
+    width: 370px;
+  }
   .contact__form__img__container {
     display: flex;
   }
@@ -77,7 +80,7 @@
   }
   .map__container {
     height: 40vw;
-    width: 40%;
+    width: 50%;
     border-radius: 1000px;
     margin-left: 170px;
     margin-right: 170px;
@@ -85,5 +88,15 @@
   }
   .contact__form__container {
     padding-bottom: 0;
+  }
+  .info__container {
+    display: flex;
+    justify-content: center;
+  }
+  .info__container .card__container {
+    border: 0;
+  }
+  .card__container .card__header h3 {
+    font-size: 16px;
   }
 }
