@@ -121,9 +121,17 @@ function App() {
             path="/products/create"
             element={
               <>
-                <Header menuItems={MenuItemsSystem} />
+                {isAdmin ? (
+                  <Header menuItems={MenuItemsSystem} />
+                ) : (
+                  <Header menuItems={MenuItemsSeller} />
+                )}
                 <ProductsAddSection user={user} />
-                <Footer menuItems={MenuItemsSystem} />
+                {isAdmin ? (
+                  <Footer menuItems={MenuItemsSystem} />
+                ) : (
+                  <Footer menuItems={MenuItemsSeller} />
+                )}
               </>
             }
           />
@@ -131,9 +139,17 @@ function App() {
             path="/products/update"
             element={
               <>
-                <Header menuItems={MenuItemsSystem} />
+                {isAdmin ? (
+                  <Header menuItems={MenuItemsSystem} />
+                ) : (
+                  <Header menuItems={MenuItemsSeller} />
+                )}
                 <ProductsUpdateSection user={user} />
-                <Footer menuItems={MenuItemsSystem} />
+                {isAdmin ? (
+                  <Footer menuItems={MenuItemsSystem} />
+                ) : (
+                  <Footer menuItems={MenuItemsSeller} />
+                )}
               </>
             }
           />
@@ -141,13 +157,21 @@ function App() {
             path="/products/read"
             element={
               <>
-                <Header menuItems={MenuItemsSystem} />
+                {isAdmin ? (
+                  <Header menuItems={MenuItemsSystem} />
+                ) : (
+                  <Header menuItems={MenuItemsSeller} />
+                )}
                 <ProductReadTable
                   onClickTable={onClickProductsTable}
                   isClicked={isClicked}
                   Items={productsList}
                 />
-                <Footer menuItems={MenuItemsSystem} />
+                {isAdmin ? (
+                  <Footer menuItems={MenuItemsSystem} />
+                ) : (
+                  <Footer menuItems={MenuItemsSeller} />
+                )}
               </>
             }
           />
@@ -157,14 +181,22 @@ function App() {
               <>
                 {isAuthenticated ? (
                   <>
-                    <Header menuItems={MenuItemsSystem} />{" "}
+                    {isAdmin ? (
+                      <Header menuItems={MenuItemsSystem} />
+                    ) : (
+                      <Header menuItems={MenuItemsSeller} />
+                    )}{" "}
                     <MovementBaseSale
                       title="Venta"
                       messageRegister="La venta ha sido registrada con éxito!"
                       messageAmount="La cantidad de existencias no es suficiente"
                       modalTitle="Venta registrada"
                     />
-                    <Footer menuItems={MenuItemsSystem} />{" "}
+                    {isAdmin ? (
+                      <Footer menuItems={MenuItemsSystem} />
+                    ) : (
+                      <Footer menuItems={MenuItemsSeller} />
+                    )}{" "}
                   </>
                 ) : (
                   <></>
@@ -188,14 +220,22 @@ function App() {
               <>
                 {isAuthenticated ? (
                   <div className="app__footer__movements">
-                    <Header menuItems={MenuItemsSystem} />{" "}
+                    {isAdmin ? (
+                      <Header menuItems={MenuItemsSystem} />
+                    ) : (
+                      <Header menuItems={MenuItemsSeller} />
+                    )}{" "}
                     <MovementBasePurchase
                       title="Compra"
                       onClickEvent={onClickRegisterPurchase}
                       message="La compra ha sido registrada con éxito!"
                       modalTitle="Compra registrada"
                     />
-                    <Footer menuItems={MenuItemsSystem} />{" "}
+                    {isAdmin ? (
+                      <Footer menuItems={MenuItemsSystem} />
+                    ) : (
+                      <Footer menuItems={MenuItemsSeller} />
+                    )}{" "}
                   </div>
                 ) : (
                   <></>
@@ -209,7 +249,11 @@ function App() {
               <>
                 {isAuthenticated ? (
                   <div className="app__footer__movements">
-                    <Header menuItems={MenuItemsSystem} />{" "}
+                    {isAdmin ? (
+                      <Header menuItems={MenuItemsSystem} />
+                    ) : (
+                      <Header menuItems={MenuItemsSeller} />
+                    )}{" "}
                     <MovementBaseReturnSale
                       title="Devolución en venta"
                       message="La devolución ha sido registrada con éxito!"
@@ -217,7 +261,11 @@ function App() {
                       messageError="No fue posible realizar la devolución, revise el número de factura "
                       modalTitleError="Devolución no registrada"
                     />
-                    <Footer menuItems={MenuItemsSystem} />{" "}
+                    {isAdmin ? (
+                      <Footer menuItems={MenuItemsSystem} />
+                    ) : (
+                      <Footer menuItems={MenuItemsSeller} />
+                    )}{" "}
                   </div>
                 ) : (
                   <></>
@@ -231,13 +279,21 @@ function App() {
               <>
                 {isAuthenticated ? (
                   <div className="app__footer__movements">
-                    <Header menuItems={MenuItemsSystem} />{" "}
+                    {isAdmin ? (
+                      <Header menuItems={MenuItemsSystem} />
+                    ) : (
+                      <Header menuItems={MenuItemsSeller} />
+                    )}{" "}
                     <MovementBaseReturnPurchase
                       title="Devolución de compra"
                       messageRegister="La devolución de compra ha sido registrada con éxito!"
                       modalTitle="Devolución de compra registrada"
                     />
-                    <Footer menuItems={MenuItemsSystem} />{" "}
+                    {isAdmin ? (
+                      <Footer menuItems={MenuItemsSystem} />
+                    ) : (
+                      <Footer menuItems={MenuItemsSeller} />
+                    )}{" "}
                   </div>
                 ) : (
                   <></>
@@ -251,9 +307,17 @@ function App() {
               <>
                 {isAuthenticated ? (
                   <div className="app__footer__movements">
-                    <Header menuItems={MenuItemsSystem} />{" "}
+                    {isAdmin ? (
+                      <Header menuItems={MenuItemsSystem} />
+                    ) : (
+                      <Header menuItems={MenuItemsSeller} />
+                    )}{" "}
                     <MovementBaseVisualize title="Consulta de movimientos" />
-                    <Footer menuItems={MenuItemsSystem} />{" "}
+                    {isAdmin ? (
+                      <Footer menuItems={MenuItemsSystem} />
+                    ) : (
+                      <Footer menuItems={MenuItemsSeller} />
+                    )}{" "}
                   </div>
                 ) : (
                   <></>
