@@ -60,7 +60,7 @@ function App() {
                         {isAuthenticated &&
                         auth0Authenticated &&
                         readResultUsed ? (
-                          <>
+                          <div className="app__modules__container">
                             <Header menuItems={MenuItemsSystem} />
                             {isAdmin ? (
                               <>
@@ -88,7 +88,7 @@ function App() {
                             )}
 
                             <Footer menuItems={MenuItemsSystem} />
-                          </>
+                          </div>
                         ) : (
                           <>
                             {" "}
@@ -108,11 +108,11 @@ function App() {
           <Route
             path="/users"
             element={
-              <>
+              <div className="app__users__container">
                 <Header menuItems={MenuItemsSystem} />
                 <UserSectionModal />
                 <Footer menuItems={MenuItemsSystem} />
-              </>
+              </div>
             }
           />
           <Route
@@ -185,7 +185,7 @@ function App() {
             element={
               <>
                 {isAuthenticated ? (
-                  <>
+                  <div className="app__footer__movements">
                     <Header menuItems={MenuItemsSystem} />{" "}
                     <MovementBasePurchase
                       title="Compra"
@@ -194,7 +194,7 @@ function App() {
                       modalTitle="Compra registrada"
                     />
                     <Footer menuItems={MenuItemsSystem} />{" "}
-                  </>
+                  </div>
                 ) : (
                   <></>
                 )}
@@ -206,7 +206,7 @@ function App() {
             element={
               <>
                 {isAuthenticated ? (
-                  <>
+                  <div className="app__footer__movements">
                     <Header menuItems={MenuItemsSystem} />{" "}
                     <MovementBaseReturnSale
                       title="Devolución en venta"
@@ -216,7 +216,7 @@ function App() {
                       modalTitleError="Devolución no registrada"
                     />
                     <Footer menuItems={MenuItemsSystem} />{" "}
-                  </>
+                  </div>
                 ) : (
                   <></>
                 )}
@@ -228,7 +228,7 @@ function App() {
             element={
               <>
                 {isAuthenticated ? (
-                  <>
+                  <div className="app__footer__movements">
                     <Header menuItems={MenuItemsSystem} />{" "}
                     <MovementBaseReturnPurchase
                       title="Devolución de compra"
@@ -236,7 +236,7 @@ function App() {
                       modalTitle="Devolución de compra registrada"
                     />
                     <Footer menuItems={MenuItemsSystem} />{" "}
-                  </>
+                  </div>
                 ) : (
                   <></>
                 )}
@@ -248,11 +248,11 @@ function App() {
             element={
               <>
                 {isAuthenticated ? (
-                  <>
+                  <div className="app__footer__movements">
                     <Header menuItems={MenuItemsSystem} />{" "}
                     <MovementBaseVisualize title="Consulta de movimientos" />
                     <Footer menuItems={MenuItemsSystem} />{" "}
-                  </>
+                  </div>
                 ) : (
                   <></>
                 )}
@@ -263,10 +263,10 @@ function App() {
             path="/reports"
             element={
               isAuthenticated ? (
-                <>
+                <div className="app__footer__reports">
                   <Header menuItems={MenuItemsSystem} /> <Graphics />
                   <Footer menuItems={MenuItemsSystem} />{" "}
-                </>
+                </div>
               ) : (
                 <></>
               )

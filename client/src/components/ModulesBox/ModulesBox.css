@@ -142,3 +142,14 @@
 .modules__section {
   margin-bottom: 60px;
 }
+
+@media screen and (min-width: 768px) {
+  .module__box__clicked:nth-child(2) .module__box__list {
+    transform: translate(-142px, 3px);
+    width: 22.25rem;
+  }
+  .module__box__clicked:nth-child(4) .module__box__list {
+    transform: translate(-142px, 3px);
+    width: 22.25rem;
+  }
+}

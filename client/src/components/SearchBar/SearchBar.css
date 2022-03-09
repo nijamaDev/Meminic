@@ -64,3 +64,14 @@ input:focus {
 #clearBtn {
   cursor: pointer;
 }
+
+@media screen and (min-width: 532px) {
+  .search__input__bar {
+    justify-content: center;
+    display: flex;
+    margin: auto;
+  }
+  .dataResult {
+    width: 40%;
+  }
+}

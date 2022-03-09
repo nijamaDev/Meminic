@@ -1,4 +1,8 @@
 .logout__button {
+  justify-content: center;
+  margin-left: 120px;
+  margin-right: 120px;
+  margin-top: 10px;
   display: flex;
   margin: auto;
   background-color: #ef6d58;
@@ -15,5 +19,5 @@
   text-transform: uppercase;
   box-shadow: 0px 4px 4px 0px #00000040;
   border: 1px solid transparent;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
 }
