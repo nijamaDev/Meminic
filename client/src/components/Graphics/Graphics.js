@@ -31,6 +31,7 @@ const Graphics = () => {
       salesBylastMonth(user.email).then(function (response) {
         setSalesByLastMonthAmount(response.data.amount);
         setSalesByLastMonthProducts(response.data.products);
+        console.log("respuesta3", response);
         setIsLoading(false);
       });
     }

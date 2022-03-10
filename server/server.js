@@ -538,25 +538,29 @@ app.post("/salesByMonth", async (req, res) => {
   for (let k = 0; k < salesAmount.length; k++) {
     salesCount.push(parseFloat(salesAmount[k]));
   }
-  for (let z = 0; z < months.length; z++) {
-    for (let n = 0; n < months[z].length; n++) {
-      if (z !== n) {
-        if (months[z] === months[n]) {
-          resultsMonths.push(months[z]);
-          resultsCount.push(salesCount[z] + salesCount[n]);
-          resultsMonths.splice(n, 1);
-          resultsCount.splice(n, 1);
-          duplicated = true;
-        }
-      }
-    }
-    if (duplicated === false) {
-      resultsMonths.push(months[z]);
-      resultsCount.push(salesCount[z]);
-    }
+  // for (let z = 0; z < months.length; z++) {
+  //   for (let n = 0; n < months[z].length; n++) {
+  //     if (z !== n) {
+  //       if (months[z] === months[n]) {
+  //         resultsMonths.push(months[z]);
+  //         resultsCount.push(salesCount[z] + salesCount[n]);
+  //         resultsMonths.splice(n, 1);
+  //         resultsCount.splice(n, 1);
+  //         duplicated = true;
+  //       }
+  //     }
+  //   }
+  //   if (duplicated === false) {
+  //     resultsMonths.push(months[z]);
+  //     resultsCount.push(salesCount[z]);
+  //   }
+  // }
+  var monthsInYearCount = [0,0,0,0,0,0,0,0,0,0,0,0]
+  for (let i = 0; i < months.length; i++){
+      monthsInYearCount[parseInt(months[i]) -1] = monthsInYearCount[parseInt(months[i]) -1] + salesCount[i];
   }
 
-  res.status(201).send({ months: resultsMonths, count: resultsCount });
+  res.status(201).send({ months: ["01", "02", "03", "04", "05", "06" , "07", "08", "09", "10", "11", "12"], count: monthsInYearCount });
 });
 
 /**
